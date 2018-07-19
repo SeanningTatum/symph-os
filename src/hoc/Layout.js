@@ -18,15 +18,14 @@ export default class extends Component {
 
     return(
       <React.Fragment>
-        <Sidenav open={this.state.sideNavOpen}/>
-        <div className="app-container" style={{marginLeft}}>
+        <div className="app-container">
           <div className="row">
             <div className="col-12">
               <Navbar />
             </div>
           </div>
-          
-          <div className="row" style={{height: '100%'}}>
+          <Sidenav open={this.state.sideNavOpen}/>          
+          <div className="row main-content" style={{height: '100%', marginLeft}}>
             <div className="col-md-10">
               {this.props.children}
               <button className="btn btn-primary" onClick={this.openSidenav}>open</button>
