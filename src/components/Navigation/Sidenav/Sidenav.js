@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Sidenav.css';
 
 const navigationItems = [
@@ -14,7 +15,7 @@ const Sidenav = (props) => {
     <div className="sidenav" style={{height: '100%', width}}>
       <ul className="list-group list-group-flush">
         {navigationItems.map(name => (
-          <li className="list-group-item">{name}</li>
+          <NavLink key={name} className="list-group-item" to={`/${name.toLowerCase()}`}>{name}</NavLink>
         ))}
       </ul>
     </div>
