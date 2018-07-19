@@ -1,9 +1,10 @@
 import React from 'react'
+import { Navbar, NavbarBrand } from 'reactstrap';
 
-const Navbar = () => (
-    <nav className="navbar navbar-light bg-light">
-      <span className="navbar-brand mb-0 h1">Navbar</span>
-    </nav>
+const navbar = (props) => (
+  <Navbar color="light" light expand="md">
+    <NavbarBrand href="/">Symph OS</NavbarBrand>
+  </Navbar>
 )
 
-export default Navbar
+export default navbar;
