@@ -14,10 +14,10 @@ export default class extends Component {
 
   render() {
 
-    const marginLeft = (this.state.sideNavOpen) ? '250px' : 0;
+    const marginLeft = (this.state.sideNavOpen) ? '200px' : '-15px';
 
     return(
-      <div className="app-container">
+      <div className="app-container" >
 
         {/* Navbar */}
         <div className="row">
@@ -26,12 +26,12 @@ export default class extends Component {
           </div>
         </div>
 
-        <Sidenav open={this.state.sideNavOpen}/>    
+        <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
         <div className="row main-content" style={{height: '100%', marginLeft}}>
-          <div className="col-12">
-            <div className="container-fluid">
+          <div className="col-12" style={{paddingRight: 0, paddingLeft: 0}}>
+            <div className="container-fluid mt-5">
               {this.props.children}
             </div>
           </div>

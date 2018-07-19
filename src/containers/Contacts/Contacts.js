@@ -27,7 +27,7 @@ const data = [
 export class Contacts extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h5>Contacts</h5>
         <BootstrapTable 
           keyField='client_id' 
@@ -35,7 +35,7 @@ export class Contacts extends Component {
           columns={columns} 
           bordered={ false }
           condensed />
-      </div>
+      </React.Fragment>
     )
   }
 }
