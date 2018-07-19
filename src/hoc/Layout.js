@@ -30,8 +30,8 @@ export default class extends Component {
 
         {/* Main content */}
         <div className="row main-content" style={{height: '100%', marginLeft}}>
-          <div className="col-md-10">
-            <div className="container">
+          <div className="col-12">
+            <div className="container-fluid">
               {this.props.children}
             </div>
           </div>
