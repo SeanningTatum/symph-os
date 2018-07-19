@@ -17,22 +17,20 @@ export default class extends Component {
     const marginLeft = (this.state.sideNavOpen) ? '250px' : 0;
 
     return(
-      <React.Fragment>
-        <div className="app-container">
-          <div className="row">
-            <div className="col-12">
-              <Navbar />
-            </div>
-          </div>
-          <Sidenav open={this.state.sideNavOpen}/>          
-          <div className="row main-content" style={{height: '100%', marginLeft}}>
-            <div className="col-md-10">
-              {this.props.children}
-              <button className="btn btn-primary" onClick={this.openSidenav}>open</button>
-            </div>
+      <div className="app-container">
+        <div className="row">
+          <div className="col-12">
+            <Navbar />
           </div>
         </div>
-      </React.Fragment>
+        <Sidenav open={this.state.sideNavOpen}/>          
+        <div className="row main-content" style={{height: '100%', marginLeft}}>
+          <div className="col-md-10">
+            {this.props.children}
+            <button className="btn btn-primary" onClick={this.openSidenav}>open</button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
