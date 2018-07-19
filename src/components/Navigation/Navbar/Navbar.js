@@ -2,9 +2,9 @@ import React from 'react'
 import { Navbar, NavbarBrand } from 'reactstrap';
 
 const navbar = (props) => (
-  <Navbar color="light" light expand="md">
-    <NavbarBrand href="/">Symph OS</NavbarBrand>
-  </Navbar>
+  <nav className="navbar navbar-light bg-light">
+    <span className="navbar-brand mb-0 h1">Symph OS</span>
+  </nav>
 )
 
 export default navbar;
