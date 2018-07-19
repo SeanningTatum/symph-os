@@ -12,6 +12,7 @@ import SymphersPage from 'containers/Symphers/Symphers';
 import TeamsPage from 'containers/Teams/Teams';
 
 class App extends Component {
+
   render() {
     return (
       <Layout>

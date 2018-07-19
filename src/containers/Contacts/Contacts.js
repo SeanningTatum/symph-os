@@ -28,7 +28,6 @@ export class Contacts extends Component {
   render() {
     return (
       <React.Fragment>
-        <h2 className="mb-5">Contacts</h2>
         <BootstrapTable 
           keyField='client_id' 
           data={ data } 
