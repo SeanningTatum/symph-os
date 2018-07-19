@@ -18,17 +18,25 @@ export default class extends Component {
 
     return(
       <div className="app-container">
+
+        {/* Navbar */}
         <div className="row">
           <div className="col-12">
             <Navbar clicked={this.openSidenav}/>
           </div>
         </div>
-        <Sidenav open={this.state.sideNavOpen}/>          
+
+        <Sidenav open={this.state.sideNavOpen}/>    
+
+        {/* Main content */}
         <div className="row main-content" style={{height: '100%', marginLeft}}>
           <div className="col-md-10">
-            {this.props.children}
+            <div className="container">
+              {this.props.children}
+            </div>
           </div>
         </div>
+        
       </div>
     );
   }

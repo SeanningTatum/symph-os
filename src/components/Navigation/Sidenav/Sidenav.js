@@ -15,7 +15,10 @@ const Sidenav = (props) => {
     <div className="sidenav" style={{height: '100%', width}}>
       <ul className="list-group list-group-flush">
         {navigationItems.map(name => (
-          <NavLink key={name} className="list-group-item" to={`/${name.toLowerCase()}`}>{name}</NavLink>
+          <NavLink 
+            key={name} 
+            className="list-group-item" 
+            to={`/${name.toLowerCase()}`}>{name}</NavLink>
         ))}
       </ul>
     </div>
