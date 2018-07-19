@@ -18,8 +18,10 @@ const Sidenav = (props) => {
         {navigationItems.map(name => (
           <NavLink 
             key={name} 
-            className="list-group-item" 
-            to={`/${name.toLowerCase()}`}>{name}</NavLink>
+            to={`/${name.toLowerCase()}`}
+            className="list-group-item">
+            {name}
+          </NavLink>
         ))}
       </ul>
     </div>
