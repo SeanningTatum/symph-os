@@ -1,5 +1,4 @@
 import React from 'react'
-import { Navbar, NavbarBrand } from 'reactstrap';
 
 const navbar = (props) => (
   <nav className="navbar navbar-light bg-light">
