@@ -36,26 +36,21 @@ class Layout extends Component {
     const marginLeft = (this.state.sideNavOpen) ? '200px' : '-15px';
 
     return(
-      <div className="app-container" >
+      <div className="app-container">
 
-        {/* Navbar */}
-        <div className="row">
-          <div className="col-12">
-            <Navbar clicked={this.openSidenav}/>
-          </div>
-        </div>
-
+        <Navbar clicked={this.openSidenav}/>
         <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
-        <div className="row main-content" style={{height: '100%', marginLeft}}>
-          <div className="col-12">
-            <div className="container-fluid mt-5">
+        <div className="container-fluid">
+          <div className="row main-content" style={{height: '100%', marginLeft}}>
+            <div className="col-12 mt-5">
               <h2 className="mb-5">{this.state.pagename}</h2>
               {this.props.children}
             </div>
           </div>
         </div>
+        {/* End Main content */}
         
       </div>
     );
