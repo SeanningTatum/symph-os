@@ -15,6 +15,7 @@ const addContact = (state, contact) => {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case actionTypes.GET_CONTACTS: return state;
     case actionTypes.ADD_CONTACT: return addContact(state, action.contact);
     default: return state;
   }

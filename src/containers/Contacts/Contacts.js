@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next';
 import { connect } from 'react-redux';
 import { contactColumns } from 'utils/tableHeaders';
+import * as contactActions from 'store/actions/contacts';
 
 export class Contacts extends Component {
+
+  componentWillMount() {
+    this.props.getContacts();
+  }
 
   gotoAddContact = () => {
     this.props.history.push('/contacts/add-contact');
@@ -35,4 +40,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Contacts);
+const mapDispatchToProps = dispatch => ({
+  getContacts: () => dispatch(contactActions.getContacts())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
