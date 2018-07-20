@@ -11,14 +11,14 @@ body {
 .main-content {
 }
 
-.main-content--title {
+.main-content__titles--title {
   font-size: $page-title;
   margin-bottom: 3rem;
 }
 
-.main-content--stepper {
-  font-size: $page-stepper;
+.main-content__titles--stepper {
   color: $blue-grey;
+  font-size: $page-stepper;
   margin-top: 3rem;
   margin-bottom: .75rem;
 }

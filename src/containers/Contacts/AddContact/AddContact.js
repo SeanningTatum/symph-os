@@ -49,25 +49,26 @@ export class AddContact extends Component {
 
   render() {
     return (
-      <form className="main-content__form" style={{maxWidth: '500px'}}>
-        <div className="form-group">
-          <label className="mb-3">Name</label>
-          <input type="text" className="form-control" placeholder="Symph" value={this.state.contact.name} onChange={this.nameChangeHandler} />
+      <form className="main-content__form">
+        <div className="main-content__form-container">
+          <label>Name</label>
+          <input type="text" value={this.state.contact.name} onChange={this.nameChangeHandler} />
         </div>
-        <div className="form-group">
-          <label className="mb-3">Legal Name</label>
-          <input type="text" className="form-control" placeholder="Symph Inc." value={this.state.contact.legalName} onChange={this.legalNameHandler}/>
+        <div className="main-content__form-container">
+          <label>Legal Name</label>
+          <input type="text" value={this.state.contact.legalName} onChange={this.legalNameHandler}/>
         </div>
-        <div className="form-group">
-          <label className="mb-3">Contact name</label>
-          <input type="text" className="form-control" placeholder="John Doe" value={this.state.contact.contact} onChange={this.contactHandler}/>
+        <div className="main-content__form-container">
+          <label>Contact name</label>
+          <input type="text" value={this.state.contact.contact} onChange={this.contactHandler}/>
         </div>
-        <div className="form-group">
-          <label className="mb-3">Type</label>
-          <input type="text" className="form-control" placeholder="Type" value={this.state.contact.type} onChange={this.typeHandler}/>
+        <div className="main-content__form-container">
+          <label>Type</label>
+          <input type="text" value={this.state.contact.type} onChange={this.typeHandler}/>
         </div>
-        <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <button className="btn" onClick={this.onSubmit}>Submit</button>
+        
+        <div className="main-content__form--button-area">
+          <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
         </div>
       </form>
     )

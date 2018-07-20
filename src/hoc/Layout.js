@@ -59,7 +59,7 @@ class Layout extends Component {
       left = '185px';
     } else {
       marginLeft = '60px';
-      left = '40px'
+      left = '40px';
     }
 
     const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
@@ -73,9 +73,13 @@ class Layout extends Component {
         {/* Main content */}
         <div className="main-content--container" style={{marginLeft}}>
           <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
-          {this.state.showPageStepper && <h5 className="main-content--stepper">{this.state.pageStepper}</h5>}
-          <h2 className="main-content--title" style={{marginTop}}>{this.state.pageName}</h2>
-          {this.props.children}
+          <div className="main-content__titles">
+            {this.state.showPageStepper && <h5 className="main-content__titles--stepper">{this.state.pageStepper}</h5>}
+            <h2 className="main-content__titles--title" style={{marginTop}}>{this.state.pageName}</h2>
+          </div>
+          <div className="main-content--content">
+            {this.props.children}
+          </div>
         </div>
         {/* End Main content */}
         
