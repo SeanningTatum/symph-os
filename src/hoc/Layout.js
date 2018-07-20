@@ -10,7 +10,7 @@ class Layout extends Component {
 
   state = {
     sideNavOpen: true,
-    pagename: ''
+    pagename: '',
   }
 
   componentDidMount() {
@@ -26,7 +26,8 @@ class Layout extends Component {
   // Get location and format
   fetchLocation = () => {
     let location = this.props.location.pathname.slice(1);
-    const pagename = location.charAt(0).toUpperCase() + location.substr(1);
+    let pagenames = location.replace('-', ' ').split('/');
+    const pagename = pagenames[pagenames.length - 1].charAt(0).toUpperCase() + pagenames[pagenames.length - 1].substr(1);
     this.setState({pagename});
   }
 
@@ -40,7 +41,7 @@ class Layout extends Component {
       marginLeft = '200px';
       left = '185px';
     } else {
-      marginLeft = '40px';
+      marginLeft = '60px';
       left = '40px'
     }
 
