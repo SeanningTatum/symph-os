@@ -1,0 +1,19 @@
+.btn {
+  height: 40px;
+  color: $blue-grey;
+  background: $grey;
+  width: auto;
+  margin: 0;
+  padding: 0 12px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .material-icons {
+    font-size: 1rem;
+  }
+}
