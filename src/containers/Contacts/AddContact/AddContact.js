@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import updateObject from 'utils/updateObject';
+import { connect } from 'react-redux';
+import * as contactActions from 'store/actions/contacts';
 
 export class AddContact extends Component {
 
   state = {
     contact: {
-      name: '',
-      legalName: '',
-      contactName: '',
+      client_name: '',
+      legal_name: '',
+      contact_name: '',
       type: ''
     }
   }
 
   /**
-   * Eyes here!
+   * !!! EYES HERE !!!
    * Please do not combine this code into one!!!
    * I already know we can clean up code by making it
    * into one function, but at the cost of perfomance issues
@@ -21,22 +23,28 @@ export class AddContact extends Component {
 
   nameChangeHandler = (event) => {
     const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'name', value)});
+    this.setState({contact: updateObject(this.state.contact, 'client_name', value)});
   }
 
   legalNameHandler = (event) => {
     const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'legalName', value)});
+    this.setState({contact: updateObject(this.state.contact, 'legal_name', value)});
   }
 
   contactHandler = (event) => {
     const {value} = event.target
-    this.setState({contact: updateObject(this.state.contact, 'contactName', value)});
+    this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
   }
 
   typeHandler = (event) => {
     const {value} = event.target
     this.setState({contact: updateObject(this.state.contact, 'type', value)});
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.addContact(this.state.contact);
+    this.props.history.push('/contacts');
   }
 
   render() {
@@ -59,11 +67,20 @@ export class AddContact extends Component {
           <input type="text" className="form-control" placeholder="Type" value={this.state.contact.type} onChange={this.typeHandler}/>
         </div>
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <button className="btn">Submit</button>
+          <button className="btn" onClick={this.onSubmit}>Submit</button>
         </div>
       </form>
     )
   }
 }
 
-export default AddContact;
+
+const mapStateToProps = state => ({
+  contacts: state.contacts
+});
+
+const mapDispatchToProps = dispatch => ({
+  addContact: contact => dispatch(contactActions.addContact(contact))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddContact);

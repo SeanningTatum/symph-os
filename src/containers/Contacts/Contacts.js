@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next';
+import { connect } from 'react-redux';
 
 const columns = [{
   dataField: 'client_id',
@@ -13,23 +14,21 @@ const columns = [{
   dataField: 'contact_name',
   text: 'Contact Name'
 }, {
-  dataField: 'legal_type',
+  dataField: 'legal_name',
   text: 'Legal Name'
 }, {
-  dataField: 'Type',
+  dataField: 'type',
   text: 'Type'
 }];
-
-// Types: Non-profit organization, Individual, Government, Startup
-const data = [
-  {  client_id: 1, client_name: 'Symph', contact_name: 'Sean Urgel', legal_type: 'Sean Stuart Urgel', Type: 'Company'},
-  {  client_id: 2, client_name: 'Symph', contact_name: 'Bobby Urgel', legal_type: 'Sean Stuart Urgel', Type: 'Company'},
-]
 
 export class Contacts extends Component {
 
   gotoAddContact = () => {
     this.props.history.push('/contacts/add-contact');
+  }
+
+  componentDidMount() {
+    console.log(this.props.contacts)
   }
 
   render() {
@@ -43,7 +42,7 @@ export class Contacts extends Component {
         </div>
         <BootstrapTable 
           keyField='client_id' 
-          data={ data } 
+          data={ this.props.contacts } 
           columns={columns} 
           bordered={ false }
           condensed />
@@ -52,4 +51,10 @@ export class Contacts extends Component {
   }
 }
 
-export default Contacts;
+const mapStateToProps = state => {
+  return {
+    contacts: state.contacts
+  }
+}
+
+export default connect(mapStateToProps)(Contacts);
