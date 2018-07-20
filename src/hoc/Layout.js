@@ -52,15 +52,10 @@ class Layout extends Component {
         <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
-        <div className="container-fluid">
+        <div className="main-content" style={{marginLeft}}>
           <div className="btn btn-primary side-nav-btn" style={{left}} onClick={this.openSidenav}>{icon}</div>
-
-          <div className="row main-content" style={{marginLeft}}>
-            <div className="col-12 mt-5">
-              <h2 className="mb-5">{this.state.pagename}</h2>
-              {this.props.children}
-            </div>
-          </div>
+          <h2 className="main-content--title">{this.state.pagename}</h2>
+          {this.props.children}
         </div>
         {/* End Main content */}
         

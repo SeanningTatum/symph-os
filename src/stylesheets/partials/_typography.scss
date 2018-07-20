@@ -1,0 +1,16 @@
+@import "modules/all";
+
+body {
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+}
+
+h2 {
+  font-size: $page-title;
+}
+
+.main-content--title {
+  font-size: $page-title;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

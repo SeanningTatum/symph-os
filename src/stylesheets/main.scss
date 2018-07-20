@@ -1,29 +1,6 @@
 /* Styling positions and layouts */
-* {
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-#root {
-  height: 100vh;
-}
-
-.app-container {
-  height: 100%;
-}
-
-/* sidenav and main content transition when page moves  */
-.main-content,
-.sidenav,
-.side-nav-btn {
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
+@import "partials/base";
+@import "partials/typography";
 
 .main-content {
   height: '100%', 
