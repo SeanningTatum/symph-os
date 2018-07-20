@@ -20,15 +20,27 @@ const columns = [{
   text: 'Type'
 }];
 
+// Types: Non-profit organization, Individual, Government, Startup
 const data = [
   {  client_id: 1, client_name: 'Symph', contact_name: 'Sean Urgel', legal_type: 'Sean Stuart Urgel', Type: 'Company'},
   {  client_id: 2, client_name: 'Symph', contact_name: 'Bobby Urgel', legal_type: 'Sean Stuart Urgel', Type: 'Company'},
 ]
 
 export class Contacts extends Component {
+
+  gotoAddContact = () => {
+    this.props.history.push('/contacts/add-contact');
+  }
+
   render() {
     return (
       <React.Fragment>
+        <div className="main-content__button-area">
+          <button className="btn" onClick={this.gotoAddContact}>
+            <i className="material-icons">person_add</i>
+            Add Contact
+          </button>
+        </div>
         <BootstrapTable 
           keyField='client_id' 
           data={ data } 
