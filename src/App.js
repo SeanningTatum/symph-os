@@ -8,6 +8,7 @@ import Layout from 'hoc/Layout';
 import ClientsPage from 'containers/Clients/Clients';
 import ProjectsPage from 'containers/Projects/Projects';
 import ContactsPage from 'containers/Contacts/Contacts';
+import AddContactPage from 'containers/Contacts/AddContact/AddContact';
 import SymphersPage from 'containers/Symphers/Symphers';
 import TeamsPage from 'containers/Teams/Teams';
 
@@ -19,7 +20,8 @@ class App extends Component {
         <Switch>
           <Route component={ClientsPage} path='/clients'/>
           <Route component={ProjectsPage} path='/projects'/>
-          <Route component={ContactsPage} path='/contacts'/>
+          <Route component={AddContactPage} exact path='/contacts/add-contact'/>
+          <Route component={ContactsPage} exact path='/contacts'/>
           <Route component={SymphersPage} path='/symphers'/>
           <Route component={TeamsPage} path='/teams'/>
         </Switch>

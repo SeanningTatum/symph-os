@@ -6,7 +6,7 @@ const ToggleButton = props => {
   const { left } = props;
 
   return (
-    <div className="btn btn-primary sidenav--btn" style={{left}} onClick={props.openSidenav}>
+    <div className="sidenav--btn" style={{left}} onClick={props.openSidenav}>
       <i className="material-icons">{icon}</i>
     </div>
   )
