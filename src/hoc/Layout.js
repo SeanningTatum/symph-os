@@ -10,7 +10,9 @@ class Layout extends Component {
 
   state = {
     sideNavOpen: true,
-    pagename: '',
+    pageName: '',
+    pageStepper: '',
+    showPageStepper: false
   }
 
   componentDidMount() {
@@ -25,10 +27,24 @@ class Layout extends Component {
 
   // Get location and format
   fetchLocation = () => {
-    let location = this.props.location.pathname.slice(1);
-    let pagenames = location.replace('-', ' ').split('/');
-    const pagename = pagenames[pagenames.length - 1].charAt(0).toUpperCase() + pagenames[pagenames.length - 1].substr(1);
-    this.setState({pagename});
+    let pageStepper = '';
+    let showPageStepper = false;
+
+    const location = this.props.location.pathname.slice(1);
+    const pagenames = location.replace('-', ' ').split('/');
+    const last = pagenames.length - 1;
+    const pageName = pagenames[last].charAt(0).toUpperCase() + pagenames[last].substr(1);
+
+    for (const x in pagenames) {
+      // Capitalize and combine paths (if there is)
+      pageStepper += pagenames[x].charAt(0).toUpperCase() + pagenames[x].substr(1);
+      if (x < last) {
+        pageStepper += ' / ';
+        showPageStepper = true;
+      }
+    }
+
+    this.setState({pageStepper, pageName, showPageStepper});
   }
 
   openSidenav = () => {
@@ -37,6 +53,7 @@ class Layout extends Component {
 
   render() {
     let marginLeft, left;
+
     if (this.state.sideNavOpen) {
       marginLeft = '200px';
       left = '185px';
@@ -44,6 +61,8 @@ class Layout extends Component {
       marginLeft = '60px';
       left = '40px'
     }
+
+    const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
 
     return(
       <div className="app--container">
@@ -54,7 +73,8 @@ class Layout extends Component {
         {/* Main content */}
         <div className="main-content--container" style={{marginLeft}}>
           <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
-          <h2 className="main-content--title">{this.state.pagename}</h2>
+          {this.state.showPageStepper && <h5 className="main-content--stepper">{this.state.pageStepper}</h5>}
+          <h2 className="main-content--title" style={{marginTop}}>{this.state.pageName}</h2>
           {this.props.children}
         </div>
         {/* End Main content */}

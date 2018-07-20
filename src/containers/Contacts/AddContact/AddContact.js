@@ -49,7 +49,7 @@ export class AddContact extends Component {
 
   render() {
     return (
-      <form style={{maxWidth: '500px'}}>
+      <form className="main-content__form" style={{maxWidth: '500px'}}>
         <div className="form-group">
           <label className="mb-3">Name</label>
           <input type="text" className="form-control" placeholder="Symph" value={this.state.contact.name} onChange={this.nameChangeHandler} />

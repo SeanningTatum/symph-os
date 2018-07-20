@@ -8,8 +8,19 @@ body {
 }
 
 // Main Content
+.main-content {
+}
+
 .main-content--title {
   font-size: $page-title;
-  margin-top: 3rem;
   margin-bottom: 3rem;
 }
+
+.main-content--stepper {
+  font-size: $page-stepper;
+  color: $blue-grey;
+  margin-top: 3rem;
+  margin-bottom: .75rem;
+}
+
+
