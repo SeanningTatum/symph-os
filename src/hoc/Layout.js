@@ -38,22 +38,24 @@ class Layout extends Component {
     if (this.state.sideNavOpen) {
       marginLeft = '200px';
       left = '185px';
-      icon = '<';
+      icon = 'keyboard_arrow_left';
     } else {
       marginLeft = '40px';
       left = '40px'
-      icon = '>';
+      icon = 'keyboard_arrow_right';
     }
 
     return(
-      <div className="app-container">
+      <div className="app--container">
 
         <Navbar/>
         <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
-        <div className="main-content" style={{marginLeft}}>
-          <div className="btn btn-primary side-nav-btn" style={{left}} onClick={this.openSidenav}>{icon}</div>
+        <div className="main-content--container" style={{marginLeft}}>
+          <div className="btn btn-primary sidenav--btn" style={{left}} onClick={this.openSidenav}>
+            <i className="material-icons">{icon}</i>
+          </div>
           <h2 className="main-content--title">{this.state.pagename}</h2>
           {this.props.children}
         </div>

@@ -1,14 +1,13 @@
 @import "modules/all";
 
+// Body defaults
 body {
   font-family: $base-font-family;
   font-size: $base-font-size;
+  font-weight: $base-font-weight;
 }
 
-h2 {
-  font-size: $page-title;
-}
-
+// Main Content
 .main-content--title {
   font-size: $page-title;
   margin-top: 3rem;

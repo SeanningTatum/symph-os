@@ -1,7 +1,11 @@
 @import "typography";
-@import "grids";
+@import "containers";
+@import "sidenav";
+@import "navbar";
+@import "transitions";
+@import "../modules/colors";
 
-// default styling
+// Default styling and Resets
 * {
   box-sizing: border-box;
 }
@@ -15,13 +19,18 @@ body {
   height: 100vh;
 }
 
-.app-container {
-  height: 100%;
+/* Styling for side navs */
+
+a {
+  color: rgb(67, 82, 109) !important;
 }
 
-/* sidenav and main content transition when page moves  */
-.main-content,
-.sidenav,
-.side-nav-btn {
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+a.active {
+  background-color: rgb(234, 236, 254) !important;
+  color: rgb(0, 82, 204) !important;
+  border: none;
+}
+
+a, a:hover {
+  text-decoration: none;
 }

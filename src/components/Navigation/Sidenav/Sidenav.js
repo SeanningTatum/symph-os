@@ -1,5 +1,4 @@
 import React from 'react';
-import './Sidenav.css';
 
 import NavigationItems from 'components/Navigation/NavigationItems/NavigationItems';
 
@@ -10,7 +9,7 @@ const Sidenav = (props) => {
 
   return (
     <div className="sidenav" style={{height: '100%', width, padding}}>
-      <ul className="list-group list-group-flush">
+      <ul className="sidenav--list">
         <NavigationItems open={props.open} />
       </ul>
     </div>

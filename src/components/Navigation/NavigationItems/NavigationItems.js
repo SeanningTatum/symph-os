@@ -15,7 +15,7 @@ const NavigationItems = (props) => {
 
   return (
     navigationItems.map(nav => (
-      <NavLink key={nav.name} to={`/${nav.name.toLowerCase()}`} className="list-group-item">
+      <NavLink key={nav.name} to={`/${nav.name.toLowerCase()}`} className="sidenav--list--item">
           <React.Fragment>
             <i className="material-icons">{nav.icon}</i> 
             <span style={{display}}>{nav.name}</span>
