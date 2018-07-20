@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 // Navigation Components
 import Navbar from 'components/Navigation/Navbar/Navbar';
 import Sidenav from 'components/Navigation/Sidenav/Sidenav';
+import ToggleButton from 'components/Navigation/Sidenav/ToggleButton/ToggleButton';
 
 class Layout extends Component {
 
@@ -34,15 +35,13 @@ class Layout extends Component {
   }
 
   render() {
-    let marginLeft, left, icon;
+    let marginLeft, left;
     if (this.state.sideNavOpen) {
       marginLeft = '200px';
       left = '185px';
-      icon = 'keyboard_arrow_left';
     } else {
       marginLeft = '40px';
       left = '40px'
-      icon = 'keyboard_arrow_right';
     }
 
     return(
@@ -53,9 +52,7 @@ class Layout extends Component {
 
         {/* Main content */}
         <div className="main-content--container" style={{marginLeft}}>
-          <div className="btn btn-primary sidenav--btn" style={{left}} onClick={this.openSidenav}>
-            <i className="material-icons">{icon}</i>
-          </div>
+          <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
           <h2 className="main-content--title">{this.state.pagename}</h2>
           {this.props.children}
         </div>
