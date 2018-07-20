@@ -1,10 +1,10 @@
+@import "../modules/all";
 @import "typography";
 @import "containers";
 @import "sidenav";
 @import "navbar";
 @import "transitions";
-@import "../modules/colors";
-
+@import 'table';
 // Default styling and Resets
 * {
   box-sizing: border-box;
@@ -34,3 +34,7 @@ a.active {
 a, a:hover {
   text-decoration: none;
 }
+
+
+
+

@@ -1,0 +1,38 @@
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    color: #555555;
+
+    thead {
+      font-weight: 700;
+    }
+
+    th {
+      text-align: start;
+    }
+
+    td, th {
+      padding: .75rem;
+      vertical-align: top;
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid #dee2e6; 
+    }
+
+    tbody {
+      tr:nth-of-type(odd) {
+        background-color: $space-grey;
+      }
+    }
+}
+
+thead, th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6
+}
+
+
+
