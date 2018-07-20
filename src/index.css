@@ -11,7 +11,7 @@ body {
 }
 
 #root {
-  height: 90vh;
+  height: 100vh;
 }
 
 .app-container {
@@ -20,13 +20,18 @@ body {
 
 /* sidenav and main content transition when page moves  */
 .main-content,
-.sidenav {
+.sidenav,
+.side-nav-btn {
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.main-content {
+  height: '100%', 
 }
 
 /* Styling for side navs */
 
-a{
+a {
   color: rgb(67, 82, 109) !important;
 }
 
@@ -38,4 +43,19 @@ a.active {
 
 .list-group-item {
   border: none !important;
+  display: flex;
+  align-items: center;
+}
+
+.material-icons {
+  margin-right: 8px;
+}
+
+/* Side navigation button */
+
+.side-nav-btn {
+  position: absolute;
+  border-radius: 100%;
+  top: 50%;
+  z-index: 10;
 }
