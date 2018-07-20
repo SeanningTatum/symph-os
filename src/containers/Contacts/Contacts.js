@@ -17,11 +17,12 @@ const columns = [{
   text: 'Legal Name'
 }, {
   dataField: 'Type',
-  text: 'Company'
+  text: 'Type'
 }];
 
 const data = [
   {  client_id: 1, client_name: 'Symph', contact_name: 'Sean Urgel', legal_type: 'Sean Stuart Urgel', Type: 'Company'},
+  {  client_id: 2, client_name: 'Symph', contact_name: 'Bobby Urgel', legal_type: 'Sean Stuart Urgel', Type: 'Company'},
 ]
 
 export class Contacts extends Component {

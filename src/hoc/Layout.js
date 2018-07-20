@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
+// Navigation Components
 import Navbar from 'components/Navigation/Navbar/Navbar';
 import Sidenav from 'components/Navigation/Sidenav/Sidenav';
 
 class Layout extends Component {
 
   state = {
-    sideNavOpen: false,
+    sideNavOpen: true,
     pagename: ''
   }
 
@@ -32,18 +34,28 @@ class Layout extends Component {
   }
 
   render() {
-
-    const marginLeft = (this.state.sideNavOpen) ? '200px' : '-15px';
+    let marginLeft, left, icon;
+    if (this.state.sideNavOpen) {
+      marginLeft = '200px';
+      left = '185px';
+      icon = '<';
+    } else {
+      marginLeft = '40px';
+      left = '40px'
+      icon = '>';
+    }
 
     return(
       <div className="app-container">
 
-        <Navbar clicked={this.openSidenav}/>
+        <Navbar/>
         <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
         <div className="container-fluid">
-          <div className="row main-content" style={{height: '100%', marginLeft}}>
+          <div className="btn btn-primary side-nav-btn" style={{left}} onClick={this.openSidenav}>{icon}</div>
+
+          <div className="row main-content" style={{marginLeft}}>
             <div className="col-12 mt-5">
               <h2 className="mb-5">{this.state.pagename}</h2>
               {this.props.children}
