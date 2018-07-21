@@ -2,15 +2,4 @@
   padding: $header-padding;
   height: $header-height;
   background: $deep-blue;
-  position: relative;
-  box-shadow: 0 3px 2px -2px gray;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 100;
-  color: white;
-
-  span {
-    font-size: 1.2rem;
-  }
 }

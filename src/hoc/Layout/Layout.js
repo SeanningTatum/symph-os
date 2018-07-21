@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import './Layout.scss';
+
 // Navigation Components
 import Navbar from 'components/Navigation/Navbar/Navbar';
 import Sidenav from 'components/Navigation/Sidenav/Sidenav';
@@ -65,19 +67,19 @@ class Layout extends Component {
     const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
 
     return(
-      <div className="app--container">
+      <div className="app-container">
 
         <Navbar/>
         <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
-        <div className="main-content--container" style={{marginLeft}}>
+        <div className="container" style={{marginLeft}}>
           <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
-          <div className="main-content__titles">
-            {this.state.showPageStepper && <h5 className="main-content__titles--stepper">{this.state.pageStepper}</h5>}
-            <h2 className="main-content__titles--title" style={{marginTop}}>{this.state.pageName}</h2>
+          <div className="titles">
+            {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
+            <h2 className="title" style={{marginTop}}>{this.state.pageName}</h2>
           </div>
-          <div className="main-content--content">
+          <div className="content">
             {this.props.children}
           </div>
         </div>

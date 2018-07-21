@@ -8,19 +8,14 @@ body {
 }
 
 // Main Content
-.main-content {
-}
 
-.main-content__titles--title {
+.title {
   font-size: $page-title;
-  margin-bottom: 3rem;
 }
 
-.main-content__titles--stepper {
+.stepper {
   color: $blue-grey;
   font-size: $page-stepper;
-  margin-top: 3rem;
-  margin-bottom: .75rem;
 }
 
 

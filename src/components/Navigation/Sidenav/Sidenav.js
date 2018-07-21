@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Sidenav.scss';
 import NavigationItems from 'components/Navigation/NavigationItems/NavigationItems';
 
 const Sidenav = (props) => {

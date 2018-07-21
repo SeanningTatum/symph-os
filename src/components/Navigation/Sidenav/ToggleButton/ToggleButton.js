@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "./ToggleButton.scss";
 
 const ToggleButton = props => {
-  const icon = props.isOpen ? 'keyboard_arrow_right' : 'keyboard_arrow_left';
+  const icon = !props.isOpen ? 'keyboard_arrow_right' : 'keyboard_arrow_left';
   const { left } = props;
 
   return (

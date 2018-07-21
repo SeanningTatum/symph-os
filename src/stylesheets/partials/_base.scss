@@ -1,8 +1,6 @@
 @import "../modules/all";
 @import 'button';
 @import "typography";
-@import "containers";
-@import "sidenav";
 @import "navbar";
 @import "transitions";
 @import 'table';
@@ -38,6 +36,12 @@ a, a:hover {
   background: $light-grey;
   text-decoration: none;
 }
+
+.sidenav--list--item, 
+.sidenav {
+  background-color: $grey;
+}
+
 
 
 

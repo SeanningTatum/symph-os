@@ -21,8 +21,16 @@
 .btn-primary {
   background-color: $deep-blue;
   color: $white;
+  padding: 0 8px; 
+  height: 35px;
 }
 
 .btn-primary:hover {
   background-color: $blue;
+}
+
+.sidenav--btn {
+  background-color: $deep-blue;
+  border: 1px solid $deep-blue;
+  color: $white;
 }

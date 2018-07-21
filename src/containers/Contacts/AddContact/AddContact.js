@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './AddContact.scss';
 import updateObject from 'utils/updateObject';
 import { connect } from 'react-redux';
 import * as contactActions from 'store/actions/contacts';
@@ -49,25 +50,24 @@ export class AddContact extends Component {
 
   render() {
     return (
-      <form className="main-content__form">
-        <div className="main-content__form-container">
+      <form className="form">
+        <div className="form-container">
           <label>Name</label>
           <input type="text" value={this.state.contact.name} onChange={this.nameChangeHandler} />
         </div>
-        <div className="main-content__form-container">
+        <div className="form-container">
           <label>Legal Name</label>
           <input type="text" value={this.state.contact.legalName} onChange={this.legalNameHandler}/>
         </div>
-        <div className="main-content__form-container">
+        <div className="form-container">
           <label>Contact name</label>
           <input type="text" value={this.state.contact.contact} onChange={this.contactHandler}/>
         </div>
-        <div className="main-content__form-container">
+        <div className="form-container">
           <label>Type</label>
           <input type="text" value={this.state.contact.type} onChange={this.typeHandler}/>
         </div>
-        
-        <div className="main-content__form--button-area">
+        <div className="form--button-area">
           <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
         </div>
       </form>

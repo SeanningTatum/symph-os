@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
 
 // HOC
-import Layout from 'hoc/Layout';
+import Layout from 'hoc/Layout/Layout';
 
 // Containers
 import ClientsPage from 'containers/Clients/Clients';

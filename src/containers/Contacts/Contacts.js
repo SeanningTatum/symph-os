@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './Contacts.scss';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { connect } from 'react-redux';
 import { contactColumns } from 'utils/tableHeaders';
@@ -17,7 +18,7 @@ export class Contacts extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="main-content__button-area">
+        <div className="button-area">
           <button className="btn" onClick={this.gotoAddContact}>
             <i className="material-icons">person_add</i>
             Add Contact

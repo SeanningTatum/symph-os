@@ -1,0 +1,35 @@
+.app-container {
+  height: 100%;
+}
+
+.container,
+.button-area,
+.content {
+  display: flex;
+}
+
+.container {
+  flex-direction: column;
+  height: calc(100% - 45px);
+  padding: 0 45px;
+  margin: 0 auto;
+
+  .titles {
+    flex: .25;
+  }
+
+  .title {
+    margin-bottom: 3rem;
+  }
+
+  .stepper {
+    margin-top: 3rem;
+    margin-bottom: .75rem;
+  }
+
+  .content {
+    flex: 1;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
