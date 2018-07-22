@@ -3,7 +3,7 @@ import Input from 'components/Input/Input';
 import './AddContact.scss';
 
 // Utilities
-import { contactControls, options} from 'utils/formControls';
+import { contactControls } from 'utils/formControls';
 import { updateObject, checkValidity } from 'utils/helperFunctions';
 
 // Redux
@@ -16,7 +16,7 @@ export class AddContact extends Component {
     controls: contactControls
   }
 
-  inputChangedHandler = async (event, controlName) => {
+  inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject( this.state.controls, {
       [controlName]: updateObject( this.state.controls[controlName], {
         value: event.target.value,
@@ -24,8 +24,7 @@ export class AddContact extends Component {
         touched: true
       })
     });
-    await this.setState( { controls: updatedControls } );
-    console.log(this.state);
+    this.setState({controls: updatedControls});
   }
 
   onSubmit = (event) => {
@@ -35,13 +34,12 @@ export class AddContact extends Component {
   }
 
   render() {
-
     const formElementsArray = [];
     for ( let key in this.state.controls ) {
-        formElementsArray.push({
-            id: key,
-            config: this.state.controls[key]
-        });
+      formElementsArray.push({
+        id: key,
+        config: this.state.controls[key]
+      });
     }
 
     return (

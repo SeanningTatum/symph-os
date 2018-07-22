@@ -50,7 +50,15 @@ export const contactControls = {
     elementType: 'select',
     elementConfig: {
       type: 'text',
-      placeholder: ''
+      placeholder: '',
+      options: [
+        "Non Profit Organization",
+        "Individual",
+        "Government",
+        "Startup",
+        "School",
+        "Company"
+      ]
     },
     label: 'Type',
     value: '',
@@ -62,13 +70,3 @@ export const contactControls = {
   },
 }
 // End of contact controls
-
-// These are the options for the select form
-export const options = [
-  "Non Profit Organization",
-  "Individual",
-  "Government",
-  "Startup",
-  "School",
-  "Company"
-]
