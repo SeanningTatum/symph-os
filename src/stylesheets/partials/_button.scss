@@ -18,6 +18,16 @@
   }
 }
 
+button:disabled {
+  background-color: $dark-grey;
+  color: $grey;
+}
+
+button:disabled:hover {
+  background-color: $dark-grey !important;
+  color: $grey !important;
+}
+
 .btn-primary {
   background-color: $deep-blue;
   color: $white;

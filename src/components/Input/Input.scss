@@ -16,21 +16,6 @@
   input {
     min-width: 400px;
   }
-
-  select {
-    width: auto;
-    max-width: 35%;
-  }
-
-  select:after {
-    position: absolute;
-    content: "";
-    top: 14px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-  }
 }
 
 .error {
