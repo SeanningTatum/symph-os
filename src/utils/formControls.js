@@ -10,6 +10,7 @@ export const contactControls = {
     value: '',
     validation: {
       required: true,
+      minLength: 3
     },
     valid: false,
     touched: false

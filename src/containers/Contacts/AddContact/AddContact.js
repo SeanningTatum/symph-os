@@ -3,8 +3,8 @@ import Input from 'components/Input/Input';
 import './AddContact.scss';
 
 // Utilities
-import updateObject from 'utils/updateObject';
-import { contactControls, options, updateObject, checkValidity } from 'utils/formControls';
+import { contactControls, options} from 'utils/formControls';
+import { updateObject, checkValidity } from 'utils/helperFunctions';
 
 // Redux
 import * as contactActions from 'store/actions/contacts';
@@ -16,15 +16,16 @@ export class AddContact extends Component {
     controls: contactControls
   }
 
-  inputChangedHandler = (event, controlName) => {
+  inputChangedHandler = async (event, controlName) => {
     const updatedControls = updateObject( this.state.controls, {
       [controlName]: updateObject( this.state.controls[controlName], {
-          value: event.target.value,
-          valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
-          touched: true
+        value: event.target.value,
+        valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
+        touched: true
       })
     });
-    this.setState( { controls: updatedControls } );
+    await this.setState( { controls: updatedControls } );
+    console.log(this.state);
   }
 
   onSubmit = (event) => {
@@ -46,7 +47,12 @@ export class AddContact extends Component {
     return (
       <form className="form">
         {formElementsArray.map(formElement => (
-          <Input key={formElement.id} {...formElement.config}/>
+          <Input 
+            key={formElement.id} 
+            shouldValidate={formElement.config.validation}
+            invalid={!formElement.config.valid}
+            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+            {...formElement.config} />
         ))}
         <div className="form--button-area">
           <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
