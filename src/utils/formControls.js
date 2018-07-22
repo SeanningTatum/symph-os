@@ -4,8 +4,9 @@ export const contactControls = {
     elementType: 'input',
     elementConfig: {
       type: 'text',
-      placeholder: ''
+      placeholder: '',
     },
+    label: 'Client Name',
     value: '',
     validation: {
       required: true,
@@ -20,6 +21,7 @@ export const contactControls = {
       type: 'text',
       placeholder: ''
     },
+    label: 'Legal Name',
     value: '',
     validation: {
       required: true,
@@ -34,6 +36,7 @@ export const contactControls = {
       type: 'text',
       placeholder: ''
     },
+    label: 'Contact Name',
     value: '',
     validation: {
       required: true,
@@ -43,11 +46,12 @@ export const contactControls = {
   },
 
   type: {
-    elementType: 'input',
+    elementType: 'select',
     elementConfig: {
       type: 'text',
       placeholder: ''
     },
+    label: 'Type',
     value: '',
     validation: {
       required: true,
@@ -57,3 +61,13 @@ export const contactControls = {
   },
 }
 // End of contact controls
+
+// These are the options for the select form
+export const options = [
+  "Non Profit Organization",
+  "Individual",
+  "Government",
+  "Startup",
+  "School",
+  "Company"
+]

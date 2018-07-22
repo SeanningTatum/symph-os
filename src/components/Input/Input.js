@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import './Input.scss';
 
-const Input = props => {
-
+const Input = (props) => {
+  const { config } = props;
   let inputElement = null;
   let hasError = "";
   if (props.invalid && props.shouldValidate && props.touched) {

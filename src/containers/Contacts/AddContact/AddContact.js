@@ -1,55 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Input from 'components/Input/Input';
 import './AddContact.scss';
 
 // Utilities
 import updateObject from 'utils/updateObject';
-import { contactControls } from 'utils/formControls';
+import { contactControls, options } from 'utils/formControls';
 
 // Redux
 import * as contactActions from 'store/actions/contacts';
 import { connect } from 'react-redux';
 
-// These are the options for the select form
-const options = [
-  "Non Profit Organization",
-  "Individual",
-  "Government",
-  "Startup",
-  "School",
-  "Company"
-]
-
 export class AddContact extends Component {
 
   state = {
-    contact: { contactControls }
+    controls: contactControls
   }
-
-  /**
-   * !!! EYES HERE !!!
-   * Please do not combine this code into one!!!
-   * I already know we can clean up code by making it
-   * into one function, but at the cost of perfomance
-   */
 
   nameHandler = (event) => {
     const {value} = event.target;
     this.setState({contact: updateObject(this.state.contact, 'name', value)});
-  }
-
-  legalNameHandler = (event) => {
-    const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'legal_name', value)});
-  }
-
-  contactHandler = (event) => {
-    const {value} = event.target
-    this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
-  }
-
-  typeHandler = (event) => {
-    const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'type', value)});
   }
 
   onSubmit = (event) => {
@@ -59,28 +28,21 @@ export class AddContact extends Component {
   }
 
   render() {
+
+    const formElementsArray = [];
+    for ( let key in this.state.controls ) {
+        formElementsArray.push({
+            id: key,
+            config: this.state.controls[key]
+        });
+    }
+
     return (
       <form className="form">
-        <div className="form-container">
-          <label>Name</label>
-          <input type="text" value={this.state.contact.name} onChange={this.nameHandler} />
-        </div>
-        <div className="form-container">
-          <label>Legal Name</label>
-          <input type="text" value={this.state.contact.legalName} onChange={this.legalNameHandler}/>
-        </div>
-        <div className="form-container">
-          <label>Contact name</label>
-          <input type="text" value={this.state.contact.contact} onChange={this.contactHandler}/>
-        </div>
-        <div className="form-container">
-          <label>Type</label>
-          <select type="text" value={this.state.contact.type} onChange={this.typeHandler}>
-            {options.map(option => (
-             <option key={option} value={option}>{option}</option>  
-            ))}
-          </select>
-        </div>
+        {formElementsArray.map(formElement => {
+          console.log(formElement);
+          return <Input key={formElement.id} {...formElement.config}/>
+        })}
         <div className="form--button-area">
           <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
         </div>
