@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Input from 'components/Input/Input';
 import './AddContact.scss';
 
@@ -10,7 +10,7 @@ import { updateObject, checkValidity } from 'utils/helperFunctions';
 import * as contactActions from 'store/actions/contacts';
 import { connect } from 'react-redux';
 
-export class AddContact extends Component {
+export class AddContact extends PureComponent {
 
   state = {
     controls: contactControls,
