@@ -1,5 +1,6 @@
 import React from 'react';
 import './Sidenav.scss';
+import PropTypes from 'prop-types';
 import NavigationItems from 'components/Navigation/NavigationItems/NavigationItems';
 
 const Sidenav = (props) => {
@@ -15,6 +16,10 @@ const Sidenav = (props) => {
     </div>
   )
 
+}
+
+Sidenav.propTypes = {
+  open: PropTypes.bool.isRequired
 }
 
 export default Sidenav;

@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import './AddContact.scss';
-import updateObject from 'utils/updateObject';
-import { connect } from 'react-redux';
-import * as contactActions from 'store/actions/contacts';
 
+// Utilities
+import updateObject from 'utils/updateObject';
+import { contactControls } from 'utils/formControls';
+
+// Redux
+import * as contactActions from 'store/actions/contacts';
+import { connect } from 'react-redux';
+
+// These are the options for the select form
 const options = [
   "Non Profit Organization",
   "Individual",
@@ -16,12 +22,7 @@ const options = [
 export class AddContact extends Component {
 
   state = {
-    contact: {
-      client_name: '',
-      legal_name: '',
-      contact_name: '',
-      type: ''
-    }
+    contact: { contactControls }
   }
 
   /**
@@ -31,26 +32,25 @@ export class AddContact extends Component {
    * into one function, but at the cost of perfomance
    */
 
-  formHandler = event => formName => {
-    console.log(event);
+  nameHandler = (event) => {
     const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, formName, value)});
+    this.setState({contact: updateObject(this.state.contact, 'name', value)});
   }
 
-  // legalNameHandler = (event) => {
-  //   const {value} = event.target;
-  //   this.setState({contact: updateObject(this.state.contact, 'legal_name', value)});
-  // }
+  legalNameHandler = (event) => {
+    const {value} = event.target;
+    this.setState({contact: updateObject(this.state.contact, 'legal_name', value)});
+  }
 
-  // contactHandler = (event) => {
-  //   const {value} = event.target
-  //   this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
-  // }
+  contactHandler = (event) => {
+    const {value} = event.target
+    this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
+  }
 
-  // typeHandler = async (event) => {
-  //   const {value} = event.target;
-  //   await this.setState({contact: updateObject(this.state.contact, 'type', value)});
-  // }
+  typeHandler = (event) => {
+    const {value} = event.target;
+    this.setState({contact: updateObject(this.state.contact, 'type', value)});
+  }
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -63,7 +63,7 @@ export class AddContact extends Component {
       <form className="form">
         <div className="form-container">
           <label>Name</label>
-          <input type="text" value={this.state.contact.name} onChange={this.formHandler('client_name')} />
+          <input type="text" value={this.state.contact.name} onChange={this.nameHandler} />
         </div>
         <div className="form-container">
           <label>Legal Name</label>
