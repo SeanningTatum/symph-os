@@ -21,7 +21,16 @@ export class AddContact extends Component {
       [controlName]: updateObject( this.state.controls[controlName], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
-        touched: true
+        touched: true,
+      })
+    });
+    this.setState({controls: updatedControls});
+  }
+
+  onBlurHandler = (controlName) => {
+    const updatedControls = updateObject(this.state.controls, {
+      [controlName]: updateObject(this.state.controls[controlName], {
+        dirty: true
       })
     });
     this.setState({controls: updatedControls});
@@ -35,11 +44,8 @@ export class AddContact extends Component {
 
   render() {
     const formElementsArray = [];
-    for ( let key in this.state.controls ) {
-      formElementsArray.push({
-        id: key,
-        config: this.state.controls[key]
-      });
+    for (let key in this.state.controls) {
+      formElementsArray.push({id: key,config: this.state.controls[key]});
     }
 
     return (
@@ -50,6 +56,7 @@ export class AddContact extends Component {
             shouldValidate={formElement.config.validation}
             invalid={!formElement.config.valid}
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
+            blur={() => this.onBlurHandler(formElement.id)}
             {...formElement.config} />
         ))}
         <div className="form--button-area">

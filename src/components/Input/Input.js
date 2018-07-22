@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import './Input.scss';
 
 const Input = (props) => {
-  const { config } = props;
   let inputElement = null;
   let hasError = "";
-  if (props.invalid && props.shouldValidate && props.touched) {
+  if (props.invalid && props.shouldValidate && props.touched && props.dirty) {
     hasError = "invalid";
     console.log("Invalid!");
   }
@@ -18,15 +16,19 @@ const Input = (props) => {
           onChange={props.changed}
           value={props.value}
           {...props.elementConfig} 
-          className={hasError} />;
+          className={hasError} 
+          onBlur={props.blur}
+          />;
       break;
-    case 'switch':
+    case 'select':
       inputElement = <select 
         type={props.type} 
         value={props.value} 
         onChange={props.changed}
         className={hasError}>
-
+          {props.elementConfig.options.map(option => (
+            <option key={option} value={option}>{option}</option>
+          ))}
         </select>
       break;
       
@@ -44,15 +46,18 @@ Input.propTypes = {
   elementType: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  valid: PropTypes.bool.isRequired,
+  touched: PropTypes.bool.isRequired,
+  blur: PropTypes.func.isRequired,
+
   elementConfig: PropTypes.shape({
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
     placeholder: PropTypes.string.isRequired
   }).isRequired,
+
   validation: PropTypes.shape({
     required: PropTypes.bool.isRequired
   }).isRequired,
-  valid: PropTypes.bool,
-  touched: PropTypes.bool
 }
 
 export default Input;

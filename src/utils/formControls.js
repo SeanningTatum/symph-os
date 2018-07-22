@@ -13,7 +13,8 @@ export const contactControls = {
       minLength: 3
     },
     valid: false,
-    touched: false
+    touched: false,
+    dirty: false
   },
 
   legal_name: {
@@ -28,7 +29,8 @@ export const contactControls = {
       required: true,
     },
     valid: false,
-    touched: false
+    touched: false,
+    dirty: false
   },
 
   contact_name: {
@@ -43,14 +45,13 @@ export const contactControls = {
       required: true,
     },
     valid: false,
-    touched: false
+    touched: false,
+    dirty: false
   },
 
   type: {
     elementType: 'select',
     elementConfig: {
-      type: 'text',
-      placeholder: '',
       options: [
         "Non Profit Organization",
         "Individual",
@@ -66,7 +67,8 @@ export const contactControls = {
       required: true,
     },
     valid: false,
-    touched: false
+    touched: false,
+    dirty: false
   },
 }
 // End of contact controls
