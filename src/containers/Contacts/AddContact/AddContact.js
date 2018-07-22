@@ -28,28 +28,29 @@ export class AddContact extends Component {
    * !!! EYES HERE !!!
    * Please do not combine this code into one!!!
    * I already know we can clean up code by making it
-   * into one function, but at the cost of perfomance issues
+   * into one function, but at the cost of perfomance
    */
 
-  nameChangeHandler = (event) => {
+  formHandler = event => formName => {
+    console.log(event);
     const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'client_name', value)});
+    this.setState({contact: updateObject(this.state.contact, formName, value)});
   }
 
-  legalNameHandler = (event) => {
-    const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'legal_name', value)});
-  }
+  // legalNameHandler = (event) => {
+  //   const {value} = event.target;
+  //   this.setState({contact: updateObject(this.state.contact, 'legal_name', value)});
+  // }
 
-  contactHandler = (event) => {
-    const {value} = event.target
-    this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
-  }
+  // contactHandler = (event) => {
+  //   const {value} = event.target
+  //   this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
+  // }
 
-  typeHandler = async (event) => {
-    const {value} = event.target;
-    await this.setState({contact: updateObject(this.state.contact, 'type', value)});
-  }
+  // typeHandler = async (event) => {
+  //   const {value} = event.target;
+  //   await this.setState({contact: updateObject(this.state.contact, 'type', value)});
+  // }
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -62,7 +63,7 @@ export class AddContact extends Component {
       <form className="form">
         <div className="form-container">
           <label>Name</label>
-          <input type="text" value={this.state.contact.name} onChange={this.nameChangeHandler} />
+          <input type="text" value={this.state.contact.name} onChange={this.formHandler('client_name')} />
         </div>
         <div className="form-container">
           <label>Legal Name</label>
