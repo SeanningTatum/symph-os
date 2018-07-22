@@ -6,15 +6,24 @@ import { contactColumns } from 'utils/tableHeaders';
 import * as contactActions from 'store/actions/contacts';
 
 export class Contacts extends Component {
-
+  /*- - - - - - - - - - - - - - - -
+  *        Lifecycle Hooks        *
+  * - - - - - - - - - - - - - - - */
   componentWillMount() {
     this.props.getContacts();
   }
 
+  /*- - - - - - - - - - - - - - - -
+  *           Functions           *
+  * - - - - - - - - - - - - - - - */
   gotoAddContact = () => {
     this.props.history.push('/contacts/add-contact');
   }
 
+
+  /*- - - - - - - - - - - - - - - -
+  *             Render            *
+  * - - - - - - - - - - - - - - - */
   render() {
     return (
       <React.Fragment>
@@ -35,6 +44,9 @@ export class Contacts extends Component {
   }
 }
 
+  /*- - - - - - - - - - - - - - - -
+  *             Redux             *
+  * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => {
   return {
     contacts: state.contacts

@@ -12,33 +12,48 @@ class Layout extends Component {
 
   state = {
     sideNavOpen: true,
+    showPageStepper: false,
     pageName: '',
     pageStepper: '',
-    showPageStepper: false
   }
 
+  /*- - - - - - - - - - - - - - - -
+  *        Lifecycle Hooks        *
+  * - - - - - - - - - - - - - - - */
   componentDidMount() {
     this.fetchLocation();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== this.props.location.pathname ) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
       this.fetchLocation();
     }
   }
+  /*- - - - - - - - - - - - - - - -
+  *           Functions           *
+  * - - - - - - - - - - - - - - - */
 
-  // Get location and format
+
+  /**
+   * Description.
+   * This function retrieves the path from the url
+   * and parses and formats it to render the state.title
+   * and state.stepper dynamically
+   */
   fetchLocation = () => {
     let pageStepper = '';
     let showPageStepper = false;
 
+    // Get path from URL
     const location = this.props.location.pathname.slice(1);
+    // Take away '-' and create an array of url params
     const pagenames = location.replace('-', ' ').split('/');
     const last = pagenames.length - 1;
+    // Set the page name to last param in url and capitalize first letter
     const pageName = pagenames[last].charAt(0).toUpperCase() + pagenames[last].substr(1);
 
     for (const x in pagenames) {
-      // Capitalize and combine paths (if there is)
+      // Capitalize and combine paths (if there is) to create stepper
       pageStepper += pagenames[x].charAt(0).toUpperCase() + pagenames[x].substr(1);
       if (x < last) {
         pageStepper += ' / ';
@@ -53,6 +68,9 @@ class Layout extends Component {
     this.setState(prevState => ({sideNavOpen: !prevState.sideNavOpen}))
   }
 
+  /*- - - - - - - - - - - - - - - -
+  *             Render            *
+  * - - - - - - - - - - - - - - - */
   render() {
     let marginLeft, left;
 

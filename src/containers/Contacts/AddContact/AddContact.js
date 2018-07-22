@@ -17,12 +17,19 @@ export class AddContact extends Component {
     isFormValid: false
   }
 
-  componentDidUpdate(prevProps, prevState) {
+
+  /*- - - - - - - - - - - - - - - -
+  *        Lifecycle Hooks        *
+  * - - - - - - - - - - - - - - - */
+  componentDidUpdate(_, prevState) {
     if (prevState.controls !== this.state.controls) {
       this.setState({isFormValid: this.isValid()});
     }
   }
 
+  /*- - - - - - - - - - - - - - - -
+  *           Functions           *
+  * - - - - - - - - - - - - - - - */
   inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject( this.state.controls, {
       [controlName]: updateObject( this.state.controls[controlName], {
@@ -63,6 +70,10 @@ export class AddContact extends Component {
     );
   }
 
+  /*- - - - - - - - - - - - - - - -
+  *             Render            *
+  * - - - - - - - - - - - - - - - */
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {
@@ -90,6 +101,10 @@ export class AddContact extends Component {
     )
   }
 }
+
+  /*- - - - - - - - - - - - - - - -
+  *             Redux             *
+  * - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
   contacts: state.contacts

@@ -9,7 +9,7 @@ const Sidenav = (props) => {
   const padding = props.open ? '70px 20px 20px 20px' : '60px 0 0 0';
 
   return (
-    <div className="sidenav" style={{height: '100%', width, padding}}>
+    <div className="sidenav" style={{width, padding}}>
       <ul className="sidenav--list">
         <NavigationItems open={props.open} />
       </ul>
