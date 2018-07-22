@@ -15,18 +15,20 @@ const Input = (props) => {
   switch (props.elementType) {
     case 'input':
       inputElement = <input 
-          type={props.elementConfig.type} 
-          value={props.value} 
           onChange={props.changed}
+          value={props.value}
           {...props.elementConfig} 
           className={hasError} />;
       break;
     case 'switch':
-      inputElement = (
-        <select type={props.type} value={props.value} onChange={props.changed}>
+      inputElement = <select 
+        type={props.type} 
+        value={props.value} 
+        onChange={props.changed}
+        className={hasError}>
 
         </select>
-      )
+      break;
       
   }
   
@@ -40,6 +42,7 @@ const Input = (props) => {
 
 Input.propTypes = {
   elementType: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   elementConfig: PropTypes.shape({
     type: PropTypes.string.isRequired,

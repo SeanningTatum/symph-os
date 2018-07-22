@@ -4,7 +4,7 @@ import './AddContact.scss';
 
 // Utilities
 import updateObject from 'utils/updateObject';
-import { contactControls, options } from 'utils/formControls';
+import { contactControls, options, updateObject, checkValidity } from 'utils/formControls';
 
 // Redux
 import * as contactActions from 'store/actions/contacts';
@@ -16,9 +16,15 @@ export class AddContact extends Component {
     controls: contactControls
   }
 
-  nameHandler = (event) => {
-    const {value} = event.target;
-    this.setState({contact: updateObject(this.state.contact, 'name', value)});
+  inputChangedHandler = (event, controlName) => {
+    const updatedControls = updateObject( this.state.controls, {
+      [controlName]: updateObject( this.state.controls[controlName], {
+          value: event.target.value,
+          valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
+          touched: true
+      })
+    });
+    this.setState( { controls: updatedControls } );
   }
 
   onSubmit = (event) => {
@@ -39,10 +45,9 @@ export class AddContact extends Component {
 
     return (
       <form className="form">
-        {formElementsArray.map(formElement => {
-          console.log(formElement);
-          return <Input key={formElement.id} {...formElement.config}/>
-        })}
+        {formElementsArray.map(formElement => (
+          <Input key={formElement.id} {...formElement.config}/>
+        ))}
         <div className="form--button-area">
           <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
         </div>
