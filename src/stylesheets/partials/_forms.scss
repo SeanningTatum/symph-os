@@ -7,14 +7,34 @@
     margin-bottom: .5rem;
   }
 
-  input {
-    width: 100%;
+  input, select {
     background-color: $grey;
     padding: 4px 5px;
     height: 32px;
-    min-width: 400px;
-    border: 1px solid #ccc;
     border-radius: 3.01px;
+    border: 1px solid #ccc;
+  }
+
+  input {
+    min-width: 400px;
+  }
+
+  select {
+    width: auto;
+    max-width: 35%;
+  }
+
+  select:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
   }
 }
+
+
 

@@ -4,6 +4,15 @@ import updateObject from 'utils/updateObject';
 import { connect } from 'react-redux';
 import * as contactActions from 'store/actions/contacts';
 
+const options = [
+  "Non Profit Organization",
+  "Individual",
+  "Government",
+  "Startup",
+  "School",
+  "Company"
+]
+
 export class AddContact extends Component {
 
   state = {
@@ -37,9 +46,9 @@ export class AddContact extends Component {
     this.setState({contact: updateObject(this.state.contact, 'contact_name', value)});
   }
 
-  typeHandler = (event) => {
-    const {value} = event.target
-    this.setState({contact: updateObject(this.state.contact, 'type', value)});
+  typeHandler = async (event) => {
+    const {value} = event.target;
+    await this.setState({contact: updateObject(this.state.contact, 'type', value)});
   }
 
   onSubmit = (event) => {
@@ -65,7 +74,11 @@ export class AddContact extends Component {
         </div>
         <div className="form-container">
           <label>Type</label>
-          <input type="text" value={this.state.contact.type} onChange={this.typeHandler}/>
+          <select type="text" value={this.state.contact.type} onChange={this.typeHandler}>
+            {options.map(option => (
+             <option key={option} value={option}>{option}</option>  
+            ))}
+          </select>
         </div>
         <div className="form--button-area">
           <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>

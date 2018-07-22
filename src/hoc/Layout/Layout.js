@@ -73,7 +73,7 @@ class Layout extends Component {
         <Sidenav open={this.state.sideNavOpen}/>  
 
         {/* Main content */}
-        <div className="container" style={{marginLeft}}>
+        <main className="container" style={{marginLeft}}>
           <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
           <div className="titles">
             {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
@@ -82,7 +82,7 @@ class Layout extends Component {
           <div className="content">
             {this.props.children}
           </div>
-        </div>
+        </main>
         {/* End Main content */}
         
       </div>
