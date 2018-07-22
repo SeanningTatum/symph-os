@@ -38,7 +38,12 @@ export class AddContact extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addContact(this.state.contact);
+    this.props.addContact({
+      client_name: this.state.controls['client_name'].value,
+      contact_name: this.state.controls['contact_name'].value,
+      legal_name: this.state.controls['legal_name'].value,
+      type: this.state.controls['type'].value
+    });
     this.props.history.push('/contacts');
   }
 
