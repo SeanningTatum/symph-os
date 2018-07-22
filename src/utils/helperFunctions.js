@@ -6,6 +6,11 @@ export const truncate = (string, size) => {
   }
 }
 
+/**
+ * This function updates objects inside of an object
+ * @param {object} oldObject 
+ * @param {object} updatedProperties 
+ */
 export const updateObject = (oldObject, updatedProperties) => {
   return {
     ...oldObject,
@@ -13,6 +18,12 @@ export const updateObject = (oldObject, updatedProperties) => {
   };
 };
 
+/**
+ * This function checks if value if valid
+ * given the rules
+ * @param {string} value 
+ * @param {object} rules 
+ */
 export const checkValidity = (value, rules) => {
   let isValid = true;
   if (!rules) {

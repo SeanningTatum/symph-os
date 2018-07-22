@@ -7,7 +7,7 @@ const Input = (props) => {
   let hasError = "";
   if (props.invalid && props.shouldValidate && props.touched && props.dirty) {
     hasError = "invalid";
-    console.log("Invalid!");
+    console.log(hasError)
   }
 
   switch (props.elementType) {
@@ -52,7 +52,7 @@ Input.propTypes = {
 
   elementConfig: PropTypes.shape({
     type: PropTypes.string,
-    placeholder: PropTypes.string.isRequired
+    placeholder: PropTypes.string
   }).isRequired,
 
   validation: PropTypes.shape({
