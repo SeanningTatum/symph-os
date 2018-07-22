@@ -1,4 +1,11 @@
-// Start of contact controls
+/**
+ * Summary.
+ * These are controls used by forms
+ * 
+ * Description.
+ * These are the settings of input, select, etc.
+ * These controls are used in forms such as AddContact.js
+ */
 export const contactControls = {
   client_name: {
     elementType: 'input',

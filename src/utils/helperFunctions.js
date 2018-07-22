@@ -1,15 +1,14 @@
-export const truncate = (string, size) => {
-  if (string.length > size) {
-    return string.substring(0, string.length - '...'.length) + '...';
-  } else {
-    return string;
-  }
-}
-
 /**
- * This function updates objects inside of an object
+ * Summary.
+ * It updates an object given the right keys
+ * 
+ * Description.
+ * This function returns a new object, by combining 
+ * the old properties and new properties.
  * @param {object} oldObject 
  * @param {object} updatedProperties 
+ * 
+ * @returns {object}
  */
 export const updateObject = (oldObject, updatedProperties) => {
   return {
@@ -19,8 +18,9 @@ export const updateObject = (oldObject, updatedProperties) => {
 };
 
 /**
- * This function checks if value if valid
- * given the rules
+ * Summary.
+ * This function checks if the given string
+ * is valid given the rules given
  * @param {string} value 
  * @param {object} rules 
  */
