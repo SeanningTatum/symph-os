@@ -6,34 +6,46 @@ const Input = (props) => {
   let inputElement = null;
   let hasError = "";
   if (props.invalid && props.shouldValidate && props.touched && props.dirty) {
-    hasError = "invalid";
+    hasError = "error";
     console.log(hasError)
   }
 
   switch (props.elementType) {
     case 'input':
-      inputElement = <input 
-          onChange={props.changed}
-          value={props.value}
-          {...props.elementConfig} 
-          className={hasError} 
-          onBlur={props.blur}
-          />;
-      break;
-    case 'select':
-      inputElement = <select 
-        type={props.type} 
-        value={props.value} 
+      inputElement = <input
         onChange={props.changed}
-        className={hasError}>
-          {props.elementConfig.options.map(option => (
-            <option key={option} value={option}>{option}</option>
-          ))}
-        </select>
+        value={props.value}
+        {...props.elementConfig}
+        className={hasError}
+        onBlur={props.blur}
+      />;
+      break;
+
+    case 'textarea':
+      inputElement = <textarea
+        onChange={props.changed}
+        value={props.value}
+        {...props.elementConfig}
+        className={hasError}
+        onBlur={props.blur}
+        rows="3"
+      />;
       break;
       
+    case 'select':
+      inputElement = <select
+        type={props.type}
+        value={props.value}
+        onChange={props.changed}
+        className={hasError}>
+        {props.elementConfig.options.map(option => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+      </select>
+      break;
+
   }
-  
+
   return (
     <div className="form-container">
       {props.label && <label>{props.label}</label>}
