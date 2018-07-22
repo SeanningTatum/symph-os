@@ -13,7 +13,14 @@ import { connect } from 'react-redux';
 export class AddContact extends Component {
 
   state = {
-    controls: contactControls
+    controls: contactControls,
+    isFormValid: false
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.controls !== this.state.controls) {
+      this.setState({isFormValid: this.isValid()});
+    }
   }
 
   inputChangedHandler = (event, controlName) => {
@@ -47,6 +54,15 @@ export class AddContact extends Component {
     this.props.history.push('/contacts');
   }
 
+  isValid = () => {
+    return (
+      this.state.controls['client_name'].valid &&
+      this.state.controls['contact_name'].valid &&
+      this.state.controls['legal_name'].valid &&
+      this.state.controls['type'].valid
+    );
+  }
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {
@@ -65,13 +81,15 @@ export class AddContact extends Component {
             {...formElement.config} />
         ))}
         <div className="form--button-area">
-          <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
+          <button 
+            className="btn btn-primary" 
+            onClick={this.onSubmit}
+            disabled={!this.state.isFormValid}>Submit</button>
         </div>
       </form>
     )
   }
 }
-
 
 const mapStateToProps = state => ({
   contacts: state.contacts
