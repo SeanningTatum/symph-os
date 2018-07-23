@@ -32,7 +32,7 @@ const Input = (props) => {
         rows="3"
       />;
       break;
-      
+
     case 'select':
       inputElement = <select
         type={props.type}
@@ -59,6 +59,7 @@ const Input = (props) => {
   )
 }
 
+
 Input.propTypes = {
   elementType: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -74,7 +75,10 @@ Input.propTypes = {
   }).isRequired,
 
   validation: PropTypes.shape({
-    required: PropTypes.bool.isRequired
+    required: PropTypes.bool.isRequired,
+    minLength: PropTypes.number,
+    maxLength: PropTypes.number,
+    isEmail: PropTypes.bool
   }).isRequired,
 }
 
