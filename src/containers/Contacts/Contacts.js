@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
+import { contactColumns } from 'utils/tableHeaders';
 
-
-export class Clients extends Component {
+export class Contacts extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
@@ -19,11 +19,15 @@ export class Clients extends Component {
   * - - - - - - - - - - - - - - - */
   render() {
     return (
-      <div>
-        <BootstrapTable />
-      </div>
+      <React.Fragment>
+        <BootstrapTable 
+          keyField="contact_id"
+          data={[]}
+          columns={contactColumns}
+        />
+      </React.Fragment>
     )
   }
 }
 
-export default Clients;
+export default Contacts;

@@ -3,7 +3,7 @@ import './Clients.scss';
 
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
-import { contactColumns } from 'utils/tableHeaders';
+import { clientColumns } from 'utils/tableHeaders';
 
 // Redux
 import { connect } from 'react-redux';
@@ -40,9 +40,7 @@ export class Clients extends Component {
         <BootstrapTable 
           keyField='client_id' 
           data={ this.props.clients } 
-          columns={contactColumns} 
-          bordered={ false }
-          condensed />
+          columns={clientColumns} />
       </React.Fragment>
     )
   }
