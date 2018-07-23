@@ -1,9 +1,11 @@
 import * as actionTypes from 'store/actions/actionTypes';
 import { clientControls } from 'utils/formControls/clientControls';
+import { contactControls } from 'utils/formControls/contactControls';
 import { updateObject, checkValidity } from 'utils/helperFunctions';
 
 const initState = {
-  clientControls
+  clientControls,
+  contactControls
 }
 
 const inputChanged = (state, value, controlName, control) => {
@@ -29,8 +31,6 @@ const onBlur = (state, controlName, control) => {
       dirty: true
     })
   });
-
-  console.log("IM HERE");
 
   return {
     ...state,

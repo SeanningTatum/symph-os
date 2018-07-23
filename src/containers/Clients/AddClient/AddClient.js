@@ -3,16 +3,15 @@ import Input from 'components/Input/Input';
 import './AddClient.scss';
 
 // Redux
+import { connect } from 'react-redux';
 import * as clientActions from 'store/actions/clients';
 import * as formControlActions from 'store/actions/formControls';
-import { connect } from 'react-redux';
 
 export class AddClient extends PureComponent {
 
   state = {
     isFormValid: false
   }
-
 
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *

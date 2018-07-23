@@ -24,7 +24,6 @@ export class Clients extends Component {
     this.props.history.push('/clients/add-client');
   }
 
-
   /*- - - - - - - - - - - - - - - -
   *             Render            *
   * - - - - - - - - - - - - - - - */

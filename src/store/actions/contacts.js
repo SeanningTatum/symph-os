@@ -1,8 +1,8 @@
 import * as actionTypes from './actionTypes';
 
-export const addContact = (contact) => {
+export const addContact = (contactControls) => {
   return {
     type: actionTypes.ADD_CONTACT,
-    contact
+    contactControls
   }
 }

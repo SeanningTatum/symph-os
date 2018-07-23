@@ -4,68 +4,42 @@ import Input from 'components/Input/Input';
 // Redux
 import { connect } from 'react-redux';
 import * as contactActions from 'store/actions/contacts';
-
-// Utils
-import { contactControls } from 'utils/formControls/contactControls';
-import { updateObject, checkValidity } from 'utils/helperFunctions';
+import * as formControlActions from 'store/actions/formControls';
 
 export class AddContact extends Component {
 
   state = {
-    controls: contactControls,
     isFormValid: false
   }
 
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
-  componentDidUpdate(_, prevState) {
-    if (prevState.controls !== this.state.controls) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.controls !== this.props.controls) {
       this.setState({ isFormValid: this.isValid() });
     }
   }
-
 
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
 
-  inputChangedHandler = (event, controlName) => {
-    const errorObj = checkValidity(event.target.value, this.state.controls[controlName].validation);
-    const updatedControls = updateObject(this.state.controls, {
-      [controlName]: updateObject(this.state.controls[controlName], {
-        value: event.target.value,
-        valid: errorObj.isValid,
-        errorMessages: errorObj.errorMessages,
-        touched: true,
-      })
-    });
-    this.setState({ controls: updatedControls });
-  }
-
-  onBlurHandler = (controlName) => {
-    const updatedControls = updateObject(this.state.controls, {
-      [controlName]: updateObject(this.state.controls[controlName], {
-        dirty: true
-      })
-    });
-    this.setState({ controls: updatedControls });
-  }
-
-
   isValid = () => {
     return (
-      this.state.controls['contact_name'].valid &&
-      this.state.controls['contact_nickname'].valid &&
-      this.state.controls['contact_number'].valid &&
-      this.state.controls['contact_email'].valid &&
-      this.state.controls['contact_company'].valid &&
-      this.state.controls['contact_position'].valid
+      this.props.controls['contact_name'].valid &&
+      this.props.controls['contact_nickname'].valid &&
+      this.props.controls['contact_number'].valid &&
+      this.props.controls['contact_email'].valid &&
+      this.props.controls['contact_company'].valid &&
+      this.props.controls['contact_position'].valid
     );
   }
 
   onSubmit = (event) => {
     event.preventDefault();
+    this.props.addContact(this.props.controls)
+    this.props.history.push('/contacts');
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -75,8 +49,8 @@ export class AddContact extends Component {
   render() {
     // Change controls into array so we can iterate over it
     const formElementsArray = [];
-    for (let key in this.state.controls) {
-      formElementsArray.push({ id: key, config: this.state.controls[key] });
+    for (let key in this.props.controls) {
+      formElementsArray.push({ id: key, config: this.props.controls[key] });
     }
 
     return (
@@ -86,8 +60,8 @@ export class AddContact extends Component {
             key={formElement.id}
             shouldValidate={formElement.config.validation}
             invalid={!formElement.config.valid}
-            changed={(event) => this.inputChangedHandler(event, formElement.id)}
-            blur={() => this.onBlurHandler(formElement.id)}
+            changed={(event) => this.props.inputChanged(event, formElement.id)}
+            blur={() => this.props.onBlur(formElement.id)}
             {...formElement.config} />
         ))}
         <div className="form--button-area">
@@ -101,12 +75,24 @@ export class AddContact extends Component {
   }
 }
 
+  /*- - - - - - - - - - - - - - - -
+  *             Redux             *
+  * - - - - - - - - - - - - - - - */
+
 const mapStateToProps = state => ({
-  contacts: state.contacts
+  controls: state.formControl.contactControls
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: contact => dispatch(contactActions.addContact(contact))
+  addContact: contactControls => dispatch(contactActions.addContact(contactControls)),
+
+  inputChanged: (event, controlName, control = 'contactControls') => (
+    dispatch(formControlActions.inputChanged(event.target.value, controlName, control))
+  ),
+
+  onBlur: (controlName, control = 'contactControls') => (
+    dispatch(formControlActions.blur(controlName, control))
+  )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddContact);
