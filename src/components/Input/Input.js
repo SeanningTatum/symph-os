@@ -46,6 +46,16 @@ const Input = (props) => {
       </select>
       break;
 
+    default:
+      inputElement = <input
+        onChange={props.changed}
+        value={props.value}
+        {...props.elementConfig}
+        className={hasError}
+        onBlur={props.blur}
+      />;
+      break;
+    
   }
 
   return (

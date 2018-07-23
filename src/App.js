@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route } from 'react-router';
 
 // HOC
 import Layout from 'hoc/Layout/Layout';
@@ -32,6 +32,7 @@ class App extends Component {
           <Route component={SymphersPage} exact path='/symphers'/>
           <Route component={TeamsPage} exact path='/teams'/>
         </Layout>
+        <Route component={ContactsPage}/>
       </Switch>
     );
   }
