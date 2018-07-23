@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 
 // HOC
 import Layout from 'hoc/Layout/Layout';
@@ -16,16 +16,17 @@ class App extends Component {
 
   render() {
     return (
-      <Layout>
-        <Switch>
-          <Route component={ContactsPage} path='/contact'/>
-          <Route component={ProjectsPage} path='/projects'/>
+      <Switch>
+        <Layout>
+          <Route component={ContactsPage} exact path='/contacts'/>
+          <Route component={ProjectsPage} exact path='/projects'/>
           <Route component={AddClientPage} exact path='/clients/add-client'/>
           <Route component={ClientsPage} exact path='/clients'/>
-          <Route component={SymphersPage} path='/symphers'/>
-          <Route component={TeamsPage} path='/teams'/>
-        </Switch>
-      </Layout>
+          <Route component={SymphersPage} exact path='/symphers'/>
+          <Route component={TeamsPage} exact path='/teams'/>
+          <Redirect to="/contacts" />
+        </Layout>
+      </Switch>
     );
   }
 }
