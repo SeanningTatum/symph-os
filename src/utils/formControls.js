@@ -21,7 +21,8 @@ export const clientControls = {
     },
     valid: false,
     touched: false,
-    dirty: false
+    dirty: false,
+    errorMessages: []
   },
 
   legal_name: {
@@ -37,7 +38,8 @@ export const clientControls = {
     },
     valid: false,
     touched: false,
-    dirty: false
+    dirty: false,
+    errorMessages: []
   },
 
   contact_name: {
@@ -53,7 +55,8 @@ export const clientControls = {
     },
     valid: false,
     touched: false,
-    dirty: false
+    dirty: false,
+    errorMessages: []
   },
 
   type: {
@@ -75,7 +78,8 @@ export const clientControls = {
     },
     valid: false,
     touched: false,
-    dirty: false
+    dirty: false,
+    errorMessages: []
   },
 }
 // End of contact controls

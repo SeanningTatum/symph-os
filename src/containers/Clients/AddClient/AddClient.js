@@ -31,10 +31,12 @@ export class AddClient extends PureComponent {
   *           Functions           *
   * - - - - - - - - - - - - - - - */
   inputChangedHandler = (event, controlName) => {
+    const errorObj = checkValidity(event.target.value, this.state.controls[controlName].validation);
     const updatedControls = updateObject( this.state.controls, {
       [controlName]: updateObject( this.state.controls[controlName], {
         value: event.target.value,
-        valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
+        valid: errorObj.isValid,
+        errorMessages: errorObj.errorMessages,
         touched: true,
       })
     });

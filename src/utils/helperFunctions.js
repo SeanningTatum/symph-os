@@ -20,31 +20,44 @@ export const updateObject = (oldObject, updatedProperties) => {
 /**
  * Summary.
  * This function checks if the given string
- * is valid given the rules given
+ * is valid given the rules
  * @param {string} value 
  * @param {object} rules 
  */
 export const checkValidity = (value, rules) => {
   let isValid = true;
+  const errorMessages = [];
   if (!rules) {
     return true;
   }
 
   if (rules.required) {
     isValid = value.trim() !== '' && isValid;
+    if (!(value.trim() !== '' && isValid)) {
+      errorMessages.push(`This field is required`);
+    }
   }
 
   if (rules.minLength) {
-    isValid = value.length >= rules.minLength && isValid
+    isValid = value.length >= rules.minLength && isValid;
+    if (!(value.length >= rules.minLength && isValid)) {
+      errorMessages.push(`Should not be shorter than ${rules.minLength} characters.`);
+    }
   }
 
   if (rules.maxLength) {
-    isValid = value.length <= rules.maxLength && isValid
+    isValid = value.length <= rules.maxLength && isValid;
+    if (!(value.length <= rules.maxLength && isValid)) {
+      errorMessages.push(`Should not exceed than ${rules.minLength} characters.`);
+    }
   }
 
   if (rules.isEmail) {
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    isValid = pattern.test(value) && isValid
+    isValid = pattern.test(value) && isValid;
+    if (!(pattern.test(value) && isValid)) {
+      errorMessages.push("Please enter a valid email");
+    }
   }
 
   if (rules.isNumeric) {
@@ -52,5 +65,5 @@ export const checkValidity = (value, rules) => {
     isValid = pattern.test(value) && isValid
   }
 
-  return isValid;
+  return {isValid, errorMessages};
 }

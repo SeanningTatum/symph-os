@@ -5,9 +5,10 @@ import './Input.scss';
 const Input = (props) => {
   let inputElement = null;
   let hasError = "";
+  let errorMessages = [];
   if (props.invalid && props.shouldValidate && props.touched && props.dirty) {
     hasError = "error";
-    console.log(hasError)
+    errorMessages = props.errorMessages;
   }
 
   switch (props.elementType) {
@@ -51,6 +52,9 @@ const Input = (props) => {
     <div className="form-container">
       {props.label && <label>{props.label}</label>}
       {inputElement}
+      {errorMessages.map((errMsg, i) => (
+        <p key={i} className="error-text">{errMsg}</p>
+      ))}
     </div>
   )
 }
@@ -62,6 +66,7 @@ Input.propTypes = {
   valid: PropTypes.bool.isRequired,
   touched: PropTypes.bool.isRequired,
   blur: PropTypes.func.isRequired,
+  errorMessages: PropTypes.array,
 
   elementConfig: PropTypes.shape({
     type: PropTypes.string,
