@@ -54,7 +54,7 @@ export class AddClient extends PureComponent {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addclient({
+    this.props.addClient({
       client_name: this.state.controls['client_name'].value,
       legal_name: this.state.controls['legal_name'].value,
       type: this.state.controls['type'].value
@@ -107,7 +107,7 @@ export class AddClient extends PureComponent {
 * - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
-  clients: state.clients
+  clients: state.client.clients
 });
 
 const mapDispatchToProps = dispatch => ({
