@@ -16,6 +16,10 @@ export class AddClient extends PureComponent {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
+  componentDidMount() {
+    this.setState({ isFormValid: this.isValid() });
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.controls !== this.props.controls) {
       this.setState({ isFormValid: this.isValid() });
@@ -29,6 +33,7 @@ export class AddClient extends PureComponent {
   onSubmit = (event) => {
     event.preventDefault();
     this.props.addClient(this.props.controls, this.props.history);
+    this.props.resetForm();
   }
 
   isValid = () => {
@@ -82,13 +87,17 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addClient: (formControls, history) => dispatch(clientActions.addClient(formControls, history)),
 
-  inputChanged: (event, controlName, control = 'clientControls') => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, control))
+  inputChanged: (event, controlName) => (
+    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'clientControls'))
   ),
 
-  onBlur: (controlName, control = 'clientControls') => (
-    dispatch(formControlActions.blur(controlName, control))
-  )
+  onBlur: (controlName) => (
+    dispatch(formControlActions.blur(controlName, 'clientControls'))
+  ),
+
+  resetForm: () => {
+    dispatch(formControlActions.resetForm('clientControls'))
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient);

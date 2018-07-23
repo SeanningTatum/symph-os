@@ -15,6 +15,11 @@ export class AddContact extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
+
+  componentDidMount() {
+    this.setState({ isFormValid: this.isValid() });
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.controls !== this.props.controls) {
       this.setState({ isFormValid: this.isValid() });
@@ -40,6 +45,7 @@ export class AddContact extends Component {
     event.preventDefault();
     this.props.addContact(this.props.controls)
     this.props.history.push('/contacts');
+    this.props.resetForm();
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -86,12 +92,16 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addContact: contactControls => dispatch(contactActions.addContact(contactControls)),
 
-  inputChanged: (event, controlName, control = 'contactControls') => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, control))
+  inputChanged: (event, controlName) => (
+    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))
   ),
 
-  onBlur: (controlName, control = 'contactControls') => (
-    dispatch(formControlActions.blur(controlName, control))
+  onBlur: (controlName) => (
+    dispatch(formControlActions.blur(controlName, 'contactControls'))
+  ),
+
+  resetForm: () => (
+    dispatch(formControlActions.resetForm('contactControls'))
   )
 })
 

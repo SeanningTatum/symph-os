@@ -3,24 +3,15 @@ import React, { Component } from 'react';
 // Redux
 import { connect } from 'react-redux';
 
-
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
 
 export class Contacts extends Component {
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
+
   gotoAddContact = () => {
     this.props.history.push('/contacts/add-contact');
   }
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
 
   render() {
     return (
@@ -40,10 +31,6 @@ export class Contacts extends Component {
     )
   }
 }
-
-/*- - - - - - - - - - - - - - - -
-*             Redux             *
-* - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => {
   return {

@@ -38,11 +38,18 @@ const onBlur = (state, controlName, control) => {
   }
 }
 
+const resetForm = (state, controlName) => {
+  switch(controlName) {
+    case 'clientControls': return { ...state, clientControls };
+    case 'contactControls': return {...state, contactControls};
+  }
+}
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case actionTypes.INPUT_CHANGED: return inputChanged(state, action.value, action.controlName, action.control);
     case actionTypes.ON_BLUR: return onBlur(state, action.controlName, action.control);
+    case actionTypes.RESET_FORM: return resetForm(state, action.controlName)
     default: return state;
   }
 }
