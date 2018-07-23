@@ -4,7 +4,7 @@ const initState = {
   contacts: []
 }
 
-const addContact = (state,cContact) => {
+const addContact = (state, contact) => {
   return {
     ...state,
     contacts: state.contacts.concat({...contact, contact_id: 1})

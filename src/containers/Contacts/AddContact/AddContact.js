@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Input from 'components/Input/Input';
 
+// Redux
+import { connect } from 'react-redux';
+import * as contactActions from 'store/actions/contacts';
 
 // Utils
 import { contactControls } from 'utils/formControls/contactControls';
@@ -98,4 +101,12 @@ export class AddContact extends Component {
   }
 }
 
-export default AddContact;
+const mapStateToProps = state => ({
+  contacts: state.contacts
+});
+
+const mapDispatchToProps = dispatch => ({
+  addContact: contact => dispatch(contactActions.addContact(contact))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddContact);
