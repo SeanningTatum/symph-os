@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Input from 'components/Input/Input';
-import './AddContact.scss';
+import './AddClient.scss';
 
 // Utilities
 import { contactControls } from 'utils/formControls';
@@ -10,7 +10,7 @@ import { updateObject, checkValidity } from 'utils/helperFunctions';
 import * as contactActions from 'store/actions/contacts';
 import { connect } from 'react-redux';
 
-export class AddContact extends PureComponent {
+export class AddClient extends PureComponent {
 
   state = {
     controls: contactControls,
@@ -114,4 +114,4 @@ const mapDispatchToProps = dispatch => ({
   addContact: contact => dispatch(contactActions.addContact(contact))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddContact);
+export default connect(mapStateToProps, mapDispatchToProps)(AddClient);
