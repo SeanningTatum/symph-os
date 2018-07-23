@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+// Redux
+import { connect } from 'react-redux';
+
+
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
@@ -17,9 +21,7 @@ export class Contacts extends Component {
   /*- - - - - - - - - - - - - - - -
   *             Render            *
   * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *             Redux             *
-  * - - - - - - - - - - - - - - - */
+
   render() {
     return (
       <React.Fragment>
@@ -31,7 +33,7 @@ export class Contacts extends Component {
         </div>
         <BootstrapTable 
           keyField="contact_id"
-          data={[]}
+          data={this.props.contacts}
           columns={contactColumns}
         />
       </React.Fragment>
@@ -39,4 +41,18 @@ export class Contacts extends Component {
   }
 }
 
-export default Contacts;
+/*- - - - - - - - - - - - - - - -
+*             Redux             *
+* - - - - - - - - - - - - - - - */
+
+const mapStateToProps = state => {
+  return {
+    contacts: state.contact.contacts
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  // getContacts: () => dispatch(clientActions.getContacts())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
