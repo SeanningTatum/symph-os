@@ -42,23 +42,6 @@ export const clientControls = {
     errorMessages: []
   },
 
-  contact_name: {
-    elementType: 'input',
-    elementConfig: {
-      type: 'text',
-      placeholder: ''
-    },
-    label: 'Contact Name',
-    value: '',
-    validation: {
-      required: true,
-    },
-    valid: false,
-    touched: false,
-    dirty: false,
-    errorMessages: []
-  },
-
   type: {
     elementType: 'select',
     elementConfig: {

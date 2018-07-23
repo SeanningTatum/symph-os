@@ -13,9 +13,6 @@ export const contactColumns = [{
   text: 'Name',
   sort: true
 }, {
-  dataField: 'contact_name',
-  text: 'Contact Name'
-}, {
   dataField: 'legal_name',
   text: 'Legal Name'
 }, {

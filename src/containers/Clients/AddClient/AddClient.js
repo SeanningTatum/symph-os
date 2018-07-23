@@ -56,7 +56,6 @@ export class AddClient extends PureComponent {
     event.preventDefault();
     this.props.addclient({
       client_name: this.state.controls['client_name'].value,
-      client_name: this.state.controls['client_name'].value,
       legal_name: this.state.controls['legal_name'].value,
       type: this.state.controls['type'].value
     });
@@ -65,7 +64,6 @@ export class AddClient extends PureComponent {
 
   isValid = () => {
     return (
-      this.state.controls['client_name'].valid &&
       this.state.controls['client_name'].valid &&
       this.state.controls['legal_name'].valid &&
       this.state.controls['type'].valid

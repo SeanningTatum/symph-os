@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+// Utils
+import BootstrapTable from 'react-bootstrap-table-next';
+
+
 export class Clients extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
@@ -16,7 +20,7 @@ export class Clients extends Component {
   render() {
     return (
       <div>
-        
+        <BootstrapTable />
       </div>
     )
   }
