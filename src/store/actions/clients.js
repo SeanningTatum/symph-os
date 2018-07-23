@@ -6,13 +6,10 @@ export const getClients = () => {
   }
 }
 
-
-/**
- * @param {client_id, client_name, client_name, legal_name, type} client 
- */
-export const addClient = (client) => {
+export const addClient = (clientControls, history) => {
   return {
     type: actionTypes.ADD_CLIENT,
-    client
+    clientControls,
+    history
   }
 }

@@ -2,18 +2,14 @@ import React, { PureComponent } from 'react';
 import Input from 'components/Input/Input';
 import './AddClient.scss';
 
-// Utilities
-import { clientControls } from 'utils/formControls/clientControls';
-import { updateObject, checkValidity } from 'utils/helperFunctions';
-
 // Redux
 import * as clientActions from 'store/actions/clients';
+import * as formControlActions from 'store/actions/formControls';
 import { connect } from 'react-redux';
 
 export class AddClient extends PureComponent {
 
   state = {
-    // controls: clientControls,
     isFormValid: false
   }
 
@@ -21,44 +17,26 @@ export class AddClient extends PureComponent {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
-  // componentDidUpdate(_, prevState) {
-  //   if (prevState.controls !== this.state.controls) {
-  //     this.setState({ isFormValid: this.isValid() });
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (prevProps.controls !== this.props.controls) {
+      this.setState({ isFormValid: this.isValid() });
+    }
+  }
 
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
-  inputChangedHandler = (event, controlName) => {
-    
-    // this.setState({ controls: updatedControls });
-  }
-
-  onBlurHandler = (controlName) => {
-    const updatedControls = updateObject(this.state.controls, {
-      [controlName]: updateObject(this.state.controls[controlName], {
-        dirty: true
-      })
-    });
-    this.setState({ controls: updatedControls });
-  }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addClient({
-      client_name: this.state.controls['client_name'].value,
-      legal_name: this.state.controls['legal_name'].value,
-      type: this.state.controls['type'].value
-    });
-    this.props.history.push('/clients');
+    this.props.addClient(this.props.controls, this.props.history);
   }
 
   isValid = () => {
     return (
-      this.state.controls['client_name'].valid &&
-      this.state.controls['legal_name'].valid &&
-      this.state.controls['type'].valid
+      this.props.controls['client_name'].valid &&
+      this.props.controls['legal_name'].valid &&
+      this.props.controls['type'].valid
     );
   }
 
@@ -68,8 +46,8 @@ export class AddClient extends PureComponent {
 
   render() {
     const formElementsArray = [];
-    for (let key in this.state.controls) {
-      formElementsArray.push({ id: key, config: this.state.controls[key] });
+    for (let key in this.props.controls) {
+      formElementsArray.push({ id: key, config: this.props.controls[key] });
     }
 
     return (
@@ -79,8 +57,8 @@ export class AddClient extends PureComponent {
             key={formElement.id}
             shouldValidate={formElement.config.validation}
             invalid={!formElement.config.valid}
-            changed={(event) => this.inputChangedHandler(event, formElement.id)}
-            blur={() => this.onBlurHandler(formElement.id)}
+            changed={(event) => this.props.inputChanged(event, formElement.id)}
+            blur={() => this.props.onBlur(formElement.id)}
             {...formElement.config} />
         ))}
         <div className="form--button-area">
@@ -98,10 +76,20 @@ export class AddClient extends PureComponent {
 *             Redux             *
 * - - - - - - - - - - - - - - - */
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  controls: state.formControl.clientControls
+});
 
 const mapDispatchToProps = dispatch => ({
-  addClient: client => dispatch(clientActions.addClient(client))
+  addClient: (formControls, history) => dispatch(clientActions.addClient(formControls, history)),
+
+  inputChanged: (event, controlName, control = 'clientControls') => (
+    dispatch(formControlActions.inputChanged(event.target.value, controlName, control))
+  ),
+
+  onBlur: (controlName, control = 'clientControls') => (
+    dispatch(formControlActions.blur(controlName, control))
+  )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient);

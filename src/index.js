@@ -15,8 +15,13 @@ import thunk from 'redux-thunk';
 // Reducer
 import clientsReducer from 'store/reducers/clients';
 import contactsReducer from 'store/reducers/contacts';
+import formControlReducer from 'store/reducers/formControls';
 
-const rootReducer = combineReducers({client: clientsReducer, contact: contactsReducer});
+const rootReducer = combineReducers({
+  client: clientsReducer, 
+  contact: contactsReducer, 
+  formControl: formControlReducer
+});
 const store = createStore(rootReducer);
 
 const app = (
