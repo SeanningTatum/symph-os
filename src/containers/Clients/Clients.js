@@ -21,7 +21,7 @@ export class Clients extends Component {
   *           Functions           *
   * - - - - - - - - - - - - - - - */
   gotoAddClient = () => {
-    this.props.history.push('/client/add-client');
+    this.props.history.push('/clients/add-client');
   }
 
 
