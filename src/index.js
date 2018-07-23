@@ -14,8 +14,10 @@ import thunk from 'redux-thunk';
 
 // Reducer
 import clientsReducer from 'store/reducers/clients';
+import contactsReducer from 'store/reducers/contacts';
 
-const store = createStore(clientsReducer);
+const rootReducer = combineReducers({client: clientsReducer, contact: contactsReducer});
+const store = createStore(rootReducer);
 
 const app = (
   <Provider store={store}>
