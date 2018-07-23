@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 export class AddClient extends PureComponent {
 
   state = {
-    controls: clientControls,
+    // controls: clientControls,
     isFormValid: false
   }
 
@@ -21,26 +21,18 @@ export class AddClient extends PureComponent {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
-  componentDidUpdate(_, prevState) {
-    if (prevState.controls !== this.state.controls) {
-      this.setState({ isFormValid: this.isValid() });
-    }
-  }
+  // componentDidUpdate(_, prevState) {
+  //   if (prevState.controls !== this.state.controls) {
+  //     this.setState({ isFormValid: this.isValid() });
+  //   }
+  // }
 
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
   inputChangedHandler = (event, controlName) => {
-    const errorObj = checkValidity(event.target.value, this.state.controls[controlName].validation);
-    const updatedControls = updateObject(this.state.controls, {
-      [controlName]: updateObject(this.state.controls[controlName], {
-        value: event.target.value,
-        valid: errorObj.isValid,
-        errorMessages: errorObj.errorMessages,
-        touched: true,
-      })
-    });
-    this.setState({ controls: updatedControls });
+    
+    // this.setState({ controls: updatedControls });
   }
 
   onBlurHandler = (controlName) => {
