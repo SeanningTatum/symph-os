@@ -38,6 +38,7 @@ const Input = (props) => {
         value={props.value}
         onChange={props.changed}
         className={hasError}>
+        <option value=""></option>
         {props.elementConfig.options.map(option => (
           <option key={option} value={option}>{option}</option>
         ))}
