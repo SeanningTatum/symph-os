@@ -106,9 +106,7 @@ export class AddClient extends PureComponent {
 *             Redux             *
 * - - - - - - - - - - - - - - - */
 
-const mapStateToProps = state => ({
-  clients: state.client.clients
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   addClient: client => dispatch(clientActions.addClient(client))
