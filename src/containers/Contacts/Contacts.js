@@ -12,7 +12,7 @@ export class Contacts extends Component {
   *           Functions           *
   * - - - - - - - - - - - - - - - */
   gotoAddContact = () => {
-    this.props.location.push('/contacts/add-contact');
+    this.props.history.push('/contacts/add-contact');
   }
   /*- - - - - - - - - - - - - - - -
   *             Render            *

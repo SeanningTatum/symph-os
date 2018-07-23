@@ -3,7 +3,7 @@ import Input from 'components/Input/Input';
 import './AddClient.scss';
 
 // Utilities
-import { clientControls } from 'utils/formControls';
+import { clientControls } from 'utils/formControls/clientControls';
 import { updateObject, checkValidity } from 'utils/helperFunctions';
 
 // Redux
