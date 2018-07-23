@@ -23,6 +23,7 @@ export const updateObject = (oldObject, updatedProperties) => {
  * is valid given the rules
  * @param {string} value 
  * @param {object} rules 
+ * @returns {boolean, array}
  */
 export const checkValidity = (value, rules) => {
   let isValid = true;
