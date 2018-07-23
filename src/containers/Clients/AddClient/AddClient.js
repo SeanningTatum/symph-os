@@ -23,7 +23,7 @@ export class AddClient extends PureComponent {
   * - - - - - - - - - - - - - - - */
   componentDidUpdate(_, prevState) {
     if (prevState.controls !== this.state.controls) {
-      this.setState({isFormValid: this.isValid()});
+      this.setState({ isFormValid: this.isValid() });
     }
   }
 
@@ -32,15 +32,15 @@ export class AddClient extends PureComponent {
   * - - - - - - - - - - - - - - - */
   inputChangedHandler = (event, controlName) => {
     const errorObj = checkValidity(event.target.value, this.state.controls[controlName].validation);
-    const updatedControls = updateObject( this.state.controls, {
-      [controlName]: updateObject( this.state.controls[controlName], {
+    const updatedControls = updateObject(this.state.controls, {
+      [controlName]: updateObject(this.state.controls[controlName], {
         value: event.target.value,
         valid: errorObj.isValid,
         errorMessages: errorObj.errorMessages,
         touched: true,
       })
     });
-    this.setState({controls: updatedControls});
+    this.setState({ controls: updatedControls });
   }
 
   onBlurHandler = (controlName) => {
@@ -49,7 +49,7 @@ export class AddClient extends PureComponent {
         dirty: true
       })
     });
-    this.setState({controls: updatedControls});
+    this.setState({ controls: updatedControls });
   }
 
   onSubmit = (event) => {
@@ -77,14 +77,14 @@ export class AddClient extends PureComponent {
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {
-      formElementsArray.push({id: key,config: this.state.controls[key]});
+      formElementsArray.push({ id: key, config: this.state.controls[key] });
     }
 
     return (
       <form className="form">
         {formElementsArray.map(formElement => (
-          <Input 
-            key={formElement.id} 
+          <Input
+            key={formElement.id}
             shouldValidate={formElement.config.validation}
             invalid={!formElement.config.valid}
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
@@ -92,8 +92,8 @@ export class AddClient extends PureComponent {
             {...formElement.config} />
         ))}
         <div className="form--button-area">
-          <button 
-            className="btn btn-primary" 
+          <button
+            className="btn btn-primary"
             onClick={this.onSubmit}
             disabled={!this.state.isFormValid}>Submit</button>
         </div>
@@ -102,9 +102,9 @@ export class AddClient extends PureComponent {
   }
 }
 
-  /*- - - - - - - - - - - - - - - -
-  *             Redux             *
-  * - - - - - - - - - - - - - - - */
+/*- - - - - - - - - - - - - - - -
+*             Redux             *
+* - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
   clients: state.clients
