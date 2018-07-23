@@ -3,17 +3,17 @@ import Input from 'components/Input/Input';
 import './AddClient.scss';
 
 // Utilities
-import { contactControls } from 'utils/formControls';
+import { clientControls } from 'utils/formControls';
 import { updateObject, checkValidity } from 'utils/helperFunctions';
 
 // Redux
-import * as contactActions from 'store/actions/contacts';
+import * as clientActions from 'store/actions/clients';
 import { connect } from 'react-redux';
 
 export class AddClient extends PureComponent {
 
   state = {
-    controls: contactControls,
+    controls: clientControls,
     isFormValid: false
   }
 
@@ -52,19 +52,19 @@ export class AddClient extends PureComponent {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addContact({
+    this.props.addclient({
       client_name: this.state.controls['client_name'].value,
-      contact_name: this.state.controls['contact_name'].value,
+      client_name: this.state.controls['client_name'].value,
       legal_name: this.state.controls['legal_name'].value,
       type: this.state.controls['type'].value
     });
-    this.props.history.push('/contacts');
+    this.props.history.push('/clients');
   }
 
   isValid = () => {
     return (
       this.state.controls['client_name'].valid &&
-      this.state.controls['contact_name'].valid &&
+      this.state.controls['client_name'].valid &&
       this.state.controls['legal_name'].valid &&
       this.state.controls['type'].valid
     );
@@ -107,11 +107,11 @@ export class AddClient extends PureComponent {
   * - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
-  contacts: state.contacts
+  clients: state.clients
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: contact => dispatch(contactActions.addContact(contact))
+  addClient: client => dispatch(clientActions.addClient(client))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient);

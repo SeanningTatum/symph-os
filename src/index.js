@@ -13,9 +13,9 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 // Reducer
-import contactsReducer from 'store/reducers/contacts';
+import clientsReducer from 'store/reducers/clients';
 
-const store = createStore(contactsReducer);
+const store = createStore(clientsReducer);
 
 const app = (
   <Provider store={store}>

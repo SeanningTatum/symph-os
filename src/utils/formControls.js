@@ -6,7 +6,7 @@
  * These are the settings of input, select, etc.
  * These controls are used in forms such as AddContact.js
  */
-export const contactControls = {
+export const clientControls = {
   client_name: {
     elementType: 'input',
     elementConfig: {

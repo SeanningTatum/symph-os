@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import './Clients.scss';
+
+// Utils
 import BootstrapTable from 'react-bootstrap-table-next';
-import { connect } from 'react-redux';
 import { contactColumns } from 'utils/tableHeaders';
-import * as contactActions from 'store/actions/contacts';
+
+// Redux
+import { connect } from 'react-redux';
+import * as clientActions from 'store/actions/clients';
 
 export class Clients extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
   componentWillMount() {
-    this.props.getContacts();
+    this.props.getClients();
   }
 
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
-  gotoAddContact = () => {
-    this.props.history.push('/contacts/add-contact');
+  gotoAddClient = () => {
+    this.props.history.push('/client/add-client');
   }
 
 
@@ -28,14 +32,14 @@ export class Clients extends Component {
     return (
       <React.Fragment>
         <div className="button-area">
-          <button className="btn" onClick={this.gotoAddContact}>
+          <button className="btn" onClick={this.gotoAddClient}>
             <i className="material-icons">person_add</i>
             Add Client
           </button>
         </div>
         <BootstrapTable 
           keyField='client_id' 
-          data={ this.props.contacts } 
+          data={ this.props.clients } 
           columns={contactColumns} 
           bordered={ false }
           condensed />
@@ -49,12 +53,12 @@ export class Clients extends Component {
   * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => {
   return {
-    contacts: state.contacts
+    clients: state.clients
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  getContacts: () => dispatch(contactActions.getContacts())
+  getClients: () => dispatch(clientActions.getClients())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);
