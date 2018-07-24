@@ -14,7 +14,7 @@ export class Contacts extends Component {
     return (
       <React.Fragment>
         <div className="button-area">
-          <Link to="/contact/add-contact">
+          <Link to="/contacts/add-contact">
             <button className="btn">
               <i className="material-icons">person_add</i>
               Add Contact

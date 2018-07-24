@@ -4,7 +4,9 @@
  * 
  * Description.
  * These are the settings of input, select, etc.
- * These controls are used in forms such as AddContact.js
+ * These controls are used in forms such as AddContact.js,
+ * This was created so that we could implement real time
+ * error handling
  */
 class Control {
   elementConfig = {};
