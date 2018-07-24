@@ -12,9 +12,6 @@ export class Employee extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
- componentDidMount() {
-   console.log(this.props.employees)
- }
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
