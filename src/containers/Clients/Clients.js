@@ -8,16 +8,11 @@ import { clientColumns } from 'utils/tableHeaders';
 
 // Redux
 import { connect } from 'react-redux';
-import * as clientActions from 'store/actions/clients';
 
 export class Clients extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
-  componentWillMount() {
-    this.props.getClients();
-  }
-
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
@@ -55,7 +50,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getClients: () => dispatch(clientActions.getClients())
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);

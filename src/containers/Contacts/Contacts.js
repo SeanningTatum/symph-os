@@ -22,7 +22,7 @@ export class Contacts extends Component {
           </Link>
         </div>
         <BootstrapTable 
-          keyField="contact_id"
+          keyField="id"
           data={this.props.contacts}
           columns={contactColumns}
         />
@@ -33,12 +33,12 @@ export class Contacts extends Component {
 
 const mapStateToProps = state => {
   return {
-    contacts: state.contact.contacts
+    contacts: state.table.contacts
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  // getContacts: () => dispatch(clientActions.getContacts())
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);

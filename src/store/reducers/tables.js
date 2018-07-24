@@ -5,7 +5,9 @@ const initialState = {
   contacts: [],
   employees: []
 }
-
+/*============================================
+=                Start of Add               =
+=============================================*/
 function add (state, tableName, formControls) {
   const newData = {};
 
@@ -15,10 +17,10 @@ function add (state, tableName, formControls) {
 
   return {
     ...state,
-    [tableName]: [...(state[tableName] || []) , {...newData, id: state[tableName].length + 1}]
+    [tableName]: state[tableName].concat({...newData, id: state[tableName].length + 1})
   }
 } 
-
+/*=====   End of Add  ======*/
 
 /*============================================
 =              Start Reducer                =

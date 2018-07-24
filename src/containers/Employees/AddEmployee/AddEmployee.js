@@ -4,7 +4,7 @@ import Input from 'components/Input/Input';
 // Redux
 import { connect } from 'react-redux';
 import * as formControlActions from 'store/actions/formControls';
-import * as employeesActions from 'store/actions/employees';
+import * as tableActions from 'store/actions/tables';
 
 export class AddContact extends Component {
 
@@ -46,7 +46,7 @@ export class AddContact extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addEmployee(this.props.controls);
+    this.props.add(this.props.controls);
     this.props.history.push('/employees');
     this.props.resetForm();
   }
@@ -93,7 +93,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addEmployee: (employeeControls) => dispatch(employeesActions.addEmployee(employeeControls)),
+  add: (controls) => dispatch(tableActions.add('employees', controls)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'employeeControls'))

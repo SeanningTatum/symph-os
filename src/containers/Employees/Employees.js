@@ -45,7 +45,7 @@ export class Employee extends Component {
   *             Redux             *
   * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => ({
-  employees: state.employee.employees
+  employees: state.table.employees
 });
 
 const mapDispatchToProps = dispatch => ({

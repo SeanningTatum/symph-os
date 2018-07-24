@@ -3,7 +3,7 @@ import Input from 'components/Input/Input';
 
 // Redux
 import { connect } from 'react-redux';
-import * as contactActions from 'store/actions/contacts';
+import * as tableActions from 'store/actions/tables';
 import * as formControlActions from 'store/actions/formControls';
 
 export class AddContact extends Component {
@@ -90,7 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: contactControls => dispatch(contactActions.addContact(contactControls)),
+  addContact: controls => dispatch(tableActions.add('contacts', controls)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))

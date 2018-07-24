@@ -22,7 +22,7 @@ export const clientColumns = [{
 
 // Contacts
 export const contactColumns = [{
-  dataField: 'contact_id',
+  dataField: 'id',
   text: 'Contact ID'
 }, {
   dataField: 'contact_name',
