@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Clients.scss';
 
 // Utils
@@ -20,9 +21,6 @@ export class Clients extends Component {
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
-  gotoAddClient = () => {
-    this.props.history.push('/clients/add-client');
-  }
 
   /*- - - - - - - - - - - - - - - -
   *             Render            *
@@ -31,10 +29,12 @@ export class Clients extends Component {
     return (
       <React.Fragment>
         <div className="button-area">
-          <button className="btn" onClick={this.gotoAddClient}>
-            <i className="material-icons">person_add</i>
-            Add Client
-          </button>
+          <Link to="/clients/add-client">
+            <button className="btn">
+              <i className="material-icons">person_add</i>
+              Add Client
+            </button>
+          </Link>
         </div>
         <BootstrapTable 
           keyField='client_id' 

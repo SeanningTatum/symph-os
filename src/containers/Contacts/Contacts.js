@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 // Redux
 import { connect } from 'react-redux';
@@ -9,18 +10,16 @@ import { contactColumns } from 'utils/tableHeaders';
 
 export class Contacts extends Component {
 
-  gotoAddContact = () => {
-    this.props.history.push('/contacts/add-contact');
-  }
-
   render() {
     return (
       <React.Fragment>
         <div className="button-area">
-          <button className="btn" onClick={this.gotoAddContact}>
-            <i className="material-icons">person_add</i>
-            Add Contact
-          </button>
+          <Link to="/contact/add-contact">
+            <button className="btn">
+              <i className="material-icons">person_add</i>
+              Add Contact
+            </button>
+          </Link>
         </div>
         <BootstrapTable 
           keyField="contact_id"
