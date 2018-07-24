@@ -17,7 +17,9 @@ export class AddContact extends Component {
   * - - - - - - - - - - - - - - - */
 
   componentDidMount() {
+    console.log(this.props.controls)
     this.setState({ isFormValid: this.isValid() });
+    
   }
 
   componentDidUpdate(prevProps) {
@@ -31,7 +33,15 @@ export class AddContact extends Component {
   * - - - - - - - - - - - - - - - */
 
   isValid = () => {
-    return true;
+    return (
+      this.props.controls['employee_fname'].valid &&
+      this.props.controls['employee_lname'].valid &&
+      this.props.controls['employee_mi'].valid &&
+      this.props.controls['employee_nickname'].valid &&
+      this.props.controls['employee_email'].valid &&
+      this.props.controls['employee_position'].valid &&
+      this.props.controls['employee_working_arrangement'].valid
+    );
   }
 
   onSubmit = (event) => {
@@ -79,22 +89,22 @@ export class AddContact extends Component {
   * - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
-  controls: []
+  controls: state.formControl.employeeControls
 });
 
 const mapDispatchToProps = dispatch => ({
   addEmployee: () => dispatch(employeesActions.addEmployee()),
 
   inputChanged: (event, controlName) => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, ''))
+    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'employeeControls'))
   ),
 
   onBlur: (controlName) => (
-    dispatch(formControlActions.blur(controlName, ''))
+    dispatch(formControlActions.blur(controlName, 'employeeControls'))
   ),
 
   resetForm: () => (
-    dispatch(formControlActions.resetForm(''))
+    dispatch(formControlActions.resetForm('employeeControls'))
   )
 })
 
