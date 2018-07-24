@@ -6,7 +6,7 @@ const navigationItems = [
   {name: 'Projects', icon: 'group_work'}, 
   {name: 'Clients' , icon: 'work_outline'}, 
   {name: 'Contacts', icon: 'contacts'}, 
-  {name: 'Symphers', icon: 'person_outline'},
+  {name: 'Employees', icon: 'person_outline'},
   {name: 'Teams'   , icon: 'group'}
 ]
 

@@ -14,7 +14,7 @@ import AddContactPage from 'containers/Contacts/AddContact/AddContact';
 import ClientsPage from 'containers/Clients/Clients';
 import AddClientPage from 'containers/Clients/AddClient/AddClient';
 
-import SymphersPage from 'containers/Symphers/Symphers';
+import EmployeesPage from 'containers/Employees/Employees';
 
 import TeamsPage from 'containers/Teams/Teams';
 
@@ -29,7 +29,7 @@ class App extends Component {
           <Route component={ProjectsPage} exact path='/projects'/>
           <Route component={AddClientPage} exact path='/clients/add-client'/>
           <Route component={ClientsPage} exact path='/clients'/>
-          <Route component={SymphersPage} exact path='/symphers'/>
+          <Route component={EmployeesPage} exact path='/employees'/>
           <Route component={TeamsPage} exact path='/teams'/>
         </Layout>
         <Route component={ContactsPage}/>

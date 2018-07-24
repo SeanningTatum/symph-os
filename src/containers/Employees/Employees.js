@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 // Utils
-import { sympherColumns } from 'utils/tableHeaders';
+import { employeeColumns } from 'utils/tableHeaders';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-export class Symphers extends Component {
+export class Employee extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
@@ -22,7 +22,7 @@ export class Symphers extends Component {
       <React.Fragment>
         <BootstrapTable 
           keyField="id"
-          columns={sympherColumns}
+          columns={employeeColumns}
           data={[]}
         />
       </React.Fragment>
@@ -30,4 +30,4 @@ export class Symphers extends Component {
   }
 }
 
-export default Symphers;
+export default Employee;
