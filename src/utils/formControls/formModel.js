@@ -11,29 +11,30 @@
 class Control {
   elementConfig = {};
   value = '';
-  valid = false;
   touched = false;
   dirty = false;
   errorMessages = [];
 
-  constructor(elementType, label, validation) {
+  constructor(elementType, label, validation, valid, type) {
     this.elementType = elementType;
     this.label = label;
     this.validation = validation;
+    this.valid = valid;
+    this.type = type;
   }
 }
 
 export class Input extends Control {
-  constructor(elementType, label, validation, type = 'text', placeholder = '') {
-    super(elementType, label, validation);
+  constructor(elementType, label, validation, valid = false, type = 'text', placeholder = '') {
+    super(elementType, label, validation, valid, type);
     this.elementConfig['type'] = type;
     this.elementConfig['placeholder'] = placeholder;
   }
 }
 
 export class Select extends Control {
-  constructor(elementType, label, validation, options, type = 'text', placeholder = '') {
-    super(elementType, label, validation, type, placeholder);
+  constructor(elementType, label, validation, options, valid = false, type = 'text') {
+    super(elementType, label, validation, valid, type);
     this.elementConfig['options'] = options;
   }
 }
