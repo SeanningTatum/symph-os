@@ -55,6 +55,7 @@ const resetForm = (state, controlName) => {
   switch(controlName) {
     case 'clientControls': return { ...state, clientControls };
     case 'contactControls': return {...state, contactControls};
+    case 'employeeControls': return {...state, employeeControls};
     default: return state;
   }
 }

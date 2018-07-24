@@ -25,7 +25,7 @@ export class Employee extends Component {
       <React.Fragment>
         <div className="button-area">
           <Link to="/employees/add-employee">
-            <button className="btn" onClick={this.gotoAddContact}>
+            <button className="btn">
               <i className="material-icons">person_add</i>
               Add Employee
             </button>
