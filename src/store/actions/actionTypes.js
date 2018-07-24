@@ -10,3 +10,6 @@ export const ADD_CONTACT = 'ADD_CONTACT';
 export const INPUT_CHANGED = 'INPUT_CHANGED_HANDLER';
 export const ON_BLUR = 'ON_BLUR';
 export const RESET_FORM = 'RESET_FORM';
+
+// INPUT 
+export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';

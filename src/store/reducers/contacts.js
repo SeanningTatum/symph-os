@@ -4,6 +4,9 @@ const initState = {
   contacts: []
 }
 
+/*============================================
+=              Start addContact              =
+=============================================*/
 const addContact = (state, contactControls) => {
 
   const contact = {
@@ -20,7 +23,12 @@ const addContact = (state, contactControls) => {
     contacts: state.contacts.concat({...contact, contact_id: 1})
   }
 }
+/*=====   End of addContact  ======*/
 
+
+/*============================================
+=               Start reducer                =
+=============================================*/
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case actionTypes.GET_CONTACTS: return state;
@@ -28,5 +36,6 @@ const reducer = (state = initState, action) => {
     default: return state;
   }
 }
+/*=====   End of reducer  ======*/
 
 export default reducer;
