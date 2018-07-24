@@ -15,6 +15,7 @@ class Layout extends Component {
     showPageStepper: false,
     pageName: '',
     pageStepper: '',
+    showTitles: true
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -43,6 +44,7 @@ class Layout extends Component {
   fetchLocation = () => {
     let pageStepper = '';
     let showPageStepper = false;
+    let showTitles = true;
 
     // Get path from URL
     const location = this.props.location.pathname.slice(1);
@@ -61,7 +63,11 @@ class Layout extends Component {
       }
     }
 
-    this.setState({pageStepper, pageName, showPageStepper});
+    // If we're at a profilePage - remove titles
+    // We know it's a profile becuse the key is very long
+    if (+pagenames[last].length > 15) showTitles = false;
+
+    this.setState({pageStepper, pageName, showPageStepper, showTitles});
   }
 
   openSidenav = () => {
@@ -83,6 +89,7 @@ class Layout extends Component {
     }
 
     const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
+    const display = (this.state.showTitles) ? 'block' : 'none';
 
     return(
       <div className="app-container">
@@ -93,7 +100,7 @@ class Layout extends Component {
         {/* Main content */}
         <main className="container" style={{marginLeft}}>
           <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
-          <div className="titles">
+          <div className="titles" style={{display}}>
             {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
             <h2 className="title" style={{marginTop}}>{this.state.pageName}</h2>
           </div>

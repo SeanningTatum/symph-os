@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 
 // HOC
 import Layout from 'hoc/Layout/Layout';
@@ -17,6 +17,7 @@ import AddContactPage from 'containers/Contacts/AddContact/AddContact';
 // Clients
 import ClientsPage from 'containers/Clients/Clients';
 import AddClientPage from 'containers/Clients/AddClient/AddClient';
+import ClientProfilePage from 'containers/Clients/ClientProfile/ClientProfile';
 
 import EmployeesPage from 'containers/Employees/Employees';
 import AddEmployeesPage from 'containers/Employees/AddEmployee/AddEmployee';
@@ -30,16 +31,17 @@ class App extends Component {
     return (
       <Switch>
         <Layout>
-          <Route component={ContactsPage} exact path='/contacts'/>
-          <Route component={AddContactPage} exact path='/contacts/add-contact' />
-          <Route component={ProjectsPage} exact path='/projects'/>
-          <Route component={AddClientPage} exact path='/clients/add-client'/>
-          <Route component={ClientsPage} exact path='/clients'/>
-          <Route component={EmployeesPage} exact path='/employees'/>
-          <Route component={AddEmployeesPage} exact path='/employees/add-employee'/>
-          <Route component={TeamsPage} exact path='/teams'/>
+          <Route path='/contacts' component={ContactsPage} exact />
+          <Route path='/contacts/add-contact' component={AddContactPage} exact  />
+          <Route path='/projects' component={ProjectsPage} exact />
+          <Route path='/clients/:id' component={ClientProfilePage} exact />          
+          <Route path='/clients/add-client' component={AddClientPage} exact />
+          <Route path='/clients' component={ClientsPage} exact />
+          <Route path='/employees' component={EmployeesPage} exact />
+          <Route path='/employees/add-employee' component={AddEmployeesPage} exact />
+          <Route path='/teams' component={TeamsPage} exact />
         </Layout>
-        <Route component={ContactsPage}/>
+        <Route render={() => <h1>not found</h1>}/>
       </Switch>
     );
   }

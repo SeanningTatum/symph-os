@@ -34,6 +34,7 @@ export class AddClient extends PureComponent {
     event.preventDefault();
     this.props.add(this.props.controls);
     this.props.resetForm();
+    this.props.history.push('/clients')
   }
 
   isValid = () => {

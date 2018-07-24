@@ -1,7 +1,7 @@
 import * as actionTypes from 'store/actions/actionTypes'; 
 
 const initialState = {
-  clients:[],
+  clients:[{id: 'adksdvsdvasf782b91g2d19',client_name: 'test', legal_name: 'test', type: 'test'}],
   contacts: [],
   employees: []
 }
@@ -17,7 +17,7 @@ function add (state, tableName, formControls) {
 
   return {
     ...state,
-    [tableName]: state[tableName].concat({...newData, id: state[tableName].length + 1})
+    [tableName]: state[tableName].concat({...newData, id: 'bfwbqiqbefq98213ybdjasbda912'})
   }
 } 
 /*=====   End of Add  ======*/

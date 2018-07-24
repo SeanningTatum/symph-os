@@ -8,9 +8,18 @@ import { connect } from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
 
+
+
 export class Contacts extends Component {
 
   render() {
+
+    const rowEvents = {
+      onClick: (e, row, rowIndex) => {
+        alert(`${Object.values(row)}`);
+      }
+    }
+
     return (
       <React.Fragment>
         <div className="button-area">
@@ -25,6 +34,7 @@ export class Contacts extends Component {
           keyField="id"
           data={this.props.contacts}
           columns={contactColumns}
+          rowEvents={rowEvents}
         />
       </React.Fragment>
     )

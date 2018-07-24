@@ -13,6 +13,7 @@ export class Clients extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
+
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
@@ -21,6 +22,11 @@ export class Clients extends Component {
   *             Render            *
   * - - - - - - - - - - - - - - - */
   render() {
+    const rowEvents = {
+      onClick: (e, row, rowIndex) => {
+        this.props.history.push(`${this.props.location.pathname}/${row['id']}`);
+      }
+    }
     return (
       <React.Fragment>
         <div className="button-area">
@@ -34,7 +40,9 @@ export class Clients extends Component {
         <BootstrapTable 
           keyField='id' 
           data={ this.props.clients } 
-          columns={clientColumns} />
+          columns={clientColumns} 
+          rowEvents={rowEvents}
+          />
       </React.Fragment>
     )
   }
