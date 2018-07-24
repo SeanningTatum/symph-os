@@ -51,13 +51,13 @@ export const employeeColumns = [{
   dataField: 'id',
   text: 'Employee ID'
 }, {
-  dataField: 'first_name',
+  dataField: 'fname',
   text: 'First Name'
 }, {
-  dataField: 'last_name',
+  dataField: 'lname',
   text: 'Last Name'
 }, {
-  dataField: 'MI',
+  dataField: 'mi',
   text: 'Middle Initial'
 }, {
   dataField: 'nickname',
