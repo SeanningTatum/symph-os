@@ -34,20 +34,20 @@ export class AddContact extends Component {
 
   isValid = () => {
     return (
-      this.props.controls['employee_fname'].valid &&
-      this.props.controls['employee_lname'].valid &&
-      this.props.controls['employee_mi'].valid &&
-      this.props.controls['employee_nickname'].valid &&
-      this.props.controls['employee_email'].valid &&
-      this.props.controls['employee_position'].valid &&
-      this.props.controls['employee_working_arrangement'].valid
+      this.props.controls['fname'].valid &&
+      this.props.controls['lname'].valid &&
+      this.props.controls['mi'].valid &&
+      this.props.controls['nickname'].valid &&
+      this.props.controls['email'].valid &&
+      this.props.controls['position'].valid &&
+      this.props.controls['working_arrangement'].valid
     );
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addEmployee()
-    this.props.history.push('/contacts');
+    this.props.addEmployee(this.props.controls);
+    this.props.history.push('/employees');
     this.props.resetForm();
   }
 
@@ -93,7 +93,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addEmployee: () => dispatch(employeesActions.addEmployee()),
+  addEmployee: (employeeControls) => dispatch(employeesActions.addEmployee(employeeControls)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'employeeControls'))

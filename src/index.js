@@ -16,11 +16,13 @@ import thunk from 'redux-thunk';
 import clientsReducer from 'store/reducers/clients';
 import contactsReducer from 'store/reducers/contacts';
 import formControlReducer from 'store/reducers/formControls';
+import employeeReducer from 'store/reducers/employees';
 
 const rootReducer = combineReducers({
   client: clientsReducer, 
   contact: contactsReducer, 
-  formControl: formControlReducer
+  formControl: formControlReducer,
+  employee: employeeReducer
 });
 const store = createStore(rootReducer);
 

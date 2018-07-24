@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+
+// Redux
+import { connect } from 'react-redux';
+
 // Utils
 import { employeeColumns } from 'utils/tableHeaders';
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -8,6 +12,9 @@ export class Employee extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
+ componentDidMount() {
+   console.log(this.props.employees)
+ }
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
@@ -30,7 +37,7 @@ export class Employee extends Component {
         <BootstrapTable 
           keyField="id"
           columns={employeeColumns}
-          data={[]}
+          data={this.props.employees}
         />
       </React.Fragment>
     )
@@ -40,5 +47,12 @@ export class Employee extends Component {
   /*- - - - - - - - - - - - - - - -
   *             Redux             *
   * - - - - - - - - - - - - - - - */
+const mapStateToProps = state => ({
+  employees: state.employee.employees
+});
 
-export default Employee;
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Employee);
