@@ -13,3 +13,5 @@ export const RESET_FORM = 'RESET_FORM';
 
 // INPUT 
 export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
+
+export const ADD = 'ADD';

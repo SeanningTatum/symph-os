@@ -37,7 +37,7 @@ export class Clients extends Component {
           </Link>
         </div>
         <BootstrapTable 
-          keyField='client_id' 
+          keyField='id' 
           data={ this.props.clients } 
           columns={clientColumns} />
       </React.Fragment>
@@ -50,7 +50,7 @@ export class Clients extends Component {
   * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => {
   return {
-    clients: state.client.clients
+    clients: state.table.clients
   }
 }
 

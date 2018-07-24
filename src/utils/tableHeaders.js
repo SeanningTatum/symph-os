@@ -5,7 +5,7 @@
 
 // Clients
 export const clientColumns = [{
-  dataField: 'client_id',
+  dataField: 'id',
   text: 'Client ID',
   sort: true
 }, {

@@ -6,6 +6,7 @@ import './AddClient.scss';
 import { connect } from 'react-redux';
 import * as clientActions from 'store/actions/clients';
 import * as formControlActions from 'store/actions/formControls';
+import * as tableActions from 'store/actions/tables';
 
 export class AddClient extends PureComponent {
 
@@ -32,7 +33,8 @@ export class AddClient extends PureComponent {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addClient(this.props.controls, this.props.history);
+    // this.props.addClient(this.props.controls, this.props.history);
+    this.props.add(this.props.controls);
     this.props.resetForm();
   }
 
@@ -86,6 +88,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addClient: (formControls, history) => dispatch(clientActions.addClient(formControls, history)),
+
+  add: (controls) => dispatch(tableActions.add('clients', controls)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'clientControls'))
