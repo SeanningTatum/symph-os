@@ -8,8 +8,12 @@
   display: flex;
 }
 
-.container {
+.container,
+.content {
   flex-direction: column;
+}
+
+.container {
   height: calc(100% - 45px);
   padding: 0 45px;
   margin: 0 auto;
@@ -30,6 +34,5 @@
   .content {
     flex: 1;
     align-items: flex-start;
-    flex-direction: column;
   }
 }

@@ -60,7 +60,7 @@ export class AddContact extends Component {
     }
 
     return (
-      <form className="form">
+      <form className="form__container">
         {formElementsArray.map(formElement => (
           <Input
             key={formElement.id}

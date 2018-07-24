@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+// Utils
+import { sympherColumns } from 'utils/tableHeaders';
+import BootstrapTable from 'react-bootstrap-table-next';
+
 export class Symphers extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
@@ -15,8 +19,13 @@ export class Symphers extends Component {
   * - - - - - - - - - - - - - - - */
   render() {
     return (
-      <div>
-      </div>
+      <React.Fragment>
+        <BootstrapTable 
+          keyField="id"
+          columns={sympherColumns}
+          data={[]}
+        />
+      </React.Fragment>
     )
   }
 }

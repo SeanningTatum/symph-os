@@ -59,7 +59,7 @@ const Input = (props) => {
   }
 
   return (
-    <div className="form-container">
+    <div className="form--input__container">
       {props.label && <label>{props.label}</label>}
       {inputElement}
       {errorMessages.map((errMsg, i) => (
