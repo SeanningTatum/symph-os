@@ -9,16 +9,6 @@ import { employeeColumns } from 'utils/tableHeaders';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 export class Employee extends Component {
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
-
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
 
   render() {
     return (
@@ -41,9 +31,6 @@ export class Employee extends Component {
   }
 }
 
-  /*- - - - - - - - - - - - - - - -
-  *             Redux             *
-  * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => ({
   employees: state.table.employees
 });
