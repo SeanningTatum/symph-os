@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
+import './ClientProfile.scss';
 
 export class ClientProfile extends Component {
   render() {
     return (
-      <div>
-        <h1>Client Profile Page</h1>
-      </div>
+      <React.Fragment>
+        <div className="content--profile__name">
+          <h2>Sean Urgel</h2>
+        </div>
+        <div className="content--profile__details">
+          <div className="left-side">
+            <h2>Image Area</h2>
+          </div>
+          <div className="right-side">
+            Forms
+          </div>
+        </div>
+      </React.Fragment>
     )
   }
 }

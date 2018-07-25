@@ -1,5 +1,9 @@
 @import "modules/all";
 
+h2 {
+  font-size: $page-title;
+}
+
 // Body defaults
 body {
   font-family: $base-font-family;

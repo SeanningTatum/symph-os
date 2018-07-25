@@ -4,6 +4,7 @@ import './Input.scss';
 
 const Input = (props) => {
   let inputElement = null;
+  // Error handling
   let hasError = "";
   let errorMessages = [];
   if (props.invalid && props.shouldValidate && props.touched && props.dirty) {
