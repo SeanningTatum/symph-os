@@ -10,6 +10,12 @@ import * as tableActions from 'store/actions/tables';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
 
+const rowEvents = {
+  onClick: (e, row, rowIndex) => {
+    alert(`${Object.values(row)}`);
+  }
+}
+
 export class Contacts extends Component {
 
   componentDidMount() {
@@ -17,13 +23,6 @@ export class Contacts extends Component {
   }
 
   render() {
-
-    const rowEvents = {
-      onClick: (e, row, rowIndex) => {
-        alert(`${Object.values(row)}`);
-      }
-    }
-
     return (
       <React.Fragment>
         <div className="button-area">

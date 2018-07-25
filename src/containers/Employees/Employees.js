@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+
 import Loading from 'components/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
+import * as tableActions from 'store/actions/tables';
 
 // Utils
 import { employeeColumns } from 'utils/tableHeaders';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 export class Employee extends Component {
+
+  componentDidMount() {
+    this.props.get('employees', 'employees-api');
+  }
 
   render() {
     return (
@@ -41,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  get: (tableName, apiName) => dispatch(tableActions.get(tableName, apiName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Employee);
