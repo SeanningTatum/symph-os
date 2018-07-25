@@ -48,20 +48,21 @@ const getSuccess = (tableName, dataArray) => ({
   tableName,
   dataArray
 });
+const getError = () => ({type: actionTypes.GET_ERROR})
 
 export function get(tableName, api) {
   return async dispatch => {
     dispatch(getStart());
-
+    
     try {
       const response = await fetch(url + `${api}/v1/get`);
       const dataArray = await response.json();
       dispatch(getSuccess(tableName, dataArray[tableName]));
-    } catch (error) {
-      console.error(error);
-    } finally {
       dispatch(getEnd());
-    }
+    } catch (error) {
+      dispatch(getError());
+      dispatch(getEnd());
+    } 
   }
 }
 /*=====   End of get  ======*/
