@@ -13,7 +13,7 @@ export class ClientProfile extends Component {
             <h2>Image Area</h2>
           </div>
           <div className="right-side">
-            Forms
+            <h2>Details</h2>
           </div>
         </div>
       </React.Fragment>

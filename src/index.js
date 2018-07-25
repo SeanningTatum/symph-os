@@ -18,9 +18,9 @@ import tableReducer from 'store/reducers/tables';
 
 const rootReducer = combineReducers({
   formControl: formControlReducer,
-  table: tableReducer
+  table: tableReducer,
 });
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const app = (
   <Provider store={store}>

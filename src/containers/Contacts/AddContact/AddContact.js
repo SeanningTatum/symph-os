@@ -32,12 +32,12 @@ export class AddContact extends Component {
 
   isValid = () => {
     return (
-      this.props.controls['contact_name'].valid &&
-      this.props.controls['contact_nickname'].valid &&
-      this.props.controls['contact_number'].valid &&
-      this.props.controls['contact_email'].valid &&
-      this.props.controls['contact_company'].valid &&
-      this.props.controls['contact_position'].valid
+      this.props.controls['name'].valid &&
+      this.props.controls['nickname'].valid &&
+      this.props.controls['number'].valid &&
+      this.props.controls['email'].valid &&
+      this.props.controls['company'].valid &&
+      this.props.controls['position'].valid
     );
   }
 
