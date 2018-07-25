@@ -24,7 +24,7 @@ export class Clients extends Component {
   render() {
     const rowEvents = {
       onClick: (e, row, rowIndex) => {
-        this.props.history.push(`/client/${row['id']}`);
+        this.props.history.push(`/clients/${row['id']}`);
       }
     }
     return (

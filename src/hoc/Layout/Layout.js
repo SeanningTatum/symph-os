@@ -9,7 +9,7 @@ import Sidenav from 'components/Navigation/Sidenav/Sidenav';
 import ToggleButton from 'components/Navigation/Sidenav/ToggleButton/ToggleButton';
 
 // Routes
-const routes = ["contacts", "projects", "clients", "employees", "teams", "client"];
+const routes = ["contacts", "projects", "clients", "employees", "teams"];
 
 class Layout extends Component {
   
@@ -69,7 +69,7 @@ class Layout extends Component {
 
     // If we're at a profilePage - remove titles
     // We know it's a profile becuse the key is very long
-    if (pagenames[last].length > 15) showTitles = false;
+    if (pagenames[last].length > 15 || !isNaN(+pagenames[last])) showTitles = false;
 
     this.setState({pageStepper, pageName, showPageStepper, showTitles, rootPage: pagenames[0]});
   }

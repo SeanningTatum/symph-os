@@ -32,13 +32,17 @@ class App extends Component {
       <Switch>
         <Layout>
           <Route path='/contacts' component={ContactsPage} exact />
-          <Route path='/contacts/add-contact' component={AddContactPage} exact  />
+          <Route path='/contacts/add-contact' component={AddContactPage} />
+
           <Route path='/projects' component={ProjectsPage} exact />
-          <Route path='/client/:id' component={ClientProfilePage} exact />          
+
           <Route path='/clients/add-client' component={AddClientPage} exact />
+          <Route path='/clients/:id' component={ClientProfilePage} />          
           <Route path='/clients' component={ClientsPage} exact />
+
+          <Route path='/employees/add-employee' component={AddEmployeesPage} />
           <Route path='/employees' component={EmployeesPage} exact />
-          <Route path='/employees/add-employee' component={AddEmployeesPage} exact />
+
           <Route path='/teams' component={TeamsPage} exact />
         </Layout>
         <Route render={() => <h1>not found</h1>}/>
