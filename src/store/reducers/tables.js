@@ -1,7 +1,7 @@
-import * as actionTypes from 'store/actions/actionTypes'; 
+import * as actionTypes from 'store/actions/actionTypes';
 
 const initialState = {
-  clients:[],
+  clients: [],
   contacts: [],
   employees: [],
   loading: false
@@ -24,26 +24,26 @@ function getEnd(state, action) {
   }
 }
 
-function get (state, action) {
-  const {tableName, dataArray} = action;
+function get(state, action) {
+  const { tableName, dataArray } = action;
   return {
     ...state,
     [tableName]: dataArray
   }
-} 
+}
 /*=====   End of get  ======*/
 
 
 /*============================================
 =                Start of add               =
 =============================================*/
-function add (state, action) {
-  const {tableName, data} = action;
+function add(state, action) {
+  const { tableName, data } = action;
   return {
     ...state,
     [tableName]: state[tableName].concat(data)
   }
-} 
+}
 /*=====   End of add  ======*/
 
 /*============================================

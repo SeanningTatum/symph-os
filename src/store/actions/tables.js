@@ -11,7 +11,7 @@ export const addSuccess = (tableName, data) => ({
   tableName,
 });
 
-export function add (tableName, formControls, api) {
+export function add(tableName, formControls, api) {
   const data = {};
 
   for (const key in formControls) {
@@ -20,7 +20,7 @@ export function add (tableName, formControls, api) {
 
   const options = {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   }
 
@@ -41,8 +41,8 @@ export function add (tableName, formControls, api) {
 /*=============================================
 =                 Start GET                 =
 =============================================*/
-const getStart = () => ({type: actionTypes.GET_START});
-const getEnd = () => ({type: actionTypes.GET_END});
+const getStart = () => ({ type: actionTypes.GET_START });
+const getEnd = () => ({ type: actionTypes.GET_END });
 const getSuccess = (tableName, dataArray) => ({
   type: actionTypes.GET_SUCCESS,
   tableName,

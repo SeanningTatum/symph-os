@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import Loading from 'components/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
@@ -21,18 +22,22 @@ export class Employee extends Component {
             </button>
           </Link>
         </div>
-        <BootstrapTable 
-          keyField="id"
-          columns={employeeColumns}
-          data={this.props.employees}
-        />
+        {!this.props.loading ? (
+          <BootstrapTable 
+            keyField="id"
+            columns={employeeColumns}
+            data={this.props.employees}
+          />) : (
+            <Loading />
+          )}
       </React.Fragment>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  employees: state.table.employees
+  employees: state.table.employees,
+  loading: state.table.loading
 });
 
 const mapDispatchToProps = dispatch => ({

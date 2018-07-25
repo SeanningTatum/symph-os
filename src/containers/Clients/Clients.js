@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Clients.scss';
 
+import Loading from 'components/Loading/Loading';
+
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
 import { clientColumns } from 'utils/tableHeaders';
@@ -23,8 +25,7 @@ export class Clients extends Component {
   }
 
   render() {
-
-    const content = !this.props.loading ? (
+    return (
       <React.Fragment>
         <div className="button-area">
           <Link to="/clients/add-client">
@@ -34,19 +35,17 @@ export class Clients extends Component {
             </button>
           </Link>
         </div>
-        <BootstrapTable 
-          keyField='id' 
-          data={ this.props.clients } 
-          columns={clientColumns} 
-          rowEvents={rowEvents}
-          />
+        {!this.props.loading ? (
+          <BootstrapTable
+            keyField='id'
+            data={this.props.clients}
+            columns={clientColumns}
+            rowEvents={rowEvents}/>
+          ) : (
+          <Loading />
+        )}
       </React.Fragment>
-    ) : (
-      <div>IM LOADING</div>
     );
-
-
-    return content;
   }
 }
 
