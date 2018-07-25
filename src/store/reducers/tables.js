@@ -1,37 +1,62 @@
 import * as actionTypes from 'store/actions/actionTypes'; 
 
 const initialState = {
-  clients:[{id: 'adksdvsdvasf782b91g2d19',client_name: 'test', legal_name: 'test', type: 'test'}],
+  clients:[],
   contacts: [],
-  employees: []
+  employees: [],
+  loading: false
 }
+
 /*============================================
-=                Start of Add               =
+=                Start of get              =
 =============================================*/
-function add (state, tableName, formControls) {
-  const newData = {};
-
-  for (const key in formControls) {
-    newData[key] = formControls[key].value;
-  }
-
+function getStart(state, action) {
   return {
     ...state,
-    [tableName]: state[tableName].concat({...newData, id: 'bfwbqiqbefq98213ybdjasbda912'})
+    loading: true
+  }
+}
+
+function getEnd(state, action) {
+  return {
+    ...state,
+    loading: false
+  }
+}
+
+function get (state, action) {
+  const {tableName, dataArray} = action;
+  return {
+    ...state,
+    [tableName]: dataArray
   }
 } 
-/*=====   End of Add  ======*/
+/*=====   End of get  ======*/
+
+
+/*============================================
+=                Start of add               =
+=============================================*/
+function add (state, action) {
+  const {tableName, data} = action;
+  return {
+    ...state,
+    [tableName]: state[tableName].concat(data)
+  }
+} 
+/*=====   End of add  ======*/
 
 /*============================================
 =              Start Reducer                =
 =============================================*/
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.GET_START: return getStart(state, action);
+    case actionTypes.GET_END: return getEnd(state, action);
+    case actionTypes.GET_SUCCESS: return get(state, action);
+    case actionTypes.ADD_SUCCESS: return add(state, action);
 
-  case actionTypes.ADD: return add(state, action.tableName, action.formControls)
-
-  default:
-    return state
+    default: return state
   }
 }
 /*=====   End of Reducer  ======*/

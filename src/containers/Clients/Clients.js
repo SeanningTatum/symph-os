@@ -8,26 +8,23 @@ import { clientColumns } from 'utils/tableHeaders';
 
 // Redux
 import { connect } from 'react-redux';
+import * as tableActions from 'store/actions/tables';
+
+const rowEvents = {
+  onClick: (e, row, rowIndex) => {
+    this.props.history.push(`/clients/${row['id']}`);
+  }
+}
 
 export class Clients extends Component {
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
 
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
+  componentDidMount() {
+    this.props.get('clients');
+  }
 
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
   render() {
-    const rowEvents = {
-      onClick: (e, row, rowIndex) => {
-        this.props.history.push(`/clients/${row['id']}`);
-      }
-    }
-    return (
+
+    const content = !this.props.loading ? (
       <React.Fragment>
         <div className="button-area">
           <Link to="/clients/add-client">
@@ -44,7 +41,12 @@ export class Clients extends Component {
           rowEvents={rowEvents}
           />
       </React.Fragment>
-    )
+    ) : (
+      <div>IM LOADING</div>
+    );
+
+
+    return content;
   }
 }
 
@@ -53,12 +55,13 @@ export class Clients extends Component {
   * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => {
   return {
-    clients: state.table.clients
+    clients: state.table.clients,
+    loading: state.table.loading
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-
+  get: (tableName) => dispatch(tableActions.get(tableName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);

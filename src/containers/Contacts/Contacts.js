@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 // Redux
 import { connect } from 'react-redux';
+import * as tableActions from 'store/actions/tables';
 
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -11,6 +12,10 @@ import { contactColumns } from 'utils/tableHeaders';
 
 
 export class Contacts extends Component {
+
+  componentDidMount() {
+    this.props.get('contacts', 'contacts-api'); 
+  }
 
   render() {
 
@@ -31,7 +36,7 @@ export class Contacts extends Component {
           </Link>
         </div>
         <BootstrapTable 
-          keyField="id"
+          keyField="key"
           data={this.props.contacts}
           columns={contactColumns}
           rowEvents={rowEvents}
@@ -48,7 +53,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-
+  get: (tableName, api) => dispatch(tableActions.get(tableName, api))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
