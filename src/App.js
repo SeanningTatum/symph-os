@@ -34,7 +34,7 @@ class App extends Component {
           <Route path='/contacts' component={ContactsPage} exact />
           <Route path='/contacts/add-contact' component={AddContactPage} exact  />
           <Route path='/projects' component={ProjectsPage} exact />
-          <Route path='/clients/:id' component={ClientProfilePage} exact />          
+          <Route path='/client/:id' component={ClientProfilePage} exact />          
           <Route path='/clients/add-client' component={AddClientPage} exact />
           <Route path='/clients' component={ClientsPage} exact />
           <Route path='/employees' component={EmployeesPage} exact />

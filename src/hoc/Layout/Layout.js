@@ -8,14 +8,18 @@ import Navbar from 'components/Navigation/Navbar/Navbar';
 import Sidenav from 'components/Navigation/Sidenav/Sidenav';
 import ToggleButton from 'components/Navigation/Sidenav/ToggleButton/ToggleButton';
 
-class Layout extends Component {
+// Routes
+const routes = ["contacts", "projects", "clients", "employees", "teams", "client"];
 
+class Layout extends Component {
+  
   state = {
     sideNavOpen: true,
     showPageStepper: false,
     pageName: '',
     pageStepper: '',
-    showTitles: true
+    showTitles: true,
+    rootPage: ''
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -65,9 +69,9 @@ class Layout extends Component {
 
     // If we're at a profilePage - remove titles
     // We know it's a profile becuse the key is very long
-    if (+pagenames[last].length > 15) showTitles = false;
+    if (pagenames[last].length > 15) showTitles = false;
 
-    this.setState({pageStepper, pageName, showPageStepper, showTitles});
+    this.setState({pageStepper, pageName, showPageStepper, showTitles, rootPage: pagenames[0]});
   }
 
   openSidenav = () => {
@@ -91,27 +95,33 @@ class Layout extends Component {
     const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
     const display = (this.state.showTitles) ? 'block' : 'none';
 
-    return(
-      <div className="app-container">
+    if (routes.find(route => this.state.rootPage === route) === undefined) {
+      return <div>NOT FOUND</div>
+    } else {
+      return(
+        <div className="app-container">
 
-        <Navbar/>
-        <Sidenav open={this.state.sideNavOpen}/>  
+          <Navbar/>
+          <Sidenav open={this.state.sideNavOpen}/>  
 
-        {/* Main content */}
-        <main className="container" style={{marginLeft}}>
-          <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
-          <div className="titles" style={{display}}>
-            {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
-            <h2 className="title" style={{marginTop}}>{this.state.pageName}</h2>
-          </div>
-          <div className="content">
-            {this.props.children}
-          </div>
-        </main>
-        {/* End Main content */}
-        
-      </div>
-    );
+          {/* Main content */}
+          <main className="container" style={{marginLeft}}>
+            <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
+            <div className="titles" style={{display}}>
+              {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
+              <h2 className="title" style={{marginTop}}>{this.state.pageName}</h2>
+            </div>
+            <div className="content">
+              {this.props.children}
+            </div>
+          </main>
+          {/* End Main content */}
+          
+        </div>
+      );
+    }
+
+
   }
 }
 
