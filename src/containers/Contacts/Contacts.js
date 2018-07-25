@@ -25,30 +25,34 @@ export class Contacts extends Component {
       }
     }
 
-    return (
+    const content = !this.props.loading ? (
       <React.Fragment>
-        <div className="button-area">
-          <Link to="/contacts/add-contact">
-            <button className="btn">
-              <i className="material-icons">person_add</i>
-              Add Contact
-            </button>
-          </Link>
-        </div>
-        <BootstrapTable 
-          keyField="key"
-          data={this.props.contacts}
-          columns={contactColumns}
-          rowEvents={rowEvents}
-        />
+          <div className="button-area">
+            <Link to="/contacts/add-contact">
+              <button className="btn">
+                <i className="material-icons">person_add</i>
+                Add Contact
+              </button>
+            </Link>
+          </div>
+          <BootstrapTable 
+            keyField="key"
+            data={this.props.contacts}
+            columns={contactColumns}
+            rowEvents={rowEvents}/>
       </React.Fragment>
+    ) : (
+      <div>IM LOADING</div>
     )
+
+    return content;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    contacts: state.table.contacts
+    contacts: state.table.contacts,
+    loading: state.table.loading
   }
 }
 

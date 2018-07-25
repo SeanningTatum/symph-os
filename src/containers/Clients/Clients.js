@@ -19,7 +19,7 @@ const rowEvents = {
 export class Clients extends Component {
 
   componentDidMount() {
-    this.props.get('clients');
+    this.props.get('clients', 'clients-api');
   }
 
   render() {
@@ -50,9 +50,6 @@ export class Clients extends Component {
   }
 }
 
-  /*- - - - - - - - - - - - - - - -
-  *             Redux             *
-  * - - - - - - - - - - - - - - - */
 const mapStateToProps = state => {
   return {
     clients: state.table.clients,
@@ -61,7 +58,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  get: (tableName) => dispatch(tableActions.get(tableName))
+  get: (tableName, apiName) => dispatch(tableActions.get(tableName, apiName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);
