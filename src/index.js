@@ -16,11 +16,13 @@ import thunk from 'redux-thunk';
 import formControlReducer from 'store/reducers/formControls';
 import tableReducer from 'store/reducers/tables';
 
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+
 const rootReducer = combineReducers({
   formControl: formControlReducer,
   table: tableReducer,
 });
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const app = (
   <Provider store={store}>
