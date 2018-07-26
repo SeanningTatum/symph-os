@@ -10,6 +10,24 @@ const initState = {
   employeeControls
 }
 
+const updateControls = (state, actions) => {
+  const { control, values } = actions;
+  let updatedControls = {};
+  
+  for (const value in values) {
+    if (value !== 'key') {
+      updatedControls[value] = updateObject(state[control], updateObject(state[control][value], {
+        value: values[value]
+      }))
+    }
+  }
+
+  return {
+    ...state, 
+    [control]: updatedControls
+  };
+}
+
 /*=============================================
 =             Start inputChanged             =
 =============================================*/
@@ -68,7 +86,8 @@ const reducer = (state = initState, action) => {
   switch (action.type) {
     case actionTypes.INPUT_CHANGED: return inputChanged(state, action.value, action.controlName, action.control);
     case actionTypes.ON_BLUR: return onBlur(state, action.controlName, action.control);
-    case actionTypes.RESET_FORM: return resetForm(state, action.controlName)
+    case actionTypes.RESET_FORM: return resetForm(state, action.controlName);
+    case actionTypes.UPDATE_CONTROLS: return updateControls(state, action);
     default: return state;
   }
 }

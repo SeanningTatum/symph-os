@@ -2,6 +2,8 @@
 export const INPUT_CHANGED = 'INPUT_CHANGED_HANDLER';
 export const ON_BLUR = 'ON_BLUR';
 export const RESET_FORM = 'RESET_FORM';
+export const UPDATE_CONTROLS = 'UPDATE_CONTROLS';
+
 
 // ADD
 export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';

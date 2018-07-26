@@ -7,6 +7,7 @@ const Input = (props) => {
   // Error handling
   let hasError = "";
   let errorMessages = [];
+  
   if (props.invalid && props.shouldValidate && props.touched && props.dirty) {
     hasError = "error";
     errorMessages = props.errorMessages;

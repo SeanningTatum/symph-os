@@ -19,3 +19,10 @@ export const resetForm = (controlName) => ({
   type: actionTypes.RESET_FORM,
   controlName
 })
+
+export const updateControls = (controlName, control, values) => ({
+  type: actionTypes.UPDATE_CONTROLS,
+  controlName,
+  control, 
+  values
+})
