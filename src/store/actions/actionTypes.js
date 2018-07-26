@@ -15,4 +15,4 @@ export const GET_ALL_SUCCESS = 'GET_ALL_SUCCESS';
 export const GET_ALL_ERROR = 'GET_ALL_ERROR';
 
 // PROFILE
-export const GET = 'GET';
+export const GET_SUCCESS = 'GET_SUCCESS';
