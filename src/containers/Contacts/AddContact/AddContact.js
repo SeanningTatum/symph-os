@@ -43,7 +43,7 @@ export class AddContact extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addContact(this.props.controls)
+    this.props.addContact(this.props.controls, 'contacts-api');
     this.props.history.push('/contacts');
     this.props.resetForm();
   }
@@ -90,7 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: controls => dispatch(tableActions.add('contacts', controls)),
+  addContact: (controls, api) => dispatch(tableActions.add('contacts', controls, api)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))

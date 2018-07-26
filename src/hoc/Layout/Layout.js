@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import './Layout.scss';
 
@@ -96,7 +96,7 @@ class Layout extends Component {
     const display = (this.state.showTitles) ? 'block' : 'none';
 
     if (routes.find(route => this.state.rootPage === route) === undefined) {
-      return <div>NOT FOUND</div>
+      return <Redirect to="/contacts" />
     } else {
       return(
         <div className="app-container">

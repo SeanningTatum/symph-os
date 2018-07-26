@@ -41,7 +41,7 @@ function add(state, action) {
   const { tableName, data } = action;
   return {
     ...state,
-    [tableName]: state[tableName].concat(data)
+    [tableName]: [...(state[tableName]) || [], data]
   }
 }
 /*=====   End of add  ======*/

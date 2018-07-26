@@ -26,14 +26,12 @@ export function add(tableName, formControls, api) {
 
   return async dispatch => {
     try {
-      const response = await fetch(url + `${api}/v1/create`, options);
+      const response = await fetch(url + `${api}/v1/add`, options);
       const data = await response.json();
       dispatch(addSuccess(tableName, data));
     } catch (error) {
       console.error(error);
-    } finally {
-
-    }
+    } 
   }
 };
 /*=====   End of add  ======*/
