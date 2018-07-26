@@ -8,7 +8,9 @@ export class ContactProfile extends Component {
 
   componentDidMount() {
     const contactkey = this.props.location.pathname.split("/")[2];
-    
+    fetch("http://localhost:8080/_ah/api/contacts-api/v1/get/" + contactkey)
+      .then(response => response.json())
+      .then(contact => console.log(contact.contacts[0]));
   }
 
   render() {

@@ -54,7 +54,7 @@ export function getAll(tableName, api) {
   return async dispatch => {
     dispatch(getAllStart());
     try {
-      const response = await fetch(url + `${api}/v1/getAll`);
+      const response = await fetch(url + `${api}/v1/get`);
       const dataArray = await response.json();
 
       dispatch(getAllSuccess(tableName, dataArray[tableName]));
@@ -66,6 +66,7 @@ export function getAll(tableName, api) {
   }
 }
 /*=====   End of getAll  ======*/
+
 
 
 
