@@ -11,6 +11,8 @@ export const addSuccess = (tableName, data) => ({
   tableName,
 });
 
+export const addError = () => ({type: actionTypes.ADD_ERROR});
+
 export function add(tableName, formControls, api) {
   const data = {};
 
@@ -51,16 +53,16 @@ const getError = () => ({type: actionTypes.GET_ERROR})
 export function get(tableName, api) {
   return async dispatch => {
     dispatch(getStart());
-    
     try {
       const response = await fetch(url + `${api}/v1/get`);
       const dataArray = await response.json();
+      
       dispatch(getSuccess(tableName, dataArray[tableName]));
-      dispatch(getEnd());
     } catch (error) {
       dispatch(getError());
-      dispatch(getEnd());
-    } 
+    } finally {
+      dispatch(getEnd())
+    }
   }
 }
 /*=====   End of get  ======*/
