@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Clients.scss';
-
+import AddButton from 'components/TablePage/AddButton/AddButton';
 import Loading from 'components/Loading/Loading';
 
 // Utils
@@ -27,14 +25,7 @@ export class Clients extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="button-area">
-          <Link to="/clients/add-client">
-            <button className="btn">
-              <i className="material-icons">person_add</i>
-              Add Client
-            </button>
-          </Link>
-        </div>
+        <AddButton entity='client' />
         {!this.props.loading ? (
           <BootstrapTable
             keyField='id'

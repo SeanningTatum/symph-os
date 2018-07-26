@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-
+import AddButton from 'components/TablePage/AddButton/AddButton';
 import Loading from 'components/Loading/Loading';
 
 // Redux
@@ -20,14 +19,7 @@ export class Employee extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="button-area">
-          <Link to="/employees/add-employee">
-            <button className="btn">
-              <i className="material-icons">person_add</i>
-              Add Employee
-            </button>
-          </Link>
-        </div>
+        <AddButton entity='employee' />
         {!this.props.loading ? (
           <BootstrapTable 
             keyField="id"
