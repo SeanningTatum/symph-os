@@ -26,9 +26,10 @@ function getEnd(state, action) {
 
 function get(state, action) {
   const { tableName, dataArray } = action;
+
   return {
     ...state,
-    [tableName]: dataArray
+    [tableName]: dataArray || []
   }
 }
 /*=====   End of get  ======*/
