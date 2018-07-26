@@ -1,4 +1,4 @@
-import * as actionTypes from 'store/actions/actionTypes';
+import {GET_SUCCESS} from 'store/actions/actionTypes';
 
 const initialState = {
   profile: {}
@@ -14,7 +14,7 @@ function getSuccess(state, action) {
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case actionTypes.GET_SUCCESS: return getSuccess(state, action);
+    case GET_SUCCESS: return getSuccess(state, action);
 
     default: return state;
   }

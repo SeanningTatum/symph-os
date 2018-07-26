@@ -1,9 +1,9 @@
-import * as actionTypes from './actionTypes';
+import { GET_SUCCESS } from './actionTypes';
 
 const url = "http://localhost:8080/_ah/api/";
 
 const getSuccess = (profile) => ({
-  type: actionTypes.GET_SUCCESS,
+  type: GET_SUCCESS,
   profile
 });
 

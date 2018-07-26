@@ -1,4 +1,11 @@
-import * as actionTypes from './actionTypes';
+import {
+  ADD_ERROR, 
+  ADD_SUCCESS, 
+  GET_ALL_END, 
+  GET_ALL_ERROR, 
+  GET_ALL_START, 
+  GET_ALL_SUCCESS
+}  from './actionTypes';
 
 const url = "http://localhost:8080/_ah/api/";
 
@@ -6,12 +13,12 @@ const url = "http://localhost:8080/_ah/api/";
 =                 Start ADD                 =
 =============================================*/
 export const addSuccess = (tableName, data) => ({
-  type: actionTypes.ADD_SUCCESS,
+  type: ADD_SUCCESS,
   data,
   tableName,
 });
 
-export const addError = () => ({type: actionTypes.ADD_ERROR});
+export const addError = () => ({type: ADD_ERROR});
 
 export function add(tableName, formControls, api) {
   const data = {};
@@ -41,14 +48,14 @@ export function add(tableName, formControls, api) {
 /*=============================================
 =                 Start GETALL                =
 =============================================*/
-const getAllStart = () => ({ type: actionTypes.GET_ALL_START });
-const getAllEnd = () => ({ type: actionTypes.GET_ALL_END });
+const getAllStart = () => ({ type: GET_ALL_START });
+const getAllEnd = () => ({ type: GET_ALL_END });
 const getAllSuccess = (tableName, dataArray) => ({
-  type: actionTypes.GET_ALL_SUCCESS,
+  type: GET_ALL_SUCCESS,
   tableName,
   dataArray
 });
-const getAllError = () => ({type: actionTypes.GET_ALL_ERROR})
+const getAllError = () => ({type: GET_ALL_ERROR})
 
 export function getAll(tableName, api) {
   return async dispatch => {

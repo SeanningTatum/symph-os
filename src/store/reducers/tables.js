@@ -1,4 +1,9 @@
-import * as actionTypes from 'store/actions/actionTypes';
+import {
+  GET_ALL_START,
+  GET_ALL_END,
+  GET_ALL_SUCCESS,
+  ADD_SUCCESS,
+} from 'store/actions/actionTypes';
 
 const initialState = {
   clients: [],
@@ -52,10 +57,10 @@ function add(state, action) {
 =============================================*/
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_ALL_START: return getStart(state, action);
-    case actionTypes.GET_ALL_END: return getEnd(state, action);
-    case actionTypes.GET_ALL_SUCCESS: return get(state, action);
-    case actionTypes.ADD_SUCCESS: return add(state, action);
+    case GET_ALL_START: return getStart(state, action);
+    case GET_ALL_END: return getEnd(state, action);
+    case GET_ALL_SUCCESS: return get(state, action);
+    case ADD_SUCCESS: return add(state, action);
 
     default: return state
   }
