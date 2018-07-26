@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import "./ContactProfile.scss";
-import Input from 'components/Input/Input';
-
+import Forms from 'components/Forms/Forms';
+import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 // Redux
 import { connect } from 'react-redux';
 import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
 
 export class ContactProfile extends Component {
-
   state = {
     edit: false
   }
@@ -50,25 +49,6 @@ export class ContactProfile extends Component {
       });
     }
 
-    const infoArea = (!this.state.edit) ? (
-      contactProfile.map(profile => (
-        <div key={profile.id} className="profile--info-area__info">
-          <h3 className="info__name">{profile.id}</h3>
-          <p className="info__value">{profile.value}</p>
-        </div>
-      ))
-    ) : (
-        formElementsArray.map(formElement => (
-          <Input
-            key={formElement.id}
-            shouldValidate={formElement.config.validation}
-            invalid={!formElement.config.valid}
-            changed={(event) => this.props.inputChanged(event, formElement.id)}
-            blur={() => this.props.onBlur(formElement.id)}
-            {...formElement.config} />
-        ))
-      );
-
     return (
       <React.Fragment>
         <div className="profile__header">
@@ -80,7 +60,15 @@ export class ContactProfile extends Component {
         </div>
 
         <div className="profile--info-area">
-          {infoArea}
+          {!this.state.edit ? (
+            <ProfileDetails profile={contactProfile} />
+          ) : (
+            <Forms 
+              formElements={formElementsArray} 
+              onBlur={this.props.onBlur}
+              inputChanged={this.props.inputChanged}
+              />
+          )}
         </div>
       </React.Fragment>
     )
