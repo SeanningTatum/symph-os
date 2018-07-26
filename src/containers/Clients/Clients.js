@@ -21,7 +21,7 @@ const rowEvents = {
 export class Clients extends Component {
 
   componentDidMount() {
-    this.props.get('clients', 'clients-api');
+    this.props.getAll('clients', 'clients-api');
   }
 
   render() {
@@ -57,7 +57,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  get: (tableName, apiName) => dispatch(tableActions.get(tableName, apiName))
+  getAll: (tableName, apiName) => dispatch(tableActions.getAll(tableName, apiName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);

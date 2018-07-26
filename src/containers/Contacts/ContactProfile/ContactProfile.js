@@ -8,6 +8,7 @@ export class ContactProfile extends Component {
 
   componentDidMount() {
     const contactkey = this.props.location.pathname.split("/")[2];
+    
   }
 
   render() {

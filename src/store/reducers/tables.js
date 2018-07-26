@@ -52,9 +52,9 @@ function add(state, action) {
 =============================================*/
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_START: return getStart(state, action);
-    case actionTypes.GET_END: return getEnd(state, action);
-    case actionTypes.GET_SUCCESS: return get(state, action);
+    case actionTypes.GET_ALL_START: return getStart(state, action);
+    case actionTypes.GET_ALL_END: return getEnd(state, action);
+    case actionTypes.GET_ALL_SUCCESS: return get(state, action);
     case actionTypes.ADD_SUCCESS: return add(state, action);
 
     default: return state

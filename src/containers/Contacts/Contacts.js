@@ -13,7 +13,7 @@ import { contactColumns } from 'utils/tableHeaders';
 export class Contacts extends Component {
 
   componentDidMount() {
-    this.props.get('contacts', 'contacts-api');
+    this.props.getAll('contacts', 'contacts-api');
   }
 
   rowEvents = {
@@ -55,7 +55,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  get: (tableName, api) => dispatch(tableActions.get(tableName, api))
+  getAll: (tableName, api) => dispatch(tableActions.getAll(tableName, api))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);

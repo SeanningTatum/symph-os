@@ -14,7 +14,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 export class Employee extends Component {
 
   componentDidMount() {
-    this.props.get('employees', 'employees-api');
+    this.props.getAll('employees', 'employees-api');
   }
 
   render() {
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  get: (tableName, apiName) => dispatch(tableActions.get(tableName, apiName))
+  getAll: (tableName, apiName) => dispatch(tableActions.getAll(tableName, apiName))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Employee);

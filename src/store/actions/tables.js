@@ -39,33 +39,33 @@ export function add(tableName, formControls, api) {
 /*=====   End of add  ======*/
 
 /*=============================================
-=                 Start GET                 =
+=                 Start GETALL                =
 =============================================*/
-const getStart = () => ({ type: actionTypes.GET_START });
-const getEnd = () => ({ type: actionTypes.GET_END });
-const getSuccess = (tableName, dataArray) => ({
-  type: actionTypes.GET_SUCCESS,
+const getAllStart = () => ({ type: actionTypes.GET_ALL_START });
+const getAllEnd = () => ({ type: actionTypes.GET_ALL_END });
+const getAllSuccess = (tableName, dataArray) => ({
+  type: actionTypes.GET_ALL_SUCCESS,
   tableName,
   dataArray
 });
-const getError = () => ({type: actionTypes.GET_ERROR})
+const getAllError = () => ({type: actionTypes.GET_ALL_ERROR})
 
-export function get(tableName, api) {
+export function getAll(tableName, api) {
   return async dispatch => {
-    dispatch(getStart());
+    dispatch(getAllStart());
     try {
-      const response = await fetch(url + `${api}/v1/get`);
+      const response = await fetch(url + `${api}/v1/getAll`);
       const dataArray = await response.json();
-      
-      dispatch(getSuccess(tableName, dataArray[tableName]));
+
+      dispatch(getAllSuccess(tableName, dataArray[tableName]));
     } catch (error) {
-      dispatch(getError());
+      dispatch(getAllError());
     } finally {
-      dispatch(getEnd())
+      dispatch(getAllEnd())
     }
   }
 }
-/*=====   End of get  ======*/
+/*=====   End of getAll  ======*/
 
 
 
