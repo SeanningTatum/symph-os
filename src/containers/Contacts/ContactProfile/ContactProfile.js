@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./ContactProfile.scss";
 import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
+import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
+
 // Redux
 import { connect } from 'react-redux';
 import * as profileActions from 'store/actions/profiles';
@@ -55,14 +57,10 @@ export class ContactProfile extends Component {
 
     return (
       <React.Fragment>
-        <div className="profile__header">
-          <h2>{this.props.contactProfile.name}</h2>
-          <button
-            className="btn"
-            style={{ marginLeft: '5rem', paddingTop: 0 }}
-            onClick={this.toggleEdit}>{!this.state.edit ? 'Edit' : 'Save'}</button>
-        </div>
-
+        <ProfileHeader 
+          clicked={this.toggleEdit} 
+          name={this.props.contactProfile.name}
+          edit={this.state.edit}/>
         <div className="profile--info-area">
           {!this.state.edit ? (
             <ProfileDetails profile={contactProfile} />
