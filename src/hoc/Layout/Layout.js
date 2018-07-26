@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './Layout.scss';
 
@@ -8,11 +8,8 @@ import Navbar from 'components/Navigation/Navbar/Navbar';
 import Sidenav from 'components/Navigation/Sidenav/Sidenav';
 import ToggleButton from 'components/Navigation/Sidenav/ToggleButton/ToggleButton';
 
-// Routes
-const routes = ["contacts", "projects", "clients", "employees", "teams"];
-
 class Layout extends Component {
-  
+
   state = {
     sideNavOpen: true,
     showPageStepper: false,
@@ -71,11 +68,11 @@ class Layout extends Component {
     // We know it's a profile becuse the key is very long
     if (pagenames[last].length > 15 || !isNaN(+pagenames[last])) showTitles = false;
 
-    this.setState({pageStepper, pageName, showPageStepper, showTitles, rootPage: pagenames[0]});
+    this.setState({ pageStepper, pageName, showPageStepper, showTitles, rootPage: pagenames[0] });
   }
 
   openSidenav = () => {
-    this.setState(prevState => ({sideNavOpen: !prevState.sideNavOpen}))
+    this.setState(prevState => ({ sideNavOpen: !prevState.sideNavOpen }))
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -94,30 +91,28 @@ class Layout extends Component {
 
     const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
     const display = (this.state.showTitles) ? 'block' : 'none';
+    return (
+      <div className="app-container">
 
-    
-      return(
-        <div className="app-container">
+        <Navbar />
+        <Sidenav open={this.state.sideNavOpen} />
 
-          <Navbar/>
-          <Sidenav open={this.state.sideNavOpen}/>  
+        {/* Main content */}
+        <main className="container" style={{ marginLeft }}>
+          <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
+          <div className="titles" style={{ display }}>
+            {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
+            <h2 className="title" style={{ marginTop }}>{this.state.pageName}</h2>
+          </div>
+          <div className="content">
+            {this.props.children}
+          </div>
+        </main>
+        {/* End Main content */}
 
-          {/* Main content */}
-          <main className="container" style={{marginLeft}}>
-            <ToggleButton isOpen={this.state.sideNavOpen} openSidenav={this.openSidenav} left={left} />
-            <div className="titles" style={{display}}>
-              {this.state.showPageStepper && <h5 className="stepper">{this.state.pageStepper}</h5>}
-              <h2 className="title" style={{marginTop}}>{this.state.pageName}</h2>
-            </div>
-            <div className="content">
-              {this.props.children}
-            </div>
-          </main>
-          {/* End Main content */}
-          
-        </div>
-      );
-    
+      </div>
+    );
+
 
 
   }
