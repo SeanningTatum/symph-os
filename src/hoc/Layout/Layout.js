@@ -95,9 +95,7 @@ class Layout extends Component {
     const marginTop = (this.state.showPageStepper) ? 0 : '3rem';
     const display = (this.state.showTitles) ? 'block' : 'none';
 
-    if (routes.find(route => this.state.rootPage === route) === undefined) {
-      return <Redirect to="/contacts" />
-    } else {
+    
       return(
         <div className="app-container">
 
@@ -119,7 +117,7 @@ class Layout extends Component {
           
         </div>
       );
-    }
+    
 
 
   }
