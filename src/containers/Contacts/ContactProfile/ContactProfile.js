@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
-import * as tableActions from 'store/actions/tables';
+import * as profileActions from 'store/actions/profiles';
 
 export class ContactProfile extends Component {
 
   componentDidMount() {
-    const contactkey = this.props.location.pathname.split("/")[2];
-    fetch("http://localhost:8080/_ah/api/contacts-api/v1/get/" + contactkey)
-      .then(response => response.json())
-      .then(contact => console.log(contact.contacts[0]));
+    const contactID = this.props.location.pathname.split("/")[2];
+    this.props.get('contacts-api', contactID)
   }
 
   render() {
@@ -26,8 +24,8 @@ const mapStateToProps = state => ({
   contactProfile: {}
 })
 
-const mapDispatchToProps = dispatch => {
-  return {}
-}
+const mapDispatchToProps = dispatch => ({
+  get: (api, id) => dispatch(profileActions.get(api, id))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactProfile);
