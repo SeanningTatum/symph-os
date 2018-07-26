@@ -1,13 +1,12 @@
-import React, { PureComponent } from 'react';
-import Input from 'components/Input/Input';
-import './AddClient.scss';
+import React, { Component } from 'react';
+import Forms from 'components/Forms/Forms';
 
 // Redux
 import { connect } from 'react-redux';
 import * as formControlActions from 'store/actions/formControls';
 import * as tableActions from 'store/actions/tables';
 
-export class AddClient extends PureComponent {
+export class AddClient extends Component {
 
   state = {
     isFormValid: false
@@ -57,15 +56,10 @@ export class AddClient extends PureComponent {
 
     return (
       <form className="form">
-        {formElementsArray.map(formElement => (
-          <Input
-            key={formElement.id}
-            shouldValidate={formElement.config.validation}
-            invalid={!formElement.config.valid}
-            changed={(event) => this.props.inputChanged(event, formElement.id)}
-            blur={() => this.props.onBlur(formElement.id)}
-            {...formElement.config} />
-        ))}
+        <Forms
+          formElements={formElementsArray}
+          onBlur={this.props.onBlur}
+          inputChanged={this.props.inputChanged} />
         <div className="form--button-area">
           <button
             className="btn btn-primary"

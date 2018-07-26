@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Input from 'components/Input/Input';
+import Forms from 'components/Forms/Forms';
 
 // Redux
 import { connect } from 'react-redux';
@@ -61,15 +61,10 @@ export class AddContact extends Component {
 
     return (
       <form className="form__container">
-        {formElementsArray.map(formElement => (
-          <Input
-            key={formElement.id}
-            shouldValidate={formElement.config.validation}
-            invalid={!formElement.config.valid}
-            changed={(event) => this.props.inputChanged(event, formElement.id)}
-            blur={() => this.props.onBlur(formElement.id)}
-            {...formElement.config} />
-        ))}
+        <Forms
+          formElements={formElementsArray}
+          onBlur={this.props.onBlur}
+          inputChanged={this.props.inputChanged} />
         <div className="form--button-area">
           <button
             className="btn btn-primary"
@@ -90,7 +85,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: (controls, api) => dispatch(tableActions.add('contacts', controls, api)),
+  addContact: (controls, api) => dispatch(
+    tableActions.add('contacts', controls, api)
+  ),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))
