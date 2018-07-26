@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
+import AddButton from 'components/TablePage/AddButton/AddButton';
 
 // Redux
 import { connect } from 'react-redux';
@@ -25,14 +25,7 @@ export class Contacts extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="button-area">
-          <Link to="/contacts/add-contact">
-            <button className="btn">
-              <i className="material-icons">person_add</i>
-              Add Contact
-              </button>
-          </Link>
-        </div>
+        <AddButton entity='contact' />
         {!this.props.loading ? (
           <BootstrapTable
           keyField="key"

@@ -21,6 +21,10 @@ export class ContactProfile extends Component {
     await this.props.get('contacts-api', contactID);
     this.props.updateControls('name', this.props.contactProfile);
   }
+
+  componentWillUnmount() {
+    this.props.resetForm();
+  }
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
@@ -63,11 +67,11 @@ export class ContactProfile extends Component {
           {!this.state.edit ? (
             <ProfileDetails profile={contactProfile} />
           ) : (
-            <Forms 
-              formElements={formElementsArray} 
+            <Forms
+              formElements={formElementsArray}
               onBlur={this.props.onBlur}
               inputChanged={this.props.inputChanged}
-              />
+            />
           )}
         </div>
       </React.Fragment>
