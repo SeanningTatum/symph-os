@@ -10,16 +10,16 @@ import * as tableActions from 'store/actions/tables';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
 
-const rowEvents = {
-  onClick: (e, row, rowIndex) => {
-    alert(`${Object.values(row)}`);
-  }
-}
-
 export class Contacts extends Component {
 
   componentDidMount() {
     this.props.get('contacts', 'contacts-api');
+  }
+
+  rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      this.props.history.push(`/contacts/${row.key}`)
+    }
   }
 
   render() {
@@ -38,7 +38,7 @@ export class Contacts extends Component {
           keyField="key"
           data={this.props.contacts}
           columns={contactColumns}
-          rowEvents={rowEvents} />
+          rowEvents={this.rowEvents} />
           ): (
             <Loading />
           )}

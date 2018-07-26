@@ -13,6 +13,7 @@ import ProjectsPage from 'containers/Projects/Projects';
 // Contacts
 import ContactsPage from 'containers/Contacts/Contacts';
 import AddContactPage from 'containers/Contacts/AddContact/AddContact';
+import ContactProfile from 'containers/Contacts/ContactProfile/ContactProfile';
 
 // Clients
 import ClientsPage from 'containers/Clients/Clients';
@@ -32,8 +33,9 @@ class App extends Component {
     return (
       <Layout>
         <Switch>
+            <Route path='/contacts/add-contact' component={AddContactPage} exact/>
+            <Route path='/contacts/:id' component={ContactProfile}/>
             <Route path='/contacts' component={ContactsPage} exact />
-            <Route path='/contacts/add-contact' component={AddContactPage} />
 
             <Route path='/projects' component={ProjectsPage} exact />
 
@@ -45,7 +47,7 @@ class App extends Component {
             <Route path='/employees' component={EmployeesPage} exact />
 
             <Route path='/teams' component={TeamsPage} exact />
-        
+            <Route render={() => <h2> NOT FOUND </h2>} />
         </Switch>
       </Layout>
     );
