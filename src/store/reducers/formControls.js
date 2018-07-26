@@ -16,8 +16,9 @@ const updateControls = (state, actions) => {
   
   for (const value in values) {
     if (value !== 'key') {
-      updatedControls[value] = updateObject(state[control], updateObject(state[control][value], {
-        value: values[value]
+      updatedControls[value] = updateObject(
+        state[control], updateObject(state[control][value], {
+          value: values[value]
       }))
     }
   }
