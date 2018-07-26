@@ -93,7 +93,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls) => dispatch(tableActions.add('employees', controls)),
+  add: (controls) => dispatch(tableActions.add('employees', controls, 'employees-api')),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'employeeControls'))

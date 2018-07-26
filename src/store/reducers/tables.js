@@ -26,7 +26,7 @@ function getEnd(state, action) {
 
 function get(state, action) {
   const { tableName, dataArray } = action;
-
+  console.log(dataArray);
   return {
     ...state,
     [tableName]: dataArray || []
