@@ -4,6 +4,11 @@ h2 {
   font-size: $page-title;
 }
 
+h3 {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
 // Body defaults
 body {
   font-family: $base-font-family;
@@ -21,5 +26,7 @@ body {
   color: $blue-grey;
   font-size: $page-stepper;
 }
+
+// Profile Page
 
 
