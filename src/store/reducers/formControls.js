@@ -7,18 +7,32 @@ import { updateObject, checkValidity } from 'utils/helperFunctions';
 const initState = {
   clientControls,
   contactControls,
-  employeeControls
+  employeeControls,
+  isFormValid: false
 }
 
-const updateControls = (state, actions) => {
-  const { control, values } = actions;
+const checkIsFormValid = (state, action) => {
+  const {controlName} = action;
+
+  for (const control in state[controlName]) {
+    if (!state[controlName][control].valid) {
+      return {...state, isFormValid: false}
+    }
+  }
+  
+  return {...state, isFormValid: true};
+}
+
+const updateControls = (state, action) => {
+  const { control, values } = action;
   let updatedControls = {};
 
 
   for (const value in values) {
     if (value !== 'key') {
       updatedControls[value] = updateObject(state[control][value], {
-        value: values[value]
+        value: values[value],
+        valid: true
       });
     }    
   }
@@ -89,6 +103,7 @@ const reducer = (state = initState, action) => {
     case actionTypes.ON_BLUR: return onBlur(state, action.controlName, action.control);
     case actionTypes.RESET_FORM: return resetForm(state, action.controlName);
     case actionTypes.UPDATE_CONTROLS: return updateControls(state, action);
+    case actionTypes.CHECK_IS_FORM_VALID: return checkIsFormValid(state, action);
     default: return state;
   }
 }

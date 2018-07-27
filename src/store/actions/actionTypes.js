@@ -3,6 +3,7 @@ export const INPUT_CHANGED = 'INPUT_CHANGED_HANDLER';
 export const ON_BLUR = 'ON_BLUR';
 export const RESET_FORM = 'RESET_FORM';
 export const UPDATE_CONTROLS = 'UPDATE_CONTROLS';
+export const CHECK_IS_FORM_VALID = 'CHECK_IS_FORM_VALID';
 
 // ADD
 export const ADD_SUCCESS = 'ADD_SUCCESS';

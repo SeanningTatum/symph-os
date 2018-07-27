@@ -27,6 +27,13 @@ export class ContactProfile extends Component {
     const contactID = this.props.location.pathname.split("/")[2];
     await this.props.get('contacts-api', contactID);
     this.props.updateControls(this.props.contactProfile);
+    this.props.checkIsValid('contactControls');
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.contactControls !== this.props.contactControls) {
+      this.props.checkIsValid('contactControls');
+    }
   }
 
   componentWillUnmount() {
@@ -83,7 +90,7 @@ export class ContactProfile extends Component {
               onBlur={this.props.onBlur}
               inputChanged={this.props.inputChanged}
               clicked={this.onSubmit}
-              isFormValid={true}/>
+              isFormValid={this.props.isFormValid}/>
           )}
         </div>
       </React.Fragment>
@@ -98,13 +105,16 @@ export class ContactProfile extends Component {
 const mapStateToProps = state => ({
   contactProfile: state.profile.profile,
   contactControls: state.formControl.contactControls,
-  loading: state.profile.loading
+  loading: state.profile.loading,
+  isFormValid: state.formControl.isFormValid
 })
 
 const mapDispatchToProps = dispatch => ({
   get: (api, id) => dispatch(profileActions.get(api, id)),
 
   update: (api, id, controls) => dispatch(profileActions.update(api, id, controls)),
+
+  checkIsValid: (controlName) => dispatch(formControlActions.checkIsFormValid(controlName)),
 
   resetProfile: () => dispatch(profileActions.resetProfile()),
 

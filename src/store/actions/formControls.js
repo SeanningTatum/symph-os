@@ -2,7 +2,8 @@ import {
   INPUT_CHANGED, 
   ON_BLUR, 
   RESET_FORM, 
-  UPDATE_CONTROLS
+  UPDATE_CONTROLS,
+  CHECK_IS_FORM_VALID
 } from './actionTypes';
 
 export const inputChanged = (value, controlName, control) => {
@@ -29,4 +30,9 @@ export const updateControls = (control, values) => ({
   type: UPDATE_CONTROLS,
   control, 
   values
+});
+
+export const checkIsFormValid = (controlName) => ({
+  type: CHECK_IS_FORM_VALID,
+  controlName
 })
