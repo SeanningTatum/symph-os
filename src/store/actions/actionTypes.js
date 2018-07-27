@@ -15,8 +15,10 @@ export const GET_ALL_SUCCESS = 'GET_ALL_SUCCESS';
 export const GET_ALL_ERROR = 'GET_ALL_ERROR';
 
 // PROFILE
+export const GET_START = 'GET_START'
 export const GET_SUCCESS = 'GET_SUCCESS';
 export const RESET_PROFILE = 'RESET_PROFILE';
+export const GET_END = 'GET_END';
 
 // AUTH
 export const AUTH_START = 'AUTH_START';

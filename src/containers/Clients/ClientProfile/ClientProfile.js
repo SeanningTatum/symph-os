@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
-
+import Loading from 'components/Loading/Loading';
 // Redux
 import { connect } from 'react-redux';
 import * as profileActions from 'store/actions/profiles';
@@ -59,7 +59,7 @@ export class clientProfile extends Component {
       });
     }
 
-    return (
+    const profile = (!this.props.loading) ? (
       <React.Fragment>
         <ProfileHeader 
           clicked={this.toggleEdit} 
@@ -77,13 +77,18 @@ export class clientProfile extends Component {
           )}
         </div>
       </React.Fragment>
+    ) : (
+      <Loading />
     )
+
+    return profile;
   }
 }
 
 const mapStateToProps = state => ({
   clientProfile: state.profile.profile,
-  clientControls: state.formControl.clientControls
+  clientControls: state.formControl.clientControls,
+  loading: state.profile.loading
 })
 
 const mapDispatchToProps = dispatch => ({

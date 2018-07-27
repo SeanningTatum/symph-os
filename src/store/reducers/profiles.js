@@ -1,7 +1,27 @@
-import {GET_SUCCESS, RESET_PROFILE} from 'store/actions/actionTypes';
+import {
+  GET_SUCCESS, 
+  RESET_PROFILE,
+  GET_START,
+  GET_END
+} from 'store/actions/actionTypes';
 
 const initialState = {
-  profile: {}
+  profile: {},
+  loading: false
+}
+
+function getStart(state) {
+  return {
+    ...state, 
+    loading: true
+  }
+}
+
+function getEnd(state) {
+  return {
+    ...state, 
+    loading: false
+  }
 }
 
 function getSuccess(state, action) {
@@ -23,7 +43,8 @@ export default (state = initialState, action) => {
 
     case GET_SUCCESS: return getSuccess(state, action);
     case RESET_PROFILE: return resetProfile(state);
-
+    case GET_START: return getStart(state);
+    case GET_END: return getEnd(state);
     default: return state;
   }
 }

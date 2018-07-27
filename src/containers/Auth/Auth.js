@@ -17,7 +17,7 @@ export class Auth extends Component {
   render() {
     return (
       <div>
-        {this.props.isAuthenitcated && <Redirect to="/contacts" />}
+        {this.props.isAuthenticated && <Redirect to="/contacts" />}
         <GoogleLogin 
           clientId="1007949685199-4i403shms56f5dts6qn1oks3p1fdaemj.apps.googleusercontent.com"
           buttonText="Login"
@@ -29,7 +29,7 @@ export class Auth extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenitcated: state.auth.token !== null,
+  isAuthenticated: state.auth.token !== null,
 });
 
 const mapDispatchToProps = dispatch => ({

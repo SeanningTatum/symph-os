@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import "./ContactProfile.scss";
+
 import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
+import Loading from 'components/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
@@ -73,7 +76,7 @@ export class ContactProfile extends Component {
       });
     }
 
-    return (
+    const profile = (!this.props.loading) ? (
       <React.Fragment>
         <ProfileHeader 
           clicked={this.toggleEdit} 
@@ -91,13 +94,18 @@ export class ContactProfile extends Component {
           )}
         </div>
       </React.Fragment>
+    ) : (
+      <Loading />
     )
+    
+    return profile;
   }
 }
 
 const mapStateToProps = state => ({
   contactProfile: state.profile.profile,
-  contactControls: state.formControl.contactControls
+  contactControls: state.formControl.contactControls,
+  loading: state.profile.loading
 })
 
 const mapDispatchToProps = dispatch => ({
