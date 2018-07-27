@@ -26,7 +26,7 @@ export class ContactProfile extends Component {
   async componentDidMount() {
     const contactID = this.props.location.pathname.split("/")[2];
     await this.props.get('contacts-api', contactID);
-    this.props.updateControls('name', this.props.contactProfile);
+    this.props.updateControls(this.props.contactProfile);
   }
 
   componentWillUnmount() {
@@ -120,8 +120,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(formControlActions.resetForm('contactControls'))
   ),
 
-  updateControls: (controlName, values) => (
-    dispatch(formControlActions.updateControls(controlName, 'contactControls', values))
+  updateControls: (values) => (
+    dispatch(formControlActions.updateControls('contactControls', values))
   )
 })
 

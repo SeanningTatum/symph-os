@@ -25,9 +25,8 @@ export const resetForm = (controlName) => ({
   controlName
 })
 
-export const updateControls = (controlName, control, values) => ({
+export const updateControls = (control, values) => ({
   type: UPDATE_CONTROLS,
-  controlName,
   control, 
   values
 })
