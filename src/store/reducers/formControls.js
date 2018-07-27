@@ -13,14 +13,14 @@ const initState = {
 const updateControls = (state, actions) => {
   const { control, values } = actions;
   let updatedControls = {};
-  
+
+
   for (const value in values) {
     if (value !== 'key') {
-      updatedControls[value] = updateObject(
-        state[control], updateObject(state[control][value], {
-          value: values[value]
-      }))
-    }
+      updatedControls[value] = updateObject(state[control][value], {
+        value: values[value]
+      });
+    }    
   }
 
   return {
