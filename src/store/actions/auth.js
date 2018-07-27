@@ -24,16 +24,16 @@ export function onAuth (response) {
       return;
     }
 
-    const {access_token, expires_in} = response.Zi;
+    const {access_token, expires_in, expires_at, id_token} = response.Zi;
 
     const extractProfile = ({ email, name, imageUrl }) => ({ email, name, imageUrl });
     const profile = extractProfile(response.profileObj);
 
-    localStorage.setItem('token', access_token);
+    localStorage.setItem('token', id_token);
     localStorage.setItem('profile', JSON.stringify(profile))
     localStorage.setItem('expiration_date', new Date(new Date().getTime() + expires_in * 1000));
-    
-    dispatch(onAuthSuccess(profile, access_token));
+
+    dispatch(onAuthSuccess(profile, id_token));
   }
 }
 
@@ -44,6 +44,7 @@ export function isLoggedIn() {
       dispatch(logout());
     } else {
       const expirationDate = new Date(localStorage.getItem('expiration_date'));
+      console.log(expirationDate);
 
       if (expirationDate <= new Date()) {
         dispatch(logout());
