@@ -31,7 +31,7 @@ export function add(tableName, formControls, api) {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",
-      "Authorization": localStorage.getItem('token')
+      "Authorization": "Bearer " + localStorage.getItem('token')
     },
     body: JSON.stringify(data)
   }
@@ -47,6 +47,7 @@ export function add(tableName, formControls, api) {
   }
 };
 /*=====   End of add  ======*/
+
 
 /*=============================================
 =                 Start GETALL                =

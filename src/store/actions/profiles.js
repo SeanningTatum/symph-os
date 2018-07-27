@@ -21,11 +21,18 @@ export const resetProfile = () => ({
 })
 
 export function get (api, id) {
+
+  const options = {
+    headers: { 
+      "Authorization": "Bearer " + localStorage.getItem('token')
+    },
+  }
+
   return async dispatch => {
     dispatch(getStart());
     
     try {
-      const response = await fetch(url + `${api}/v1/get/${id}`);
+      const response = await fetch(url + `${api}/v1/get/${id}`, options);
       const profile = await response.json();
       if (profile.error) throw new Error("No user found")
 
@@ -39,3 +46,38 @@ export function get (api, id) {
 
   }
 }
+
+/*=============================================
+=                 Start Update                =
+=============================================*/
+
+export function update (api, id, formControls) {
+  const data = {};
+
+  for (const key in formControls) {
+    data[key] = formControls[key].value;
+  }
+
+  const options = {
+    method: "PUT",
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem('token')
+    },
+    body: JSON.stringify(data)
+  }
+
+  return async dispatch => {
+
+    try {
+      const response = await fetch(url + `${api}/v1/update/${id}`, options);
+      const data = await response.json();
+      
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+/*=====   End of update  ======*/
