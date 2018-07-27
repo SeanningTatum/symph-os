@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import './Layout.scss';
+
+import { connect } from 'react-redux';
+import * as authActions from 'store/actions/auth';
 
 // Navigation Components
 import Navbar from 'components/Navigation/Navbar/Navbar';
@@ -75,6 +77,7 @@ class Layout extends Component {
     this.setState(prevState => ({ sideNavOpen: !prevState.sideNavOpen }))
   }
 
+
   /*- - - - - - - - - - - - - - - -
   *             Render            *
   * - - - - - - - - - - - - - - - */
@@ -94,7 +97,7 @@ class Layout extends Component {
     return (
       <div className="app-container">
 
-        <Navbar />
+        <Navbar onLogout={this.props.logout} />
         <Sidenav open={this.state.sideNavOpen} />
 
         {/* Main content */}
@@ -113,9 +116,15 @@ class Layout extends Component {
       </div>
     );
 
-
-
   }
 }
 
-export default withRouter(Layout);
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(authActions.logout())
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));
