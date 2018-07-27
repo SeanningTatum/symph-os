@@ -29,11 +29,11 @@ export function onAuth (response) {
     const extractProfile = ({ email, name, imageUrl }) => ({ email, name, imageUrl });
     const profile = extractProfile(response.profileObj);
 
-    localStorage.setItem('token', id_token);
+    localStorage.setItem('token', access_token);
     localStorage.setItem('profile', JSON.stringify(profile))
     localStorage.setItem('expiration_date', new Date(new Date().getTime() + expires_in * 1000));
 
-    dispatch(onAuthSuccess(profile, id_token));
+    dispatch(onAuthSuccess(profile, access_token));
   }
 }
 

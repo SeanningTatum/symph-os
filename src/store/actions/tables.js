@@ -64,7 +64,12 @@ export function getAll(tableName, api) {
   return async dispatch => {
     dispatch(getAllStart());
     try {
-      const response = await fetch(url + `${api}/v1/get`);
+      const response = await fetch(url + `${api}/v1/get`, {
+        headers: {
+          "Content-Type": "application/json",        
+          "Authorization": 'Bearer ' + localStorage.getItem('token')
+        }
+      });
       const dataArray = await response.json();
 
       dispatch(getAllSuccess(tableName, dataArray[tableName]));
