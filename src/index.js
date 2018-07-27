@@ -16,13 +16,15 @@ import thunk from 'redux-thunk';
 import formControlReducer from 'store/reducers/formControls';
 import tableReducer from 'store/reducers/tables';
 import profileReducer from 'store/reducers/profiles';
+import authReducer from 'store/reducers/auth';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
   formControl: formControlReducer,
   table: tableReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  auth: authReducer
 });
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 

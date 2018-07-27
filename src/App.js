@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+
+// Redux
+import * as authActions from 'store/actions/auth';
+import { connect } from 'react-redux';
+
 // HOC
 import Layout from 'hoc/Layout/Layout';
 
 /*=============================================
 =                 Containers                 =
 =============================================*/
+// Auth
+import AuthPage from 'containers/Auth/Auth';
+
 // Projects
 import ProjectsPage from 'containers/Projects/Projects';
 
@@ -27,40 +34,54 @@ import AddEmployeesPage from 'containers/Employees/AddEmployee/AddEmployee';
 import TeamsPage from 'containers/Teams/Teams';
 /*=====  End of containers  ======*/
 
+
+
 class App extends Component {
-  state = {
-    isLoggedIn: true
+
+  componentDidMount() {
+    this.props.autoSignup();
   }
 
   render() {
     return (
       <React.Fragment>
-        {this.state.isLoggedIn ? (
+        {this.props.isAuthenticated ? (
           <Layout>
             <Switch>
-                <Route path='/contacts/add-contact' component={AddContactPage} exact/>
-                <Route path='/contacts/:id' component={ContactProfile}/>
-                <Route path='/contacts' component={ContactsPage} exact />
+              <Route path='/contacts/add-contact' component={AddContactPage} exact />
+              <Route path='/contacts/:id' component={ContactProfile} />
+              <Route path='/contacts' component={ContactsPage} exact />
 
-                <Route path='/projects' component={ProjectsPage} exact />
+              <Route path='/projects' component={ProjectsPage} exact />
 
-                <Route path='/clients/add-client' component={AddClientPage} exact />
-                <Route path='/clients/:id' component={ClientProfilePage} />          
-                <Route path='/clients' component={ClientsPage} exact />
+              <Route path='/clients/add-client' component={AddClientPage} exact />
+              <Route path='/clients/:id' component={ClientProfilePage} />
+              <Route path='/clients' component={ClientsPage} exact />
 
-                <Route path='/employees/add-employee' component={AddEmployeesPage} />
-                <Route path='/employees' component={EmployeesPage} exact />
+              <Route path='/employees/add-employee' component={AddEmployeesPage} />
+              <Route path='/employees' component={EmployeesPage} exact />
 
-                <Route path='/teams' component={TeamsPage} exact />
-                <Route render={() => <h2> NOT FOUND </h2>} />
+              <Route path='/teams' component={TeamsPage} exact />
+              <Redirect to='/contacts' />
             </Switch>
           </Layout>
-          ) : (
-            <Route render={() => <GoogleLogin />} />
+        ) : (
+            <Switch>
+              <Route path='/' component={AuthPage} exact />
+              <Redirect to='/' />
+            </Switch>
           )}
       </React.Fragment>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.token !== null
+});
+
+const mapDispatchToProps = dispatch => ({
+  autoSignup: () => dispatch(authActions.isLoggedIn())
+});
+
+export default withRouter (connect(mapStateToProps, mapDispatchToProps)(App));

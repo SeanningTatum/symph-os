@@ -11,7 +11,7 @@ import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
 
 export class ContactProfile extends Component {
-
+  
   static propTypes = {
     contactProfile: PropTypes.shape({
       name: PropTypes.string.isRequired,
