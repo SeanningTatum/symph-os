@@ -24,7 +24,7 @@ export function onAuth (response) {
       return;
     }
 
-    const {access_token, expires_in, expires_at, id_token} = response.Zi;
+    const {access_token, expires_in} = response.Zi;
 
     const extractProfile = ({ email, name, imageUrl }) => ({ email, name, imageUrl });
     const profile = extractProfile(response.profileObj);
