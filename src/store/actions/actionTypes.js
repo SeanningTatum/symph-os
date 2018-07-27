@@ -4,9 +4,7 @@ export const ON_BLUR = 'ON_BLUR';
 export const RESET_FORM = 'RESET_FORM';
 export const UPDATE_CONTROLS = 'UPDATE_CONTROLS';
 
-
 // ADD
-export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
 export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_ERROR = 'ADD_ERROR';
 
@@ -18,6 +16,7 @@ export const GET_ALL_ERROR = 'GET_ALL_ERROR';
 
 // PROFILE
 export const GET_SUCCESS = 'GET_SUCCESS';
+export const RESET_PROFILE = 'RESET_PROFILE';
 
 // AUTH
 export const AUTH_START = 'AUTH_START';

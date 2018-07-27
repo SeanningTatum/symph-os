@@ -1,4 +1,4 @@
-import { GET_SUCCESS } from './actionTypes';
+import { GET_SUCCESS, RESET_PROFILE } from './actionTypes';
 
 const url = "http://localhost:8080/_ah/api/";
 
@@ -6,6 +6,10 @@ const getSuccess = (profile) => ({
   type: GET_SUCCESS,
   profile
 });
+
+export const resetProfile = () => ({
+  type: RESET_PROFILE
+})
 
 export function get (api, id) {
   return async dispatch => {

@@ -11,7 +11,7 @@ import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
 
 export class ContactProfile extends Component {
-  
+
   static propTypes = {
     contactProfile: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -41,6 +41,7 @@ export class ContactProfile extends Component {
 
   componentWillUnmount() {
     this.props.resetForm();
+    this.props.resetProfile();
   }
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
@@ -101,6 +102,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   get: (api, id) => dispatch(profileActions.get(api, id)),
+
+  resetProfile: () => dispatch(profileActions.resetProfile()),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))
