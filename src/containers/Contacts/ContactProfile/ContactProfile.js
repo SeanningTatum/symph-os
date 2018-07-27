@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import "./ContactProfile.scss";
 import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
@@ -10,6 +11,20 @@ import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
 
 export class ContactProfile extends Component {
+
+  static propTypes = {
+    contactProfile: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      company: PropTypes.string.isRequired,
+      nickname: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      position: PropTypes.string.isRequired,
+      key: PropTypes.string.isRequired,
+    }),
+    contactControls: PropTypes.object.isRequired
+  }
+
   state = {
     edit: false
   }
@@ -36,9 +51,11 @@ export class ContactProfile extends Component {
   }
 
   /*- - - - - - - - - - - - - - - -
-  *             Render            *
+  *             Render           *
   * - - - - - - - - - - - - - - - */
+
   render() {
+    
     const contactProfile = [];
     for (let key in this.props.contactProfile) {
       contactProfile.push({
