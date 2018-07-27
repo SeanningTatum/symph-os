@@ -10,16 +10,18 @@ import { clientColumns } from 'utils/tableHeaders';
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-const rowEvents = {
-  onClick: (e, row, rowIndex) => {
-    this.props.history.push(`/clients/${row['id']}`);
-  }
-}
+
 
 export class Clients extends Component {
 
   componentDidMount() {
     this.props.getAll('clients', 'clients-api');
+  }
+
+  rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      this.props.history.push(`/clients/${row['id']}`);
+    }
   }
 
   render() {
@@ -31,7 +33,7 @@ export class Clients extends Component {
             keyField='id'
             data={this.props.clients}
             columns={clientColumns}
-            rowEvents={rowEvents}/>
+            rowEvents={this.rowEvents}/>
           ) : (
           <Loading />
         )}
