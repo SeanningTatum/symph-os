@@ -63,18 +63,11 @@ export class AddContact extends Component {
     }
 
     return (
-      <form className="form__container">
-        <Forms
-          formElements={formElementsArray}
-          onBlur={this.props.onBlur}
-          inputChanged={this.props.inputChanged} />
-        <div className="form--button-area">
-          <button
-            className="btn btn-primary"
-            onClick={this.onSubmit}
-            disabled={!this.state.isFormValid}>Submit</button>
-        </div>
-      </form>
+      <Forms
+        formElements={formElementsArray}
+        onBlur={this.props.onBlur}
+        inputChanged={this.props.inputChanged} 
+        isFormValid={this.isValid}/>
     )
   }
 }

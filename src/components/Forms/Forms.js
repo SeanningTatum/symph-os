@@ -28,7 +28,8 @@ const Forms = props => {
 Forms.propTypes = {
   formElements: PropTypes.array.isRequired,
   onBlur: PropTypes.func.isRequired,
-  inputChanged: PropTypes.func.isRequired
+  inputChanged: PropTypes.func.isRequired,
+  isFormValid: PropTypes.bool.isRequired
 }
 
 export default Forms;
