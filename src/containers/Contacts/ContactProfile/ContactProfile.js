@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import "./ContactProfile.scss";
 
 import Forms from 'components/Forms/Forms';

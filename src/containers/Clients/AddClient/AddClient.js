@@ -7,27 +7,15 @@ import * as formControlActions from 'store/actions/formControls';
 import * as tableActions from 'store/actions/tables';
 
 export class AddClient extends Component {
-
-  state = {
-    isFormValid: false
-  }
-
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
   componentDidMount() {
-    this.setState({ isFormValid: this.isValid() });
+    this.props.checkIsValid('clientControls');
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.controls !== this.props.controls) {
-      this.setState({ isFormValid: this.isValid() });
+      this.props.checkIsValid('clientControls');
     }
   }
-
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -35,18 +23,6 @@ export class AddClient extends Component {
     this.props.resetForm();
     this.props.history.push('/clients')
   }
-
-  isValid = () => {
-    return (
-      this.props.controls['client_name'].valid &&
-      this.props.controls['legal_name'].valid &&
-      this.props.controls['type'].valid
-    );
-  }
-
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
 
   render() {
     const formElementsArray = [];
@@ -59,21 +35,21 @@ export class AddClient extends Component {
         formElements={formElementsArray}
         onBlur={this.props.onBlur}
         inputChanged={this.props.inputChanged} 
-        isFormValid={this.isValid}/>
+        clicked={this.onSubmit}
+        isFormValid={this.props.isFormValid} />
     )
   }
 }
 
-/*- - - - - - - - - - - - - - - -
-*             Redux             *
-* - - - - - - - - - - - - - - - */
-
 const mapStateToProps = state => ({
-  controls: state.formControl.clientControls
+  controls: state.formControl.clientControls,
+  isFormValid: state.formControl.isFormValid
 });
 
 const mapDispatchToProps = dispatch => ({
   add: (controls) => dispatch(tableActions.add('clients', controls, 'clients-api')),
+
+  checkIsValid: (controlName) => dispatch(formControlActions.checkIsFormValid(controlName)),  
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'clientControls'))

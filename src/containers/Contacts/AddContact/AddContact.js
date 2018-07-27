@@ -18,20 +18,12 @@ export class AddContact extends Component {
     }
   }
 
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
-
   onSubmit = (event) => {
     event.preventDefault();
     this.props.addContact(this.props.controls, 'contacts-api');
     this.props.history.push('/contacts');
     this.props.resetForm();
   }
-
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
 
   render() {
     // Change controls into array so we can iterate over it
@@ -50,10 +42,6 @@ export class AddContact extends Component {
     )
   }
 }
-
-  /*- - - - - - - - - - - - - - - -
-  *             Redux             *
-  * - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
   controls: state.formControl.contactControls,

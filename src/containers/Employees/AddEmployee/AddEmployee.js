@@ -8,40 +8,14 @@ import * as tableActions from 'store/actions/tables';
 
 export class AddContact extends Component {
 
-  state = {
-    isFormValid: false
-  }
-
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
-
   componentDidMount() {
-    console.log(this.props.controls)
-    this.setState({ isFormValid: this.isValid() });
-
+    this.props.checkIsValid('employeeControls');
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.controls !== this.props.controls) {
-      this.setState({ isFormValid: this.isValid() });
+      this.props.checkIsValid('employeeControls');      
     }
-  }
-
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
-
-  isValid = () => {
-    return (
-      this.props.controls['fname'].valid &&
-      this.props.controls['lname'].valid &&
-      this.props.controls['mi'].valid &&
-      this.props.controls['nickname'].valid &&
-      this.props.controls['email'].valid &&
-      this.props.controls['position'].valid &&
-      this.props.controls['working_arrangement'].valid
-    );
   }
 
   onSubmit = (event) => {
@@ -51,9 +25,6 @@ export class AddContact extends Component {
     this.props.resetForm();
   }
 
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
 
   render() {
     // Change controls into array so we can iterate over it
@@ -67,21 +38,22 @@ export class AddContact extends Component {
         formElements={formElementsArray}
         onBlur={this.props.onBlur}
         inputChanged={this.props.inputChanged} 
-        isFormValid={this.isValid}/>
+        isFormValid={this.props.isFormValid}
+        clicked={this.onSubmit}/>
     )
   }
 }
 
-/*- - - - - - - - - - - - - - - -
-*             Redux             *
-* - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
-  controls: state.formControl.employeeControls
+  controls: state.formControl.employeeControls,
+  isFormValid: state.formControl.isFormValid
 });
 
 const mapDispatchToProps = dispatch => ({
   add: (controls) => dispatch(tableActions.add('employees', controls, 'employees-api')),
+
+  checkIsValid: (controlName) => dispatch(formControlActions.checkIsFormValid(controlName)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'employeeControls'))

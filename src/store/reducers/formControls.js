@@ -27,7 +27,6 @@ const updateControls = (state, action) => {
   const { control, values } = action;
   let updatedControls = {};
 
-
   for (const value in values) {
     if (value !== 'key') {
       updatedControls[value] = updateObject(state[control][value], {
@@ -86,9 +85,9 @@ const onBlur = (state, controlName, control) => {
 =============================================*/
 const resetForm = (state, controlName) => {
   switch(controlName) {
-    case 'clientControls': return { ...state, clientControls };
-    case 'contactControls': return {...state, contactControls};
-    case 'employeeControls': return {...state, employeeControls};
+    case 'clientControls': return { ...state, clientControls, isFormValid: true};
+    case 'contactControls': return {...state, contactControls, isFormValid: true};
+    case 'employeeControls': return {...state, employeeControls, isFormValid: true};
     default: return state;
   }
 }
