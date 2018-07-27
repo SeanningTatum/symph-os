@@ -30,6 +30,7 @@ import ClientProfilePage from 'containers/Clients/ClientProfile/ClientProfile';
 // Employees
 import EmployeesPage from 'containers/Employees/Employees';
 import AddEmployeesPage from 'containers/Employees/AddEmployee/AddEmployee';
+import EmployeeProfilePage from 'containers/Employees/EmployeeProfile/EmployeeProfile';
 
 import TeamsPage from 'containers/Teams/Teams';
 /*=====  End of containers  ======*/
@@ -58,7 +59,8 @@ class App extends Component {
               <Route path='/clients/:id' component={ClientProfilePage} />
               <Route path='/clients' component={ClientsPage} exact />
 
-              <Route path='/employees/add-employee' component={AddEmployeesPage} />
+              <Route path='/employees/add-employee' component={AddEmployeesPage} exact/>
+              <Route path='/comployees/:id' component={EmployeeProfilePage} />
               <Route path='/employees' component={EmployeesPage} exact />
 
               <Route path='/teams' component={TeamsPage} exact />
