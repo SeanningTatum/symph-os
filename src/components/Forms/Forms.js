@@ -27,6 +27,7 @@ const Forms = props => {
 
 Forms.propTypes = {
   formElements: PropTypes.array.isRequired,
+  clicked: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   inputChanged: PropTypes.func.isRequired,
   isFormValid: PropTypes.bool.isRequired

@@ -8,38 +8,19 @@ import * as formControlActions from 'store/actions/formControls';
 
 export class AddContact extends Component {
 
-  state = {
-    isFormValid: false
-  }
-
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
-
   componentDidMount() {
-    this.setState({ isFormValid: this.isValid() });
+    this.props.checkIsValid('contactControls');     
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.controls !== this.props.controls) {
-      this.setState({ isFormValid: this.isValid() });
+      this.props.checkIsValid('contactControls'); 
     }
   }
 
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
-
-  isValid = () => {
-    return (
-      this.props.controls['name'].valid &&
-      this.props.controls['nickname'].valid &&
-      this.props.controls['number'].valid &&
-      this.props.controls['email'].valid &&
-      this.props.controls['company'].valid &&
-      this.props.controls['position'].valid
-    );
-  }
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -64,7 +45,8 @@ export class AddContact extends Component {
         formElements={formElementsArray}
         onBlur={this.props.onBlur}
         inputChanged={this.props.inputChanged} 
-        isFormValid={this.isValid}/>
+        isFormValid={this.props.isFormValid}
+        clicked={this.onSubmit}/>
     )
   }
 }
@@ -74,13 +56,16 @@ export class AddContact extends Component {
   * - - - - - - - - - - - - - - - */
 
 const mapStateToProps = state => ({
-  controls: state.formControl.contactControls
+  controls: state.formControl.contactControls,
+  isFormValid: state.formControl.isFormValid
 });
 
 const mapDispatchToProps = dispatch => ({
   addContact: (controls, api) => dispatch(
     tableActions.add('contacts', controls, api)
   ),
+
+  checkIsValid: (controlName) => dispatch(formControlActions.checkIsFormValid(controlName)),
 
   inputChanged: (event, controlName) => (
     dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))
