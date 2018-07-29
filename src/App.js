@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 // HOC
 import Layout from 'hoc/Layout/Layout';
-
+import asyncComponent from 'hoc/asyncComponent/asyncComponent';
 /*=============================================
 =                 Containers                 =
 =============================================*/
@@ -15,27 +15,25 @@ import Layout from 'hoc/Layout/Layout';
 import AuthPage from 'containers/Auth/Auth';
 
 // Projects
-import ProjectsPage from 'containers/Projects/Projects';
+import AsyncProjectsPage from 'containers/Projects/Projects';
 
 // Contacts
-import ContactsPage from 'containers/Contacts/Contacts';
-import AddContactPage from 'containers/Contacts/AddContact/AddContact';
-import ContactProfile from 'containers/Contacts/ContactProfile/ContactProfile';
+const AsyncContactsPage = asyncComponent(() => import('containers/Contacts/Contacts'));
+const AsyncAddContactPage = asyncComponent(() => import('containers/Contacts/AddContact/AddContact')); 
+const AsyncContactProfile = asyncComponent(() => import('containers/Contacts/ContactProfile/ContactProfile')); 
 
 // Clients
-import ClientsPage from 'containers/Clients/Clients';
-import AddClientPage from 'containers/Clients/AddClient/AddClient';
-import ClientProfilePage from 'containers/Clients/ClientProfile/ClientProfile';
+const AsyncClientsPage = asyncComponent(() => import('containers/Clients/Clients')); 
+const AsyncAddClientPage = asyncComponent(() => import('containers/Clients/AddClient/AddClient')); 
+const AsyncClientProfilePage = asyncComponent(() => import('containers/Clients/ClientProfile/ClientProfile')); 
 
 // Employees
-import EmployeesPage from 'containers/Employees/Employees';
-import AddEmployeesPage from 'containers/Employees/AddEmployee/AddEmployee';
-import EmployeeProfilePage from 'containers/Employees/EmployeeProfile/EmployeeProfile';
+const AsyncEmployeesPage = asyncComponent(() => import('containers/Employees/Employees')); 
+const AsyncAddEmployeesPage = asyncComponent(() => import('containers/Employees/AddEmployee/AddEmployee')); 
+const AsyncEmployeeProfilePage = asyncComponent(() => import('containers/Employees/EmployeeProfile/EmployeeProfile')); 
 
-import TeamsPage from 'containers/Teams/Teams';
+const TeamsPage = asyncComponent(() => import('containers/Teams/Teams')); 
 /*=====  End of containers  ======*/
-
-
 
 class App extends Component {
 
@@ -49,19 +47,19 @@ class App extends Component {
         {this.props.isAuthenticated ? (
           <Layout>
             <Switch>
-              <Route path='/contacts/add-contact' component={AddContactPage} exact />
-              <Route path='/contacts/:id' component={ContactProfile} />
-              <Route path='/contacts' component={ContactsPage} exact />
+              <Route path='/contacts/add-contact' component={AsyncAddContactPage} exact />
+              <Route path='/contacts/:id' component={AsyncContactProfile} />
+              <Route path='/contacts' component={AsyncContactsPage} exact />
 
-              <Route path='/projects' component={ProjectsPage} exact />
+              <Route path='/projects' component={AsyncProjectsPage} exact />
 
-              <Route path='/clients/add-client' component={AddClientPage} exact />
-              <Route path='/clients/:id' component={ClientProfilePage} />
-              <Route path='/clients' component={ClientsPage} exact />
+              <Route path='/clients/add-client' component={AsyncAddClientPage} exact />
+              <Route path='/clients/:id' component={AsyncClientProfilePage} />
+              <Route path='/clients' component={AsyncClientsPage} exact />
 
-              <Route path='/employees/add-employee' component={AddEmployeesPage} exact/>
-              <Route path='/comployees/:id' component={EmployeeProfilePage} />
-              <Route path='/employees' component={EmployeesPage} exact />
+              <Route path='/employees/add-employee' component={AsyncAddEmployeesPage} exact/>
+              <Route path='/comployees/:id' component={AsyncEmployeeProfilePage} />
+              <Route path='/employees' component={AsyncEmployeesPage} exact />
 
               <Route path='/teams' component={TeamsPage} exact />
               <Redirect to='/contacts' />
