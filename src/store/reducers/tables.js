@@ -15,14 +15,14 @@ const initialState = {
 /*============================================
 =                Start of get              =
 =============================================*/
-function getStart(state, action) {
+function getStart(state) {
   return {
     ...state,
     loading: true
   }
 }
 
-function getEnd(state, action) {
+function getEnd(state) {
   return {
     ...state,
     loading: false
@@ -57,8 +57,8 @@ function add(state, action) {
 =============================================*/
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_START: return getStart(state, action);
-    case GET_ALL_END: return getEnd(state, action);
+    case GET_ALL_START: return getStart(state);
+    case GET_ALL_END: return getEnd(state);
     case GET_ALL_SUCCESS: return get(state, action);
     case ADD_SUCCESS: return add(state, action);
 
