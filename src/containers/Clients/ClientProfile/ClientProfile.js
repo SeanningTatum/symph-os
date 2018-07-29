@@ -22,11 +22,10 @@ export class clientProfile extends Component {
   async componentDidMount() {
     const clientID = this.props.location.pathname.split("/")[2];
     await this.props.get('clients-api', clientID);
-    this.props.updateControls('name', this.props.clientProfile);
+    this.props.updateControls('clientControls', this.props.clientProfile);
   }
 
   componentWillUnmount() {
-    this.props.resetForm();
     this.props.resetProfile();
   }
   /*- - - - - - - - - - - - - - - -
@@ -71,9 +70,9 @@ export class clientProfile extends Component {
           ) : (
             <Forms
               formElements={formElementsArray}
-              onBlur={this.props.onBlur}
-              inputChanged={this.props.inputChanged}
-            />
+              clicked={this.onSubmit}
+              controls={this.props.contactControls}
+              controlName={'contactControls'} />
           )}
         </div>
       </React.Fragment>
@@ -96,20 +95,8 @@ const mapDispatchToProps = dispatch => ({
 
   resetProfile: () => dispatch(profileActions.resetProfile()),
 
-  inputChanged: (event, controlName) => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'clientControls'))
-  ),
-
-  onBlur: (controlName) => (
-    dispatch(formControlActions.blur(controlName, 'clientControls'))
-  ),
-
-  resetForm: () => (
-    dispatch(formControlActions.resetForm('clientControls'))
-  ),
-
   updateControls: (controlName, values) => (
-    dispatch(formControlActions.updateControls(controlName, 'clientControls', values))
+    dispatch(formControlActions.updateControls(controlName, values))
   )
 })
 
