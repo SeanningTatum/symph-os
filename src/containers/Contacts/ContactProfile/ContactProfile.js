@@ -8,8 +8,8 @@ import Loading from 'components/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
-import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
+import * as profileActions from 'store/actions/profiles';
 
 export class ContactProfile extends Component {
 
@@ -24,18 +24,10 @@ export class ContactProfile extends Component {
   async componentDidMount() {
     const contactID = this.props.location.pathname.split("/")[2];
     await this.props.get('contacts-api', contactID);
-    this.props.updateControls(this.props.contactProfile);
-    this.props.checkIsValid('contactControls');
-  }
-
-  componentDidUpdate(prevState) {
-    if (prevState.contactControls !== this.props.contactControls) {
-      this.props.checkIsValid('contactControls');
-    }
+    this.props.updateControls('contactControls', this.props.contactProfile);
   }
 
   componentWillUnmount() {
-    this.props.resetForm();
     this.props.resetProfile();
   }
   /*- - - - - - - - - - - - - - - -
@@ -88,7 +80,9 @@ export class ContactProfile extends Component {
               onBlur={this.props.onBlur}
               inputChanged={this.props.inputChanged}
               clicked={this.onSubmit}
-              isFormValid={this.props.isFormValid}/>
+              isFormValid={this.props.isFormValid}
+              controls={this.props.contactControls}
+              controlName={'contactControls'}/>
           )}
         </div>
       </React.Fragment>
@@ -104,7 +98,6 @@ const mapStateToProps = state => ({
   contactProfile: state.profile.profile,
   contactControls: state.formControl.contactControls,
   loading: state.profile.loading,
-  isFormValid: state.formControl.isFormValid
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -112,24 +105,10 @@ const mapDispatchToProps = dispatch => ({
 
   update: (api, id, controls) => dispatch(profileActions.update(api, id, controls)),
 
-  checkIsValid: (controlName) => dispatch(formControlActions.checkIsFormValid(controlName)),
-
   resetProfile: () => dispatch(profileActions.resetProfile()),
 
-  inputChanged: (event, controlName) => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))
-  ),
-
-  onBlur: (controlName) => (
-    dispatch(formControlActions.blur(controlName, 'contactControls'))
-  ),
-
-  resetForm: () => (
-    dispatch(formControlActions.resetForm('contactControls'))
-  ),
-
-  updateControls: (values) => (
-    dispatch(formControlActions.updateControls('contactControls', values))
+  updateControls: (controlName, values) => (
+    dispatch(formControlActions.updateControls(controlName, values))
   )
 })
 
