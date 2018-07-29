@@ -40,7 +40,6 @@ function resetProfile(state) {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case GET_SUCCESS: return getSuccess(state, action);
     case RESET_PROFILE: return resetProfile(state);
     case GET_START: return getStart(state);

@@ -6,7 +6,7 @@ import {
 } from 'store/actions/actionTypes';
 
 const initialState = {
-  clients: [{client_name: 'test', 'legal_name': 'tester', 'type': 'Organization', id: '123y19bc12bc1ubi'}],
+  clients: [],
   contacts: [],
   employees: [],
   loading: false

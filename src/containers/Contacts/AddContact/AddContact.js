@@ -4,25 +4,13 @@ import Forms from 'components/Forms/Forms';
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
-import * as formControlActions from 'store/actions/formControls';
 
 export class AddContact extends Component {
-
-  componentDidMount() {
-    this.props.checkIsValid('contactControls');     
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.controls !== this.props.controls) {
-      this.props.checkIsValid('contactControls'); 
-    }
-  }
 
   onSubmit = (event) => {
     event.preventDefault();
     this.props.addContact(this.props.controls, 'contacts-api');
     this.props.history.push('/contacts');
-    this.props.resetForm();
   }
 
   render() {
@@ -38,33 +26,20 @@ export class AddContact extends Component {
         onBlur={this.props.onBlur}
         inputChanged={this.props.inputChanged} 
         isFormValid={this.props.isFormValid}
-        clicked={this.onSubmit}/>
+        clicked={this.onSubmit}
+        controls={this.props.controls}
+        controlName='contactControls'/>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  controls: state.formControl.contactControls,
-  isFormValid: state.formControl.isFormValid
+  controls: state.formControl.contactControls
 });
 
 const mapDispatchToProps = dispatch => ({
   addContact: (controls, api) => dispatch(
     tableActions.add('contacts', controls, api)
-  ),
-
-  checkIsValid: (controlName) => dispatch(formControlActions.checkIsFormValid(controlName)),
-
-  inputChanged: (event, controlName) => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'contactControls'))
-  ),
-
-  onBlur: (controlName) => (
-    dispatch(formControlActions.blur(controlName, 'contactControls'))
-  ),
-
-  resetForm: () => (
-    dispatch(formControlActions.resetForm('contactControls'))
   )
 })
 
