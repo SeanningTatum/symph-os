@@ -7,7 +7,6 @@ import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader';
 // Redux
 import { connect } from 'react-redux';
 import * as profileActions from 'store/actions/profiles';
-import * as formControlActions from 'store/actions/formControls';
 
 export class employeeProfile extends Component {
 
@@ -26,7 +25,6 @@ export class employeeProfile extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetForm();
     this.props.resetProfile();
   }
   /*- - - - - - - - - - - - - - - -
@@ -71,9 +69,9 @@ export class employeeProfile extends Component {
           ) : (
             <Forms
               formElements={formElementsArray}
-              onBlur={this.props.onBlur}
-              inputChanged={this.props.inputChanged}
-            />
+              clicked={this.onSubmit}
+              controls={this.props.contactControls}
+              controlName={'employeeControls'} />
           )}
         </div>
       </React.Fragment>
@@ -90,22 +88,6 @@ const mapDispatchToProps = dispatch => ({
   get: (api, id) => dispatch(profileActions.get(api, id)),
 
   resetProfile: () => dispatch(profileActions.resetProfile()),
-
-  inputChanged: (event, controlName) => (
-    dispatch(formControlActions.inputChanged(event.target.value, controlName, 'employeeControls'))
-  ),
-
-  onBlur: (controlName) => (
-    dispatch(formControlActions.blur(controlName, 'employeeControls'))
-  ),
-
-  resetForm: () => (
-    dispatch(formControlActions.resetForm('employeeControls'))
-  ),
-
-  updateControls: (controlName, values) => (
-    dispatch(formControlActions.updateControls(controlName, 'employeeControls', values))
-  )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(employeeProfile);
