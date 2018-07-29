@@ -24,7 +24,6 @@ function authSuccess(state, action) {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case AUTH_SUCCESS: return authSuccess(state, action);
     case AUTH_LOGOUT: return authLogout(state);
     default: return state;

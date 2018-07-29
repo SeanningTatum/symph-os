@@ -38,7 +38,7 @@ const checkIsFormValid = (state, action) => {
 =============================================*/
 const updateControls = (state, action) => {
   const { control, values } = action;
-  let updatedControls = {};
+  let updatedControls = {...(state[control])};
 
   for (const value in values) {
     if (value !== 'key') {

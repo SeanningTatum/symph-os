@@ -16,7 +16,6 @@ class Forms extends Component {
 
   componentDidMount() {
     this.props.checkIsValid(this.props.controlName);
-    console.log(this.props.controls)
   }
 
   componentDidUpdate(prevState) {
