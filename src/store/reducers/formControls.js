@@ -1,4 +1,11 @@
-import * as actionTypes from 'store/actions/actionTypes';
+import {
+  INPUT_CHANGED,
+  ON_BLUR,
+  RESET_FORM,
+  UPDATE_CONTROLS,
+  CHECK_IS_FORM_VALID
+} from 'store/actions/actionTypes';
+
 import { clientControls } from 'utils/formControls/clientControls';
 import { contactControls } from 'utils/formControls/contactControls';
 import { employeeControls } from 'utils/formControls/employeeControls';
@@ -10,7 +17,9 @@ const initState = {
   employeeControls,
   isFormValid: false
 }
-
+/*=============================================
+=         Start checkIsFormValid             =
+=============================================*/
 const checkIsFormValid = (state, action) => {
   const {controlName} = action;
 
@@ -22,7 +31,11 @@ const checkIsFormValid = (state, action) => {
   
   return {...state, isFormValid: true};
 }
+/*=====  End checkIsFormValid  ======*/
 
+/*=============================================
+=             Start updateControls             =
+=============================================*/
 const updateControls = (state, action) => {
   const { control, values } = action;
   let updatedControls = {};
@@ -41,11 +54,13 @@ const updateControls = (state, action) => {
     [control]: updatedControls
   };
 }
+/*=====  End updateControls  ======*/
 
 /*=============================================
 =             Start inputChanged             =
 =============================================*/
-const inputChanged = (state, value, controlName, control) => {
+const inputChanged = (state, action) => {
+  const { value, controlName, control } = action;
   const errorObj = checkValidity(value, state[control][controlName].validation);
   const updatedControls = updateObject(state[control], {
     [controlName]: updateObject(state[control][controlName], {
@@ -66,7 +81,10 @@ const inputChanged = (state, value, controlName, control) => {
 /*=============================================
 =                Start onBlur               =
 =============================================*/
-const onBlur = (state, controlName, control) => {
+const onBlur = (state, action) => {
+
+  const { controlName, control } = action;
+
   const updatedControls = updateObject(state[control], {
     [controlName]: updateObject(state[control][controlName], {
       dirty: true
@@ -83,7 +101,8 @@ const onBlur = (state, controlName, control) => {
 /*=============================================
 =              Start resetForm               =
 =============================================*/
-const resetForm = (state, controlName) => {
+const resetForm = (state, action) => {
+  const { controlName } = action;
   switch(controlName) {
     case 'clientControls': return { ...state, clientControls, isFormValid: true};
     case 'contactControls': return {...state, contactControls, isFormValid: true};
@@ -98,11 +117,11 @@ const resetForm = (state, controlName) => {
 =============================================*/
 const reducer = (state = initState, action) => {
   switch (action.type) {
-    case actionTypes.INPUT_CHANGED: return inputChanged(state, action.value, action.controlName, action.control);
-    case actionTypes.ON_BLUR: return onBlur(state, action.controlName, action.control);
-    case actionTypes.RESET_FORM: return resetForm(state, action.controlName);
-    case actionTypes.UPDATE_CONTROLS: return updateControls(state, action);
-    case actionTypes.CHECK_IS_FORM_VALID: return checkIsFormValid(state, action);
+    case INPUT_CHANGED: return inputChanged(state, action);
+    case ON_BLUR: return onBlur(state, action);
+    case RESET_FORM: return resetForm(state, action);
+    case UPDATE_CONTROLS: return updateControls(state, action);
+    case CHECK_IS_FORM_VALID: return checkIsFormValid(state, action);
     default: return state;
   }
 }
