@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Forms from 'components/Forms/Forms';
 
 // Redux
@@ -23,9 +23,6 @@ export class AddContact extends Component {
     return (
       <Forms
         formElements={formElementsArray}
-        onBlur={this.props.onBlur}
-        inputChanged={this.props.inputChanged} 
-        isFormValid={this.props.isFormValid}
         clicked={this.onSubmit}
         controls={this.props.controls}
         controlName='contactControls'/>

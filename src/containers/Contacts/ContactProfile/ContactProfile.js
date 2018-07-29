@@ -77,10 +77,7 @@ export class ContactProfile extends Component {
           ) : (
             <Forms
               formElements={formElementsArray}
-              onBlur={this.props.onBlur}
-              inputChanged={this.props.inputChanged}
               clicked={this.onSubmit}
-              isFormValid={this.props.isFormValid}
               controls={this.props.contactControls}
               controlName={'contactControls'}/>
           )}

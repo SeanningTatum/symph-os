@@ -10,9 +10,6 @@ class Forms extends Component {
   static propTypes = {
     formElements: PropTypes.array.isRequired,
     clicked: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    inputChanged: PropTypes.func.isRequired,
-    isFormValid: PropTypes.bool.isRequired,
     controls: PropTypes.object.isRequired,
     controlName: PropTypes.string.isRequired // ex: contactControls
   }
