@@ -44,7 +44,7 @@ export const contactColumns = [{
 }, {
   dataField: 'position',
   text: 'Position'
-}]
+}];
 
 // Employees
 export const employeeColumns = [{
@@ -77,4 +77,33 @@ export const employeeColumns = [{
 }, {
   dataField: 'last_day',
   text: 'Last day'
-},]
+},];
+
+export const projectColumns = [{
+  dataField: 'project_name',
+  text: 'Project Name'
+}, {
+  dataField: 'client',
+  text: 'Client'
+}, {
+  dataField: 'client_contact',
+  text: 'Client Contact'
+}, {
+  dataField: 'email',
+  text: 'Email Address'
+}, {
+  dataField: 'project_manager',
+  text: 'Project Manager'
+}, {
+  dataField: 'team',
+  text: 'Team',
+}, {
+  dataField: 'total_no_of_budgeted_blocks',
+  text: 'Total # of Budgeted Blocks',
+}, {
+  dataField: 'total_no_of_consumed_blocks',
+  text: 'Total # of consumed blocks'
+}, {
+  dataField: 'blocks_not_allocated',
+  text: 'Blocks not allocated'
+}]

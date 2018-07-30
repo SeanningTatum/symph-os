@@ -4,12 +4,13 @@ import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
 import Loading from 'components/Loading/Loading';
+
 // Redux
 import { connect } from 'react-redux';
 import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
 
-export class clientProfile extends Component {
+class clientProfile extends Component {
 
   state = {
     edit: false

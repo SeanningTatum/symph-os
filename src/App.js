@@ -13,7 +13,8 @@ import asyncComponent from 'hoc/asyncComponent/asyncComponent';
 =============================================*/
 
 // Projects
-import AsyncProjectsPage from 'containers/Projects/Projects';
+const AsyncProjectsPage = asyncComponent(() => import('containers/Projects/Projects'));
+const AsyncAddProjectPage = asyncComponent(() => import('containers/Projects/AddProject/AddProject'));
 
 // Auth
 const AsyncAuthPage = asyncComponent(() => import('containers/Auth/Auth'));
@@ -54,6 +55,7 @@ class App extends Component {
               <Route path='/contacts/:id' component={AsyncContactProfile} />
               <Route path='/contacts' component={AsyncContactsPage} exact />
 
+              <Route path='/projects/add-project' component={AsyncAddProjectPage} exact />
               <Route path='/projects' component={AsyncProjectsPage} exact />
 
               <Route path='/clients/add-client' component={AsyncAddClientPage} exact />
