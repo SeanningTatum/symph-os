@@ -33,6 +33,8 @@ export function add(tableName, formControls, api, tags = {}) {
     data['members'] = [...(data['members']) || [], tags[key].text];
   }
 
+  console.log(data);
+
   const options = {
     method: "POST",
     headers: { 
