@@ -1,29 +1,14 @@
 import React, { Component } from 'react'
 import Forms from 'components/Forms/Forms';
-import { WithContext as ReactTags } from 'react-tag-input';
 
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
-
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 class AddTeam extends Component {
   state = {
-    tags: [ ],
-    suggestions: [
-      { id: 'USA', text: 'USA' },
-      { id: 'Germany', text: 'Germany' },
-      { id: 'Austria', text: 'Austria' },
-      { id: 'Costa Rica', text: 'Costa Rica' },
-      { id: 'Sri Lanka', text: 'Sri Lanka' },
-      { id: 'Thailand', text: 'Thailand' }
-    ]
   };
 
   handleDelete = (i) => {
@@ -69,12 +54,6 @@ class AddTeam extends Component {
           controls={this.props.controls}
           controlName='teamControls'>
 
-          <ReactTags tags={this.state.tags}
-            suggestions={this.state.suggestions}
-            handleDelete={this.handleDelete}
-            handleAddition={this.handleAddition}
-            handleDrag={this.handleDrag}
-            delimiters={delimiters} />
         </Forms>
       </React.Fragment>
     )
