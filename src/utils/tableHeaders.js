@@ -48,7 +48,7 @@ export const contactColumns = [{
 
 // Employees
 export const employeeColumns = [{
-  dataField: 'id',
+  dataField: 'employee_id',
   text: 'Employee ID'
 }, {
   dataField: 'fname',
@@ -72,7 +72,7 @@ export const employeeColumns = [{
   dataField: 'working_arrangement',
   text: 'Working Arrangement'
 }, {
-  dataField: 'started_working',
+  dataField: 'work_started',
   text: 'Started Working'
 }, {
   dataField: 'last_day',
