@@ -21,7 +21,10 @@ export class Auth extends Component {
           clientId="1007949685199-4i403shms56f5dts6qn1oks3p1fdaemj.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={this.responseGoogle} 
-          onFailure={this.responseGoogle}/>
+          onFailure={this.responseGoogle}
+          accessType="offline"
+          prompt="consent"
+          />
       </div>
     )
   }

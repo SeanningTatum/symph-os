@@ -4,7 +4,7 @@ import Loading from 'components/Loading/Loading';
 
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
-import { clientColumns } from 'utils/tableHeaders';
+import { clientColumns } from 'utils/tableHeaders'; 
 
 // Redux
 import { connect } from 'react-redux';

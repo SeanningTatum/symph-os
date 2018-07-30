@@ -1,10 +1,13 @@
 import React from 'react';
 import "./Navbar.scss";
-
+import { GoogleLogout } from 'react-google-login';
+    
 const navbar = ({onLogout}) => (
   <nav className="navbar">
     <span>Symph OS v2</span>
-    <button className="btn" onClick={onLogout}>Logout</button>
+    <GoogleLogout
+      buttonText="Logout"
+      onLogoutSuccess={onLogout} />
   </nav>
 )
 
