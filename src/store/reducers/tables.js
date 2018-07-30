@@ -9,6 +9,7 @@ const initialState = {
   clients: [],
   contacts: [],
   employees: [],
+  teams: [],
   loading: false
 }
 

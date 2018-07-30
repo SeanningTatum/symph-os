@@ -20,11 +20,17 @@ export const addSuccess = (tableName, data) => ({
 
 export const addError = () => ({type: ADD_ERROR});
 
-export function add(tableName, formControls, api) {
+export function add(tableName, formControls, api, tags = {}) {
   const data = {};
 
+  // get the data from given formControls
   for (const key in formControls) {
     data[key] = formControls[key].value;
+  }
+
+  // get the data from given tags and convert it to array
+  for (const key in tags) {
+    data['members'] = [...(data['members']) || [], tags[key].text];
   }
 
   const options = {

@@ -50,8 +50,8 @@ class AddTeam extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.add(this.props.controls);
-    this.props.history.push('/employees');
+    this.props.add(this.props.controls, this.state.tags);
+    this.props.history.push('/teams');
   }
 
   render() {
@@ -67,14 +67,15 @@ class AddTeam extends Component {
           formElements={formElementsArray}
           clicked={this.onSubmit}
           controls={this.props.controls}
-          controlName='teamControls' />
+          controlName='teamControls'>
 
-        <ReactTags tags={this.state.tags}
-          suggestions={this.state.suggestions}
-          handleDelete={this.handleDelete}
-          handleAddition={this.handleAddition}
-          handleDrag={this.handleDrag}
-          delimiters={delimiters} />
+          <ReactTags tags={this.state.tags}
+            suggestions={this.state.suggestions}
+            handleDelete={this.handleDelete}
+            handleAddition={this.handleAddition}
+            handleDrag={this.handleDrag}
+            delimiters={delimiters} />
+        </Forms>
       </React.Fragment>
     )
   }
@@ -86,7 +87,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls) => dispatch(tableActions.add('employees', controls, 'employees-api')),
+  add: (controls, tags) => dispatch(tableActions.add('teams', controls, 'teams-api', tags)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTeam);
