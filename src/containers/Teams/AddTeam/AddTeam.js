@@ -1,41 +1,42 @@
 import React, { Component } from 'react'
 import Forms from 'components/Forms/Forms';
+import Select from 'react-select';
 
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 class AddTeam extends Component {
   state = {
+    options: [],
+    members: []
   };
 
-  handleDelete = (i) => {
-    const { tags } = this.state;
-    this.setState({
-      tags: tags.filter((tag, index) => index !== i),
-    });
+  componentDidMount() {
+    this.getOptions();
   }
 
-  handleAddition = (tag) => {
-    this.setState(state => ({ tags: [...state.tags, tag] }));
+  getOptions = () => {
+    fetch("http://localhost:8080/_ah/api/employees-api/v1/getNames", {
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      },
+    })
+    .then(response =>  response.json())
+    .then(options => {
+      this.setState({options: options.employees});
+    })
   }
 
-  handleDrag = (tag, currPos, newPos) => {
-    const tags = [...this.state.tags];
-    const newTags = tags.slice();
-
-    newTags.splice(currPos, 1);
-    newTags.splice(newPos, 0, tag);
-
-    // re-render
-    this.setState({ tags: newTags });
+  selectChangeHandler = (members) => {
+    this.setState({members});
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.add(this.props.controls, this.state.tags);
+    this.props.add(this.props.controls, this.state.members);
     this.props.history.push('/teams');
   }
 
@@ -54,6 +55,14 @@ class AddTeam extends Component {
           controls={this.props.controls}
           controlName='teamControls'>
 
+          <Select
+            isMulti
+            name="colors"
+            options={this.state.options}
+            onChange={this.selectChangeHandler}
+            className="basic-multi-select"
+            classNamePrefix="select"/>
+
         </Forms>
       </React.Fragment>
     )
@@ -66,7 +75,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls, tags) => dispatch(tableActions.add('teams', controls, 'teams-api', tags)),
+  add: (controls, members) => dispatch(tableActions.add('teams', controls, 'teams-api', members)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTeam);
