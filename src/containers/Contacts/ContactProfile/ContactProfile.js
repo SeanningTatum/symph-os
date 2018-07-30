@@ -24,7 +24,6 @@ export class ContactProfile extends Component {
   async componentDidMount() {
     const contactID = this.props.location.pathname.split("/")[2];
     await this.props.get('contacts-api', contactID);
-    this.props.updateControls('contactControls', this.props.contactProfile);
   }
 
   componentWillUnmount() {
@@ -36,6 +35,7 @@ export class ContactProfile extends Component {
 
   toggleEdit = () => {
     this.setState(prevState => ({ edit: !prevState.edit }));
+    this.props.updateControls('contactControls', this.props.contactProfile);
   }
 
   onSubmit = (event) => {
@@ -75,11 +75,13 @@ export class ContactProfile extends Component {
           {!this.state.edit ? (
             <ProfileDetails profile={contactProfile} />
           ) : (
-            <Forms
-              formElements={formElementsArray}
-              clicked={this.onSubmit}
-              controls={this.props.contactControls}
-              controlName={'contactControls'}/>
+            <div style={{height: '100%', width: '100%', display: 'flex', flexDirection: 'column'}}>
+              <Forms
+                formElements={formElementsArray}
+                clicked={this.onSubmit}
+                controls={this.props.contactControls}
+                controlName={'contactControls'}/>
+            </div>
           )}
         </div>
       </React.Fragment>
