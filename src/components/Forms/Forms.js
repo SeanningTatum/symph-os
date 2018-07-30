@@ -40,6 +40,7 @@ class Forms extends Component {
             blur={() => this.props.onBlur(formElement.id, this.props.controlName)}
             {...formElement.config} />
         ))}
+        {this.props.children}
         <div className="form--button-area">
           <button
             className="btn btn-primary"
