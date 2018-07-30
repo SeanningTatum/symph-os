@@ -33,7 +33,9 @@ const AsyncEmployeesPage = asyncComponent(() => import('containers/Employees/Emp
 const AsyncAddEmployeesPage = asyncComponent(() => import('containers/Employees/AddEmployee/AddEmployee')); 
 const AsyncEmployeeProfilePage = asyncComponent(() => import('containers/Employees/EmployeeProfile/EmployeeProfile')); 
 
+// Teams
 const AsyncTeamsPage = asyncComponent(() => import('containers/Teams/Teams')); 
+const AsyncAddTeamPage = asyncComponent(() => import('containers/Teams/AddTeam/AddTeam')); 
 /*=====  End of containers  ======*/
 
 class App extends Component {
@@ -62,8 +64,10 @@ class App extends Component {
               <Route path='/comployees/:id' component={AsyncEmployeeProfilePage} />
               <Route path='/employees' component={AsyncEmployeesPage} exact />
 
+              <Route path='/teams/add-team' component={AsyncAddTeamPage} exact />
               <Route path='/teams' component={AsyncTeamsPage} exact />
-              <Redirect to='/contacts' />
+
+              {/* <Redirect to='/contacts' /> */}
             </Switch>
           </Layout>
         ) : (

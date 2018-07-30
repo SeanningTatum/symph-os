@@ -9,12 +9,14 @@ import {
 import { clientControls } from 'utils/formControls/clientControls';
 import { contactControls } from 'utils/formControls/contactControls';
 import { employeeControls } from 'utils/formControls/employeeControls';
+import { teamControls } from 'utils/formControls/teamControls';
 import { updateObject, checkValidity } from 'utils/helperFunctions';
 
 const initState = {
   clientControls,
   contactControls,
   employeeControls,
+  teamControls,
   isFormValid: false
 }
 /*=============================================
