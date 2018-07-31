@@ -5,10 +5,6 @@ import { GoogleLogin } from 'react-google-login';
 import * as authActions from 'store/actions/auth';
 
 class Auth extends Component {
-  static propTypes = {
-
-  }
-
   responseGoogle = (response) => {
     this.props.onAuth(response);
   }
