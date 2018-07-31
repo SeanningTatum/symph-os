@@ -69,6 +69,9 @@ export const employeeColumns = [{
   dataField: 'position',
   text: 'Position'
 }, {
+  dataField: 'team',
+  text: 'Team'
+},{
   dataField: 'work_arrangement',
   text: 'Working Arrangement'
 }, {

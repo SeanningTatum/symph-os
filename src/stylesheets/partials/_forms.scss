@@ -3,12 +3,6 @@
   width: 100%;
   justify-content: center;
 
-  label {
-    font-size: 11px;
-    font-weight: 600;
-    color: $dark-grey;
-  }
-
   input, select {
     background-color: $grey;
   }
@@ -21,6 +15,13 @@
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
   }
+}
+
+label {
+  font-size: 11px;
+  font-weight: 600;
+  color: $dark-grey;
+  margin-bottom: .5rem;
 }
 
 

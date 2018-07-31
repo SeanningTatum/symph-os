@@ -54,13 +54,16 @@ class AddTeam extends Component {
           clicked={this.onSubmit}
           controls={this.props.controls}
           controlName='teamControls'>
-
-          <Select
-            isMulti
-            options={this.state.options}
-            onChange={this.selectChangeHandler}
-            className="basic-multi-select"
-            classNamePrefix="select"/>
+          
+            <label>Team Members</label>
+            <Select
+              isMulti
+              options={this.state.options}
+              onChange={this.selectChangeHandler}
+              className="basic-multi-select"
+              classNamePrefix="select"/>
+          <div style={{marginBottom: '1rem'}}>
+          </div>
 
         </Forms>
       </React.Fragment>
