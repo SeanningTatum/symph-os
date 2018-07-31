@@ -10,6 +10,7 @@ const initialState = {
   contacts: [],
   employees: [],
   teams: [],
+  projects: [],
   loading: false
 }
 
@@ -32,7 +33,7 @@ function getEnd(state) {
 
 function get(state, action) {
   const { tableName, dataArray } = action;
-  console.log(dataArray);
+
   return {
     ...state,
     [tableName]: dataArray || []
