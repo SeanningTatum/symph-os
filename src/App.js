@@ -63,7 +63,7 @@ class App extends Component {
               <Route path='/clients' component={AsyncClientsPage} exact />
 
               <Route path='/employees/add-employee' component={AsyncAddEmployeesPage} exact/>
-              <Route path='/comployees/:id' component={AsyncEmployeeProfilePage} />
+              <Route path='/employees/:id' component={AsyncEmployeeProfilePage} />
               <Route path='/employees' component={AsyncEmployeesPage} exact />
 
               <Route path='/teams/add-team' component={AsyncAddTeamPage} exact />
