@@ -20,12 +20,12 @@
   // animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-.success {
-  background-color: #00b894;
+.snack-success {
+  background-color: #00b894 !important;
 }
 
-.error {
-  background: #e17055;
+.snack-error {
+  background: #e17055 !important;
 }
 
 @-webkit-keyframes fadein {

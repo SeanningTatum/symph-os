@@ -2,20 +2,24 @@ import React from 'react';
 import './Snackbar.scss';
 import PropTypes from 'prop-types';
 
-const Snackbar = props => {
-
+const Snackbar = ({type, showSnackbar, message}) => {
+  
   const classes = [];
 
-  if (props.type === 'success') {
-    classes.push('success');
+  if (type === 'success') {
+    classes.push('snack-success');
   }
 
-  if (props.showSnackbar) {
+  if (type === 'error') {
+    classes.push('snack-error');
+  }
+
+  if (showSnackbar) {
     classes.push('show');
   } 
 
   return (
-    <div id="snackbar" className={classes.join(' ')}>{props.message}</div>
+    <div id="snackbar" className={classes.join(' ')}>{message}</div>
   )
 }
 
