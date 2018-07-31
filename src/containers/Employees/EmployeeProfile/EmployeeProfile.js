@@ -34,12 +34,12 @@ export class employeeProfile extends Component {
 
   toggleEdit = () => {
     this.setState(prevState => ({ edit: !prevState.edit }));
-    this.props.updateControls('employeeControls', this.props.employeeProfile);
+    this.props.updateControls('employeeUpdateControls', this.props.employeeProfile);
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.update('employees-api', this.props.employeeProfile.key, this.props.employeeControls);
+    this.props.update('employees-api', this.props.employeeProfile.employee_id, this.props.employeeControls);
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -79,7 +79,7 @@ export class employeeProfile extends Component {
                 formElements={formElementsArray}
                 clicked={this.onSubmit}
                 controls={this.props.employeeControls}
-                controlName={'employeeControls'}/>
+                controlName={'employeeUpdateControls'}/>
             </div>
           )}
         </div>
@@ -94,7 +94,7 @@ export class employeeProfile extends Component {
 
 const mapStateToProps = state => ({
   employeeProfile: state.profile.profile,
-  employeeControls: state.formControl.employeeControls,
+  employeeControls: state.formControl.employeeUpdateControls,
   loading: state.profile.loading,
 })
 

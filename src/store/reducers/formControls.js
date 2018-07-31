@@ -8,7 +8,7 @@ import {
 
 import { clientControls } from 'utils/formControls/clientControls';
 import { contactControls } from 'utils/formControls/contactControls';
-import { employeeControls } from 'utils/formControls/employeeControls';
+import { employeeControls, employeeUpdateControls } from 'utils/formControls/employeeControls';
 import { teamControls } from 'utils/formControls/teamControls';
 import { projectControls } from "utils/formControls/projectControls";
 import { updateObject, checkValidity } from 'utils/helperFunctions';
@@ -19,6 +19,7 @@ const initState = {
   employeeControls,
   teamControls,
   projectControls,
+  employeeUpdateControls,
   isFormValid: false
 }
 /*=============================================
@@ -44,8 +45,10 @@ const updateControls = (state, action) => {
   const { control, values } = action;
   let updatedControls = {...(state[control])};
 
+
   for (const value in values) {
-    if (value !== 'key') {
+    console.log(value);
+    if (value !== 'key' && value !== 'employee_id') {
       updatedControls[value] = updateObject(state[control][value], {
         value: values[value],
         valid: true
