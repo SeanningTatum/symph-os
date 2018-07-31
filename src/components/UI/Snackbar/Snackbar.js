@@ -14,8 +14,6 @@ const Snackbar = props => {
     classes.push('show');
   } 
 
-  console.log(classes.join(' '));
-
   return (
     <div id="snackbar" className={classes.join(' ')}>{props.message}</div>
   )
