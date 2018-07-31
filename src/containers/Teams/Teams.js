@@ -7,21 +7,11 @@ import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
 class Teams extends Component {
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
+
   componentDidMount() {
     this.props.getAll('teams', 'teams-api');
   }
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *             Redux             *
-  * - - - - - - - - - - - - - - - */
+
   render() {
     return (
       <React.Fragment>
