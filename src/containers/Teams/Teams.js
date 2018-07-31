@@ -7,6 +7,19 @@ class Teams extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
+  componentDidMount() {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",        
+        "Authorization": 'Bearer ' + localStorage.getItem('token')
+    }
+  }
+    fetch('http://localhost:8080/_ah/api/teams-api/v1/get', options)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+  }
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
   * - - - - - - - - - - - - - - - */
