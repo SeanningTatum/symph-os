@@ -49,12 +49,17 @@ export function add(tableName, formControls, api, tags = []) {
     try {
       const response = await fetch(url + `${api}/v1/add`, options);
       const data = await response.json();
+
       dispatch(showSnackbar('Successfully Added!', 'success'));
-      setTimeout(() => dispatch(hideSnackbar()), 3000);
       dispatch(addSuccess(tableName, data));
+
     } catch (error) {
-      console.error(error);
-    } 
+      dispatch(showSnackbar(error.message, 'error'));
+
+    } finally {
+      setTimeout(() => dispatch(hideSnackbar()), 3000);
+
+    }
   }
 };
 /*=====   End of add  ======*/
@@ -73,22 +78,28 @@ const getAllSuccess = (tableName, dataArray) => ({
 const getAllError = () => ({type: GET_ALL_ERROR})
 
 export function getAll(tableName, api) {
+
+  const options = {
+    headers: {
+      "Content-Type": "application/json",        
+      "Authorization": 'Bearer ' + localStorage.getItem('token')
+    }
+  }
+
   return async dispatch => {
     dispatch(getAllStart());
     try {
-      const response = await fetch(url + `${api}/v1/get`, {
-        headers: {
-          "Content-Type": "application/json",        
-          "Authorization": 'Bearer ' + localStorage.getItem('token')
-        }
-      });
+      const response = await fetch(url + `${api}/v1/get`, options);
       const dataArray = await response.json();
 
       dispatch(getAllSuccess(tableName, dataArray[tableName]));
+
     } catch (error) {
       dispatch(getAllError());
+
     } finally {
       dispatch(getAllEnd())
+
     }
   }
 }
