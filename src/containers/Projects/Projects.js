@@ -1,39 +1,54 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import AddButton from 'components/TablePage/AddButton/AddButton';
+import Loading from 'components/UI/Loading/Loading';
 
 // Utils
-import { projectColumns } from 'utils/tableHeaders';
 import BootstrapTable from 'react-bootstrap-table-next';
+import { projectColumns } from 'utils/tableHeaders'; 
 
+// Redux
+import { connect } from 'react-redux';
+import * as tableActions from 'store/actions/tables';
 
 class Projects extends Component {
-  /*- - - - - - - - - - - - - - - -
-  *        Lifecycle Hooks        *
-  * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *           Functions           *
-  * - - - - - - - - - - - - - - - */
-  /*- - - - - - - - - - - - - - - -
-  *             Render            *
-  * - - - - - - - - - - - - - - - */
+
+  componentDidMount() {
+    this.props.getAll('projects', 'projects-api');
+  }
+
+  rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      this.props.history.push(`/projects/${row.key}`);
+    }
+  }
 
   render() {
     return (
       <React.Fragment>
-        <AddButton entity="project"/>
-        <div style={{width: '100%', height: '100%', display: 'flex'}}>
+        <AddButton entity='project' />
+        {!this.props.loading ? (
           <BootstrapTable
-            keyField="id"
+            keyField='key'
+            data={this.props.projects}
             columns={projectColumns}
-            data={[]} />
-        </div>
+            rowEvents={this.rowEvents}/>
+          ) : (
+          <Loading />
+        )}
       </React.Fragment>
-    )
+    );
   }
 }
 
-/*- - - - - - - - - - - - - - - -
-*             Redux             *
-* - - - - - - - - - - - - - - - */
+const mapStateToProps = state => {
+  return {
+    projects: state.table.projects,
+    loading: state.table.loading
+  }
+}
 
-export default Projects;
+const mapDispatchToProps = dispatch => ({
+  getAll: (tableName, apiName) => dispatch(tableActions.getAll(tableName, apiName))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
