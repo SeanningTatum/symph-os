@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import * as formControlActions from 'store/actions/formControls';
 import * as profileActions from 'store/actions/profiles';
 
-export class ContactProfile extends Component {
+class ContactProfile extends Component {
 
   state = {
     edit: false
@@ -37,9 +37,10 @@ export class ContactProfile extends Component {
     this.props.updateControls('contactControls', this.props.contactProfile);
   }
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
     event.preventDefault();
-    this.props.update('contacts-api', this.props.contactProfile.key, this.props.contactControls);
+    await this.props.update('contacts-api', this.props.contactProfile.key, this.props.contactControls);
+    this.props.history.push('/contacts');
   }
 
   /*- - - - - - - - - - - - - - - -

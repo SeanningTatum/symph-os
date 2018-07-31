@@ -10,7 +10,7 @@ import * as tableActions from 'store/actions/tables';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
 
-export class Contacts extends Component {
+class Contacts extends Component {
 
   componentDidMount() {
     this.props.getAll('contacts', 'contacts-api');

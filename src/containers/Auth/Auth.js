@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import * as authActions from 'store/actions/auth';
 
-export class Auth extends Component {
+class Auth extends Component {
   static propTypes = {
 
   }

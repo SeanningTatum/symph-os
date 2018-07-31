@@ -7,10 +7,10 @@ import Loading from 'components/UI/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
-import * as profileActions from 'store/actions/profiles';
 import * as formControlActions from 'store/actions/formControls';
+import * as profileActions from 'store/actions/profiles';
 
-class clientProfile extends Component {
+class ClientProfile extends Component {
 
   state = {
     edit: false
@@ -23,7 +23,6 @@ class clientProfile extends Component {
   async componentDidMount() {
     const clientID = this.props.location.pathname.split("/")[2];
     await this.props.get('clients-api', clientID);
-    this.props.updateControls('clientControls', this.props.clientProfile);
   }
 
   componentWillUnmount() {
@@ -35,6 +34,13 @@ class clientProfile extends Component {
 
   toggleEdit = () => {
     this.setState(prevState => ({ edit: !prevState.edit }));
+    this.props.updateControls('clientControls', this.props.clientProfile);
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.update('clients-api', this.props.clientProfile.key, this.props.clientControls);
+    this.props.history.push('/clients');
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -69,18 +75,20 @@ class clientProfile extends Component {
           {!this.state.edit ? (
             <ProfileDetails profile={clientProfile} />
           ) : (
-            <Forms
-              formElements={formElementsArray}
-              clicked={this.onSubmit}
-              controls={this.props.contactControls}
-              controlName={'contactControls'} />
+            <div style={{height: '100%', width: '100%', display: 'flex', flexDirection: 'column'}}>
+              <Forms
+                formElements={formElementsArray}
+                clicked={this.onSubmit}
+                controls={this.props.clientControls}
+                controlName={'clientControls'}/>
+            </div>
           )}
         </div>
       </React.Fragment>
     ) : (
       <Loading />
     )
-
+    
     return profile;
   }
 }
@@ -88,11 +96,13 @@ class clientProfile extends Component {
 const mapStateToProps = state => ({
   clientProfile: state.profile.profile,
   clientControls: state.formControl.clientControls,
-  loading: state.profile.loading
+  loading: state.profile.loading,
 })
 
 const mapDispatchToProps = dispatch => ({
   get: (api, id) => dispatch(profileActions.get(api, id)),
+
+  update: (api, id, controls) => dispatch(profileActions.update(api, id, controls)),
 
   resetProfile: () => dispatch(profileActions.resetProfile()),
 
@@ -101,4 +111,4 @@ const mapDispatchToProps = dispatch => ({
   )
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(clientProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(ClientProfile);
