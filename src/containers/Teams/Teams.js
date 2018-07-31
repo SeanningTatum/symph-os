@@ -2,23 +2,16 @@ import React, { Component } from 'react';
 import AddButton from 'components/TablePage/AddButton/AddButton';
 import Card from 'components/UI/Card/Card';
 
+// Redux
+import { connect } from 'react-redux';
+import * as tableActions from 'store/actions/tables';
 
 class Teams extends Component {
   /*- - - - - - - - - - - - - - - -
   *        Lifecycle Hooks        *
   * - - - - - - - - - - - - - - - */
   componentDidMount() {
-    const options = {
-      headers: {
-        "Content-Type": "application/json",        
-        "Authorization": 'Bearer ' + localStorage.getItem('token')
-    }
-  }
-    fetch('http://localhost:8080/_ah/api/teams-api/v1/get', options)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
+    this.props.getAll('teams', 'teams-api');
   }
   /*- - - - - - - - - - - - - - - -
   *           Functions           *
@@ -34,8 +27,8 @@ class Teams extends Component {
       <React.Fragment>
         <AddButton entity="team"/>
         <div style={{width: '100%', height: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
-          {[1,2,3,4].map(num => (
-            <Card key={num} />
+          {this.props.teams.map(team => (
+            <Card key={team.name} {...team} />
           ))}
         </div>
       </React.Fragment>
@@ -43,4 +36,15 @@ class Teams extends Component {
   }
 }
 
-export default Teams;
+const mapStateToProps = state => {
+  return {
+    teams: state.table.teams,
+    loading: state.table.loading
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  getAll: (tableName, api) => dispatch(tableActions.getAll(tableName, api))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Teams);
