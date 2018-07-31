@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/UI/Loading/Loading';
 import AddButton from 'components/TablePage/AddButton/AddButton';
 
 // Redux

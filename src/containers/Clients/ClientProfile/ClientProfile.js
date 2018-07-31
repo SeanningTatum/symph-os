@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/UI/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';

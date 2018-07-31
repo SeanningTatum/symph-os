@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AddButton from 'components/TablePage/AddButton/AddButton';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/UI/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AddButton from 'components/TablePage/AddButton/AddButton';
-import Card from 'components/Card/Card';
+import Card from 'components/UI/Card/Card';
 
 
 class Teams extends Component {
