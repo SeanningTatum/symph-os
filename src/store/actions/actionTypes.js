@@ -1,3 +1,7 @@
+// SNACKBAR
+export const SHOW_SNACKBAR = 'SHOW_SNACKBAR';
+
+
 // FORM CONTROLS
 export const INPUT_CHANGED = 'INPUT_CHANGED_HANDLER';
 export const ON_BLUR = 'ON_BLUR';
