@@ -16,14 +16,22 @@ export class Employee extends Component {
     this.props.getAll('employees', 'employees-api');
   }
 
+
+  rowEvents = {
+    onClick: (e, row, rowIndex) => {
+      this.props.history.push(`/employees/${row.employee_id}`)
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
-        <AddButton entity='employee' />
+        <AddButton entity='employee'/>
         {!this.props.loading ? (
           <BootstrapTable 
             keyField="employee_id"
             columns={employeeColumns}
+            rowEvents={this.rowEvents}
             data={this.props.employees}
           />) : (
             <Loading />
