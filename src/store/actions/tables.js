@@ -31,7 +31,7 @@ export function add(tableName, formControls, api, tags = []) {
 
   // get the data from given tags and convert it to array
   for (const key in tags) {
-    data['members'] = [...(data['members']) || [], tags[key].value];
+    data['employees'] = [...(data['employees']) || [], tags[key].value];
   }
 
   console.log(data);
