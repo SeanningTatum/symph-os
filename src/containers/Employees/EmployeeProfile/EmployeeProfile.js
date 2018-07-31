@@ -68,7 +68,7 @@ export class employeeProfile extends Component {
       <React.Fragment>
         <ProfileHeader 
           clicked={this.toggleEdit} 
-          name={this.props.employeeProfile.name}
+          name={this.props.employeeProfile.fname + " " +this.props.employeeProfile.lname}
           edit={this.state.edit}/>
         <div className="profile--info-area">
           {!this.state.edit ? (
