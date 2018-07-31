@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./ContactProfile.scss";
 
 import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
