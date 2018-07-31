@@ -9,7 +9,7 @@ import * as tableActions from 'store/actions/tables';
 const selectForms = [
   {option: 'projectManagerOptions', label: 'Project Manager'},
   {option: 'clientOptions', label: 'Client'},
-  {option: 'contactOptions', label: 'Contact'},
+  {option: 'contactOptions', label: 'Client Contact'},
   {option: 'teamOptions', label: 'Team'},
 ];
 
@@ -22,7 +22,7 @@ class AddProject extends Component {
     teamOptions: [],
     values: {
       client: '',
-      contact: '',
+      client_contact: '',
       project_manager: '',
       team: ''
     }
@@ -77,6 +77,37 @@ class AddProject extends Component {
       .then(options => this.setState({teamOptions: options.teams}));
   }
 
+  onSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {};
+
+    for (const key in this.state.values) {
+      data[key] = this.state.values[key];
+    }
+
+    for (const key in this.props.controls) {
+      data[key] = (isNaN(+this.props.controls[key].value)) ? this.props.controls[key].value : +this.props.controls[key].value;
+    }
+
+    console.log(data);
+
+    const options = {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      },
+      body: JSON.stringify(data)
+    }
+
+    fetch(`http://localhost:8080/_ah/api/projects-api/v1/add`, options)
+      .then(response => response.json())
+      .then(data => console.log(data));
+
+    this.props.history.push('/projects');
+  }
+
   render() {
     // Change controls into array so we can iterate over it
     const formElementsArray = [];
@@ -89,7 +120,8 @@ class AddProject extends Component {
         formElements={formElementsArray}
         clicked={this.onSubmit}
         controls={this.props.controls}
-        controlName='projectControls' >
+        controlName='projectControls' 
+        clicked={this.onSubmit}>
 
         {selectForms.map(selectForm => (
           <React.Fragment key={selectForm.option}>
