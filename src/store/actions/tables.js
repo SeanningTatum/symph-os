@@ -6,6 +6,7 @@ import {
   GET_ALL_START, 
   GET_ALL_SUCCESS
 }  from './actionTypes';
+import { showSnackbar } from './layout';
 
 const url = "http://localhost:8080/_ah/api/";
 
@@ -48,6 +49,7 @@ export function add(tableName, formControls, api, tags) {
     try {
       const response = await fetch(url + `${api}/v1/add`, options);
       const data = await response.json();
+      dispatch(showSnackbar('Successfully Added!', 'success'))
       dispatch(addSuccess(tableName, data));
     } catch (error) {
       console.error(error);

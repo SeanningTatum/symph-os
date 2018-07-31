@@ -100,7 +100,7 @@ class Layout extends Component {
     return (
       <div className="app-container">
         
-        <Snackbar />
+        <Snackbar message={this.props.message} type={this.props.type} showSnackbar={this.props.showSnackbar}/>
         <Navbar onLogout={this.props.logout} />
         <Sidenav open={this.state.sideNavOpen} />
 
@@ -124,7 +124,9 @@ class Layout extends Component {
 }
 
 const mapStateToProps = state => ({
-
+  showSnackbar: state.layout.showSnackbar,
+  type: state.layout.type,
+  message: state.layout.message
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -7,15 +7,15 @@ const initialState = {
 }
 
 const showSnackbar = (state, action) => {
-  const { type, message } = action;
-  return {...state, type, message};
+  const { message, msgType } = action;
+  return {...state, type: msgType, message, showSnackbar: true};
 }
 
 export default (state = initialState, action) => {
-  switch (action.type) {
+    switch (action.type) {
 
-  case SHOW_SNACKBAR: return showSnackbar(state, action);
+    case SHOW_SNACKBAR: return showSnackbar(state, action);
 
-  default: return state
+    default: return state
   }
 }

@@ -1,7 +1,7 @@
 import {SHOW_SNACKBAR} from './actionTypes';
 
-export const showSnackbar = (message, type) => ({
+export const showSnackbar = (message, msgType) => ({
   type: SHOW_SNACKBAR,
   message,
-  type
+  msgType
 })
