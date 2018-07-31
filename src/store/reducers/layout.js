@@ -1,4 +1,4 @@
-import {SHOW_SNACKBAR} from 'store/actions/actionTypes';
+import {SHOW_SNACKBAR, HIDE_SNACKBAR} from 'store/actions/actionTypes';
 
 const initialState = {
   showSnackbar: false,
@@ -11,10 +11,13 @@ const showSnackbar = (state, action) => {
   return {...state, type: msgType, message, showSnackbar: true};
 }
 
+const hideSnackbar = (state) => ({...state, showSnackbar: false});
+
 export default (state = initialState, action) => {
     switch (action.type) {
 
     case SHOW_SNACKBAR: return showSnackbar(state, action);
+    case HIDE_SNACKBAR: return hideSnackbar(state);
 
     default: return state
   }
