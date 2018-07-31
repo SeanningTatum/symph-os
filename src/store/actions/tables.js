@@ -26,7 +26,7 @@ export function add(tableName, formControls, api, tags = []) {
 
   // get the data from given formControls
   for (const key in formControls) {
-    data[key] = formControls[key].value;
+    data[key] = formControls[key].value.trim();
   }
 
   // get the data from given tags and convert it to array
