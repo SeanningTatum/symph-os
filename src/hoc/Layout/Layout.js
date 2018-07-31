@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import './Layout.scss';
 
+import Snackbar from 'components/UI/Snackbar/Snackbar';
+
+// Redux
 import { connect } from 'react-redux';
 import * as authActions from 'store/actions/auth';
 
@@ -96,7 +99,8 @@ class Layout extends Component {
     const display = (this.state.showTitles) ? 'block' : 'none';
     return (
       <div className="app-container">
-
+        
+        <Snackbar />
         <Navbar onLogout={this.props.logout} />
         <Sidenav open={this.state.sideNavOpen} />
 
