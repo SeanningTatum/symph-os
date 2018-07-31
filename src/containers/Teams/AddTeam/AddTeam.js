@@ -57,7 +57,6 @@ class AddTeam extends Component {
 
           <Select
             isMulti
-            name="colors"
             options={this.state.options}
             onChange={this.selectChangeHandler}
             className="basic-multi-select"
