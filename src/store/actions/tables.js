@@ -92,13 +92,16 @@ export function getAll(tableName, api) {
       const response = await fetch(url + `${api}/v1/get`, options);
       const dataArray = await response.json();
 
-      dispatch(getAllSuccess(tableName, dataArray[tableName]));
+      console.log(dataArray);
 
+      dispatch(getAllSuccess(tableName, dataArray[tableName]));
     } catch (error) {
       dispatch(getAllError());
+      dispatch(showSnackbar(error.message, 'error'));
 
     } finally {
-      dispatch(getAllEnd())
+      setTimeout(() => dispatch(hideSnackbar()), 3000);
+      dispatch(getAllEnd());
 
     }
   }

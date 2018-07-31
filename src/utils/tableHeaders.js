@@ -5,18 +5,18 @@
 
 // Clients
 export const clientColumns = [{
-  dataField: 'id',
+  dataField: 'key',
   text: 'Client ID',
   sort: true
 }, {
-  dataField: 'client_name',
+  dataField: 'name',
   text: 'Name',
   sort: true
 }, {
   dataField: 'legal_name',
   text: 'Legal Name'
 }, {
-  dataField: 'type',
+  dataField: 'c_type',
   text: 'Type'
 }];
 
@@ -69,7 +69,7 @@ export const employeeColumns = [{
   dataField: 'position',
   text: 'Position'
 }, {
-  dataField: 'working_arrangement',
+  dataField: 'work_arrangement',
   text: 'Working Arrangement'
 }, {
   dataField: 'work_started',
@@ -79,6 +79,7 @@ export const employeeColumns = [{
   text: 'Last day'
 },];
 
+// Projects
 export const projectColumns = [{
   dataField: 'project_name',
   text: 'Project Name'

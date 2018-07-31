@@ -9,5 +9,5 @@ export const employeeControls = {
   nickname: new Input('input', 'Nickname', {required: false}, true),
   email: new Input('input', 'Email*', {required: true, isEmail: true}, false, 'email'),
   position: new Input('input', 'Position*', {required: true}),
-  working_arrangement: new Select('select', 'Working Arrangement*', {required: true}, options)
+  work_arrangement: new Select('select', 'Work Arrangement*', {required: true}, options)
 }
