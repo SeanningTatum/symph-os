@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Input from 'components/Input/Input';
+import Input from 'components/UI/Input/Input';
 
 import { connect } from 'react-redux';
 import * as formControlActions from 'store/actions/formControls';
