@@ -50,7 +50,7 @@ class Forms extends Component {
           <button
             className="btn btn-primary"
             onClick={this.props.clicked}
-            disabled={!this.props.selectsValid || !this.props.isFormValid}>Submit</button>
+            disabled={!this.props.isFormValid || !this.props.selectsValid}>Submit</button>
         </div>
       </form>
     )
