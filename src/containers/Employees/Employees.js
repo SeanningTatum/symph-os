@@ -28,7 +28,7 @@ export class Employee extends Component {
         <AddButton entity='employee'/>
         {!this.props.loading ? (
           <BootstrapTable 
-            keyField="employee_id"
+            keyField="key"
             columns={employeeColumns}
             rowEvents={this.rowEvents}
             data={this.props.employees}
