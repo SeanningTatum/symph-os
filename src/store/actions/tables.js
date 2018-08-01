@@ -21,20 +21,19 @@ export const addSuccess = (tableName, data) => ({
 
 export const addError = () => ({type: ADD_ERROR});
 
-export function add(tableName, formControls, api, tags = []) {
-  const data = {};
+export function add(tableName, formControls, api, obj = {}) {
+  let data = {};
 
   // get the data from given formControls
   for (const key in formControls) {
-    data[key] = formControls[key].value.trim();
+    if (typeof(formControls[key].value) !== 'number' ) {
+      data[key] = formControls[key].value.trim();
+    } else {
+      data[key] = formControls[key].value;
+    }
   }
 
-  // get the data from given tags and convert it to array
-  for (const key in tags) {
-    data['employees'] = [...(data['employees']) || [], tags[key].value];
-  }
-
-  console.log(data);
+  data = {...data, ...obj};
 
   const options = {
     method: "POST",
@@ -52,7 +51,6 @@ export function add(tableName, formControls, api, tags = []) {
 
       dispatch(showSnackbar('Successfully Added!', 'success'));
       dispatch(addSuccess(tableName, data));
-
     } catch (error) {
       dispatch(showSnackbar(error.message, 'error'));
 
