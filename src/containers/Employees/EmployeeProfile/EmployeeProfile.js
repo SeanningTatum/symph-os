@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import * as formControlActions from 'store/actions/formControls';
 import * as profileActions from 'store/actions/profiles';
 
-export class employeeProfile extends Component {
+export class EmployeeProfile extends Component {
 
   state = {
     edit: false
@@ -110,4 +110,4 @@ const mapDispatchToProps = dispatch => ({
   )
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(employeeProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeProfile);
