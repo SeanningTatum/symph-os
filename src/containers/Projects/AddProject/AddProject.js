@@ -25,19 +25,32 @@ class AddProject extends Component {
       client_contact: '',
       project_manager: '',
       team: ''
-    }
+    },
+    selectsValid: false
   }
 
   componentDidMount() {
     this.getOptions();
+    this.setState({selectsValid: this.areSelectsValid()});
   }
 
-  onSubmit = (event) => {
-    event.preventDefault();
-    this.props.add(this.props.controls);
-    this.props.history.push('/projects');
+  componentDidUpdate(_, prevState) {
+    if (this.state.values !== prevState.values) {
+      this.setState({selectsValid: this.areSelectsValid()});
+    }
   }
 
+  areSelectsValid = () => {
+    for (const key in this.state.values) {
+      console.log(key, this.state.values[key])
+      if (this.state.values[key] === '') {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  
   selectChangeHandler = (valueObj, name) => {
     const valueName = name.replace(/\s+/, "_").toLowerCase();
     const newValues = {...this.state.values};
@@ -98,7 +111,8 @@ class AddProject extends Component {
         formElements={formElementsArray}
         clicked={this.onSubmit}
         controls={this.props.controls}
-        controlName='projectControls'>
+        controlName='projectControls'
+        selectsValid={this.state.selectsValid}>
 
         {selectForms.map(selectForm => (
           <React.Fragment key={selectForm.option}>
