@@ -16,7 +16,6 @@ export class Employee extends Component {
     this.props.getAll('employees', 'employees-api');
   }
 
-
   rowEvents = {
     onClick: (e, row, rowIndex) => {
       this.props.history.push(`/employees/${row.employee_id}`)

@@ -47,6 +47,7 @@ function get(state, action) {
 =============================================*/
 function add(state, action) {
   const { tableName, data } = action;
+  console.log(data);
   return {
     ...state,
     [tableName]: [...(state[tableName]) || [], data]
