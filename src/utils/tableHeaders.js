@@ -4,17 +4,14 @@
 
 
 // Clients
-export const clientColumns = [{
-  dataField: 'key',
-  text: 'Client ID',
-  sort: true
-}, {
+export const clientColumns = [ {
   dataField: 'name',
   text: 'Name',
   sort: true
 }, {
   dataField: 'legal_name',
-  text: 'Legal Name'
+  text: 'Legal Name',
+  sort: true
 }, {
   dataField: 'c_type',
   text: 'Type'
@@ -22,9 +19,6 @@ export const clientColumns = [{
 
 // Contacts
 export const contactColumns = [{
-  dataField: 'key',
-  text: 'Contact ID'
-}, {
   dataField: 'name',
   text: 'Name',
   sort: true
@@ -47,15 +41,14 @@ export const contactColumns = [{
 }];
 
 // Employees
-export const employeeColumns = [{
-  dataField: 'key',
-  text: 'Employee ID'
-}, {
+export const employeeColumns = [ {
   dataField: 'fname',
-  text: 'First Name'
+  text: 'First Name',
+  sort: true
 }, {
   dataField: 'lname',
-  text: 'Last Name'
+  text: 'Last Name',
+  sort: true
 }, {
   dataField: 'mi',
   text: 'Middle Initial'
@@ -67,19 +60,19 @@ export const employeeColumns = [{
   text: 'Email'
 },{
   dataField: 'position',
-  text: 'Position'
+  text: 'Position',
+  sort: true
 }, {
   dataField: 'team',
-  text: 'Team'
+  text: 'Team',
+  sort: true
 },{
   dataField: 'work_arrangement',
-  text: 'Working Arrangement'
+  text: 'Working Arrangement',
+  sort: true
 }, {
-  dataField: 'work_started',
-  text: 'Started Working'
-}, {
-  dataField: 'last_day',
-  text: 'Last day'
+  dataField: 'status',
+  text: 'Active'
 },];
 
 // Projects
