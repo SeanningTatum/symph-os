@@ -39,7 +39,7 @@ export class employeeProfile extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.update('employees-api', this.props.employeeProfile.employee_id, this.props.employeeControls);
+    this.props.update('employees-api', this.props.employeeProfile.key, this.props.employeeControls);
   }
 
   /*- - - - - - - - - - - - - - - -
