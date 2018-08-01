@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddButton from 'components/TablePage/AddButton/AddButton';
 import Card from 'components/UI/Card/Card';
+import Loading from 'components/UI/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
@@ -13,13 +14,22 @@ class Teams extends Component {
   }
 
   render() {
+
+    const content = (!this.props.loading) ? (
+      <React.Fragment>
+        {this.props.teams.map(team => (
+          <Card key={team.name} {...team} />
+        ))}
+      </React.Fragment>
+    ) : (
+      <Loading />
+    )
+
     return (
       <React.Fragment>
         <AddButton entity="team"/>
         <div style={{width: '100%', height: '100%', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
-          {this.props.teams.map(team => (
-            <Card key={team.name} {...team} />
-          ))}
+          {content}
         </div>
       </React.Fragment>
     )
