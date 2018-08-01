@@ -31,7 +31,7 @@ function getEnd(state) {
   }
 }
 
-function get(state, action) {
+function getAll(state, action) {
   const { tableName, dataArray } = action;
 
   return {
@@ -47,7 +47,7 @@ function get(state, action) {
 =============================================*/
 function add(state, action) {
   const { tableName, data } = action;
-  console.log(data);
+
   return {
     ...state,
     [tableName]: [...(state[tableName]) || [], data]
@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_START: return getStart(state);
     case GET_ALL_END: return getEnd(state);
-    case GET_ALL_SUCCESS: return get(state, action);
+    case GET_ALL_SUCCESS: return getAll(state, action);
     case ADD_SUCCESS: return add(state, action);
 
     default: return state
