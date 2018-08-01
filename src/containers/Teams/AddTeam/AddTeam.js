@@ -20,13 +20,32 @@ class AddTeam extends Component {
     
     values: {
       members: [],
-      team_leader: '',
+      leader: '',
       project_manager: '',
-    }
+    },
+
+    selectValid: false
   };
 
   componentDidMount() {
     this.getOptions();
+    this.setState({selectValid: this.areSelectsValid()});
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.values !== prevState.values) {
+      this.setState({selectValid: this.areSelectsValid()});
+      console.log(this.state.selectValid)
+    }
+  }
+
+  areSelectsValid = () => {
+    const values = this.state.values;
+    return (
+      values.members.length !== 0 &&
+      values.team_leader !== '' &&
+      values.project_manager !== ''
+    );
   }
 
   getOptions = () => {
@@ -87,7 +106,8 @@ class AddTeam extends Component {
           formElements={formElementsArray}
           clicked={this.onSubmit}
           controls={this.props.controls}
-          controlName='teamControls'>
+          controlName='teamControls'
+          selectsValid={this.state.selectValid}>
           
           {selectForms.map(selectForm => (
             <React.Fragment key={selectForm.option}>

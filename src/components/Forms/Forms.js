@@ -11,15 +11,20 @@ class Forms extends Component {
     formElements: PropTypes.array.isRequired,
     clicked: PropTypes.func.isRequired,
     controls: PropTypes.object.isRequired,
-    controlName: PropTypes.string.isRequired // ex: contactControls
+    controlName: PropTypes.string.isRequired, // ex: contactControls
+    selectsValid: PropTypes.bool
+  }
+
+  static defaultProps = {
+    selectsValid: true
   }
 
   componentDidMount() {
     this.props.checkIsValid(this.props.controlName);
   }
 
-  componentDidUpdate(prevState) {
-    if (prevState.controls !== this.props.controls) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.controls !== this.props.controls) {
       this.props.checkIsValid(this.props.controlName);
     }
   }
@@ -45,7 +50,7 @@ class Forms extends Component {
           <button
             className="btn btn-primary"
             onClick={this.props.clicked}
-            disabled={!this.props.isFormValid}>Submit</button>
+            disabled={!this.props.isFormValid || !this.props.selectsValid}>Submit</button>
         </div>
       </form>
     )

@@ -45,9 +45,7 @@ const updateControls = (state, action) => {
   const { control, values } = action;
   let updatedControls = {...(state[control])};
 
-
   for (const value in values) {
-    console.log(value);
     if (value !== 'key' && value !== 'employee_id') {
       updatedControls[value] = updateObject(state[control][value], {
         value: values[value],
