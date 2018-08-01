@@ -4,7 +4,6 @@ import Select from 'react-select';
 
 // Redux
 import { connect } from 'react-redux';
-import * as tableActions from 'store/actions/tables';
 
 const selectForms = [
   {option: 'projectManagerOptions', label: 'Project Manager'},
@@ -146,7 +145,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls) => dispatch(tableActions.add('projects', controls, 'projects-api')),
+  
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProject);
