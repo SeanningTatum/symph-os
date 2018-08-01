@@ -30,7 +30,7 @@ class Forms extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetForm(this.props.controlName);
+    // this.props.resetForm(this.props.controlName);
   }
 
   render() {   
@@ -50,7 +50,7 @@ class Forms extends Component {
           <button
             className="btn btn-primary"
             onClick={this.props.clicked}
-            disabled={!this.props.isFormValid || !this.props.selectsValid}>Submit</button>
+            disabled={!this.props.selectsValid || !this.props.isFormValid}>Submit</button>
         </div>
       </form>
     )
