@@ -7,7 +7,7 @@ const ProfileHeader = ({clicked, name, edit}) => (
     <button
       className="btn"
       style={{ marginLeft: '5rem', paddingTop: 0 }}
-      onClick={clicked}>{!edit ? 'Edit' : 'Save'}</button>
+      onClick={clicked}>{!edit ? 'Edit' : 'Go Back'}</button>
   </div>
 )
 
