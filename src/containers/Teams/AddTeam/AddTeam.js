@@ -55,50 +55,22 @@ class AddTeam extends Component {
     const valueName = name.replace(/\s+/, "_").toLowerCase();
     const newValues = {...this.state.values};
   
-
     for (const key in valueObj) {
       if (valueName === 'members') {
         newValues[valueName] = [...(this.state.values[valueName] || []), valueObj[key].value];
       } else {
-        console.log('normal')
         newValues[valueName] = valueObj.value;
       }
     }
-
-    console.log(newValues)
   
     this.setState({values: newValues})
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    const data = {};
-
-    for (const key in this.props.controls) {
-      data[key] = (isNaN(+this.props.controls[key].value)) 
-        ? this.props.controls[key].value.trim() 
-        : +this.props.controls[key].value;
-    }
-
-    for (const key in this.state.values) {
-      data[key] = this.state.values[key];
-    }
-
-    console.log(data);
-
-    const options = {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem('token')
-      },
-      body: JSON.stringify(data)
-    }
-
-    fetch(`http://localhost:8080/_ah/api/teams-api/v1/add`, options)
-      .then(response => response.json())
-      .then(data => console.log(data));
+    const data = {...this.state.values};
     
+    this.props.add(this.props.controls, data);
     this.props.history.push('/teams');
   }
 
@@ -142,7 +114,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls, members) => dispatch(tableActions.add('teams', controls, 'teams-api', members)),
+  add: (controls, data) => dispatch(tableActions.add('teams', controls, 'teams-api', data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTeam);

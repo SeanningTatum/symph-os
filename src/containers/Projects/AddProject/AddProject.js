@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 // Redux
 import { connect } from 'react-redux';
+import * as tableActions from 'store/actions/tables';
 
 const selectForms = [
   {option: 'projectManagerOptions', label: 'Project Manager'},
@@ -79,30 +80,8 @@ class AddProject extends Component {
   onSubmit = (event) => {
     event.preventDefault();
 
-    const data = {};
-
-    for (const key in this.state.values) {
-      data[key] = this.state.values[key];
-    }
-
-    for (const key in this.props.controls) {
-      data[key] = (isNaN(+this.props.controls[key].value)) ? this.props.controls[key].value : +this.props.controls[key].value;
-    }
-
-    console.log(data);
-
-    const options = {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem('token')
-      },
-      body: JSON.stringify(data)
-    }
-
-    fetch(`http://localhost:8080/_ah/api/projects-api/v1/add`, options)
-      .then(response => response.json())
-      .then(data => console.log(data));
+    const data = {...this.state.values};
+    this.props.add(this.props.controls, data);
 
     this.props.history.push('/projects');
   }
@@ -119,8 +98,7 @@ class AddProject extends Component {
         formElements={formElementsArray}
         clicked={this.onSubmit}
         controls={this.props.controls}
-        controlName='projectControls' 
-        clicked={this.onSubmit}>
+        controlName='projectControls'>
 
         {selectForms.map(selectForm => (
           <React.Fragment key={selectForm.option}>
@@ -145,7 +123,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  
+  add: (controls, data) => dispatch(tableActions.add('projects', controls, 'projects-api', data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProject);
