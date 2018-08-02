@@ -15,7 +15,8 @@ export class EmployeeProfile extends Component {
 
   state = {
     edit: false,
-    generalInfo: []
+    generalInfo: [],
+    employmentInfo: []
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -26,6 +27,7 @@ export class EmployeeProfile extends Component {
     const employeeID = this.props.location.pathname.split("/")[2];
     await this.props.get('employees-api', employeeID);
     this.initGeneralInfo();
+    this.initEmploymentInfo();
   }
 
   componentWillUnmount() {
@@ -36,20 +38,40 @@ export class EmployeeProfile extends Component {
   * - - - - - - - - - - - - - - - */
 
   initGeneralInfo = () => {
-    const { 
-      fname, lname, nickname, email, contact_number, 
-      current_skills, future_skills,personality_type } = this.props.employeeProfile;
+    const {
+      fname, lname, nickname, email, contact_number,
+      current_skills, future_skills, personality_type } = this.props.employeeProfile;
 
-    this.setState({generalInfo: [
-        {value: fname, label: "First Name", elementType: 'input', key: 'fname'},
-        {value: lname, label: "Last Name", elementType: 'input', key: 'lname'},
-        {value: nickname, label: "Nickname", elementType: 'input', key: 'nickname'},
-        {value: email, label: 'Email', elementType: 'input', key: 'email'},
-        {value: contact_number || '', label: 'Contact Number', elementType: 'input', key: 'contact_number'},
-        {value: current_skills || '', label: 'Current Skills and Technologies', elementType: 'textarea', key: 'current_skills'},
-        {value: future_skills || '', label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'textarea', key: 'future_skills'},
+    this.setState({
+      generalInfo: [
+        { value: fname, label: "First Name", elementType: 'input', key: 'fname' },
+        { value: lname, label: "Last Name", elementType: 'input', key: 'lname' },
+        { value: nickname, label: "Nickname", elementType: 'input', key: 'nickname' },
+        { value: email, label: 'Email', elementType: 'input', key: 'email' },
+        { value: contact_number || '', label: 'Contact Number', elementType: 'input', key: 'contact_number' },
+        { value: current_skills || '', label: 'Current Skills and Technologies', elementType: 'textarea', key: 'current_skills' },
+        { value: future_skills || '', label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'textarea', key: 'future_skills' },
         // {value: personality_type || '', label: 'Personality Type', elementType: 'input', key: ''}
-    ]});
+      ]
+    });
+  }
+
+  initEmploymentInfo = () => {
+    const {
+      position, working_arrangement, team,
+      employment_status, work_started, work_end, motto, } = this.props.employeeProfile;
+
+    this.setState({
+      employmentInfo: [
+        { value: position || '', label: 'Position', elementType: 'input', key: 'position' },
+        { value: working_arrangement || '', label: 'Working Arrangement', elementType: 'textarea', key: 'working_arrangement' },
+        { value: team || '', label: 'Team', elementType: 'input', key: 'team' },
+        { value: employment_status || '', label: 'Employment Status', elementType: 'textarea', key: 'employment_status' },
+        { value: work_started || '', label: 'Work Started', elementType: 'input', key: 'work_started' },
+        { value: work_end || '', label: 'Work Ended', elementType: 'textarea', key: 'work_end' },
+        { value: motto || '', label: 'Motto', elementType: 'textarea', key: 'motto' },        
+      ]
+    })
   }
 
   onInputChangeHandler = (arrayName, label, event) => {
@@ -58,24 +80,24 @@ export class EmployeeProfile extends Component {
 
     newData[result].value = event.target.value;
 
-    this.setState({[arrayName]: newData});
+    this.setState({ [arrayName]: newData });
   }
 
   toggleEdit = () => {
-    this.setState(prevState => ({ edit: !prevState.edit }));
+    this.setState(prevState => ({ edit: true }));
     this.props.updateControls('employeeUpdateControls', this.props.employeeProfile);
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.setState({edit: true});
-    
+    this.setState({ edit: false });
+
 
     // Put generalInfo in data obj
     const data = {};
-  
+
     for (const obj in this.state.generalInfo) {
-      const {key, value} = this.state.generalInfo[obj];
+      const { key, value } = this.state.generalInfo[obj];
       data[key] = value;
     }
 
@@ -93,34 +115,30 @@ export class EmployeeProfile extends Component {
 
     return (!this.props.loading) ? (
       <React.Fragment>
-        <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} save={this.onSubmit}/>
+        <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} save={this.onSubmit} />
         <ProfileDetails url={url}>
           <h3>General Info</h3>
           <Switch>
             <Route path={`${url}/general-info`} render={() => (
               this.state.generalInfo.map((info, ndx) => (
-                <FieldGroup 
-                  {...info} 
-                  edit={this.state.edit} 
-                  key={ndx} 
+                <FieldGroup
+                  {...info}
+                  edit={this.state.edit}
+                  key={ndx}
                   onChange={this.onInputChangeHandler}
                   arrayName="generalInfo" />
               ))
             )} />
             <Route path={`${url}/employment`} render={() => (
-              <React.Fragment>
-                {/* <FieldGroup value={contact_number} label="Position" /> */}
-                {/* <FieldGroup value={contact_number} label="Working Arrangement" /> */}
-                {/* <FieldGroup value={contact_number} label="Team" /> */}
-                {/* <FieldGroup value={contact_number} label="Email" /> */}
-                {/* <FieldGroup value={contact_number} label="Employment Status" /> */}
-                {/* <FieldGroup value={contact_number} label="Started Working at Symph" /> */}
-                {/* <FieldGroup value={contact_number} label="Last Day at Symph" /> */}
-                {/* <FieldGroup value={contact_number} label="Symph ID no." /> */}
-                {/* <FieldGroup value={contact_number} label="Employee Number" /> */}
-                {/* <FieldGroup value={contact_number} label="Title / Tagline / Motto" /> */}
-                {/* <FieldGroup value={contact_number} label="BPI Payroll Account Number" /> */}
-              </React.Fragment>
+              this.state.employmentInfo.map((info, ndx) => (
+                <FieldGroup 
+                  {...info}
+                  edit={this.state.edit}
+                  key={ndx}
+                  onChange={this.onInputChangeHandler}
+                  arrayName="employmentInfo"
+                />
+              ))
             )} />
             <Route path={`${url}/government-membership`} render={() => (
               <React.Fragment>
@@ -130,7 +148,7 @@ export class EmployeeProfile extends Component {
                 {/* <FieldGroup value={contact_number} label="Pagibig" /> */}
               </React.Fragment>
             )} />
-             <Route path={`${url}/personal-and-family`} render={() => (
+            <Route path={`${url}/personal-and-family`} render={() => (
               <React.Fragment>
                 {/* <FieldGroup value={contact_number} label="Residence Address"/> */}
                 {/* <FieldGroup value={contact_number} label="Civil Status"/>         */}
