@@ -12,7 +12,7 @@ const FieldGroup = props => (
 
 FieldGroup.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string
 }
 
 export default FieldGroup

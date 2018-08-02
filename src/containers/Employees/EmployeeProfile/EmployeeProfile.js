@@ -49,7 +49,7 @@ export class EmployeeProfile extends Component {
 
   render() {
     console.log(this.props.employeeProfile);
-    const {fname, lname, key} = this.props.employeeProfile;
+    const {fname, lname, nickname, email, contact_number} = this.props.employeeProfile;
     const {path} = this.props.match;
     console.log(this.props);
     return (!this.props.loading) ? (
@@ -65,11 +65,11 @@ export class EmployeeProfile extends Component {
           <Switch>
             <Route path={`${path}/general-info`} render={() => (
               <React.Fragment>
-                <FieldGroup value='Sean Stuart' label="First name"/>
-                <FieldGroup value='Urgel' label="Last name"/>        
-                <FieldGroup value='Sean' label="Nickname"/>
-                <FieldGroup value='seantheurgel@gmail.com' label="Email"/>
-                <FieldGroup value='09985377197' label="Contact Nuber"/>
+                <FieldGroup value={fname} label="First name"/>
+                <FieldGroup value={lname} label="Last name"/>        
+                <FieldGroup value={nickname} label="Nickname"/>
+                <FieldGroup value={email} label="Email"/>
+                <FieldGroup value={contact_number} label="Contact Nuber"/>
               </React.Fragment>
             )} />
             <Route render={() => <Redirect to={`${path}/general-info`}/>}/>
