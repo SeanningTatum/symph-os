@@ -13,7 +13,7 @@ import * as tableActions from 'store/actions/tables';
 export class Projects extends Component {
 
   componentDidMount() {
-    this.props.getAll('projects', 'projects-api');
+    this.props.getAll('projects', 'projectsapi');
   }
 
   rowEvents = {

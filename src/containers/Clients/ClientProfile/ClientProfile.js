@@ -22,7 +22,7 @@ export class ClientProfile extends Component {
 
   async componentDidMount() {
     const clientID = this.props.location.pathname.split("/")[2];
-    await this.props.get('clients-api', clientID);
+    await this.props.get('clientsapi', clientID);
   }
 
   componentWillUnmount() {
@@ -39,7 +39,7 @@ export class ClientProfile extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.update('clients-api', this.props.clientProfile.key, this.props.clientControls);
+    this.props.update('clientsapi', this.props.clientProfile.key, this.props.clientControls);
     this.props.history.push('/clients');
   }
 

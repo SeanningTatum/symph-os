@@ -13,7 +13,7 @@ import * as tableActions from 'store/actions/tables';
 export class Clients extends Component {
 
   componentDidMount() {
-    this.props.getAll('clients', 'clients-api');
+    this.props.getAll('clients', 'clientsapi');
   }
 
   rowEvents = {

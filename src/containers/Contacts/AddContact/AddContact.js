@@ -9,7 +9,7 @@ export class AddContact extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addContact(this.props.controls, 'contacts-api');
+    this.props.addContact(this.props.controls, 'contactsapi');
     this.props.history.push('/contacts');
   }
 

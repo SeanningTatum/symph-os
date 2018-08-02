@@ -10,7 +10,7 @@ import * as tableActions from 'store/actions/tables';
 class Teams extends Component {
 
   componentDidMount() {
-    this.props.getAll('teams', 'teams-api');
+    this.props.getAll('teams', 'teamsapi');
   }
 
   render() {

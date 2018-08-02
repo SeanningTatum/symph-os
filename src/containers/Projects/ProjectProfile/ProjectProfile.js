@@ -22,7 +22,7 @@ export class ProjectProfile extends Component {
 
   async componentDidMount() {
     const projectID = this.props.location.pathname.split("/")[2];
-    await this.props.get('projects-api', projectID);
+    await this.props.get('projectsapi', projectID);
     console.log(this)
   }
 
@@ -40,7 +40,7 @@ export class ProjectProfile extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.update('projects-api', this.props.projectProfile.key, this.props.projectControls);
+    this.props.update('projectsapi', this.props.projectProfile.key, this.props.projectControls);
   }
 
   /*- - - - - - - - - - - - - - - -

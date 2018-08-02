@@ -68,24 +68,24 @@ export class AddProject extends Component {
     };
     
     // Get Clients
-    fetch('http://localhost:8080/_ah/api/clients-api/v1/getClients', options)
+    fetch('http://localhost:8080/_ah/api/clientsapi/v1/getClients', options)
       .then(response => response.json())
       .then(options => this.setState({clientOptions: options.clients}));
 
     // Get Employees
-    fetch('http://localhost:8080/_ah/api/employees-api/v1/getProjectManagers', options)
+    fetch('http://localhost:8080/_ah/api/employeesapi/v1/getProjectManagers', options)
       .then(response => response.json())
       .then(options => {
         this.setState({projectManagerOptions: options.employees})
       });
 
     // Get Contacts
-    fetch('http://localhost:8080/_ah/api/contacts-api/v1/getContactNames', options)
+    fetch('http://localhost:8080/_ah/api/contactsapi/v1/getContactNames', options)
       .then(response => response.json())
       .then(options => this.setState({contactOptions: options.contacts}));
 
     // Get Teams
-    fetch('http://localhost:8080/_ah/api/teams-api/v1/getTeamNames', options)
+    fetch('http://localhost:8080/_ah/api/teamsapi/v1/getTeamNames', options)
       .then(response => response.json())
       .then(options => this.setState({teamOptions: options.teams}));
   }
@@ -137,7 +137,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls, data) => dispatch(tableActions.add('projects', controls, 'projects-api', data)),
+  add: (controls, data) => dispatch(tableActions.add('projects', controls, 'projectsapi', data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProject);

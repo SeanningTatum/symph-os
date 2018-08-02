@@ -13,7 +13,7 @@ import { contactColumns } from 'utils/tableHeaders';
 export class Contacts extends Component {
 
   componentDidMount() {
-    this.props.getAll('contacts', 'contacts-api');
+    this.props.getAll('contacts', 'contactsapi');
   }
 
   rowEvents = {

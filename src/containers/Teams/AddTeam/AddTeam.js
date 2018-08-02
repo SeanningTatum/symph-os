@@ -57,13 +57,13 @@ class AddTeam extends Component {
       },
     }
 
-    fetch("http://localhost:8080/_ah/api/employees-api/v1/getNames", options)
+    fetch("http://localhost:8080/_ah/api/employeesapi/v1/getNames", options)
       .then(response =>  response.json())
       .then(options => {
         this.setState({memberOptions: options.employees, teamleaderOptions: options.employees});
       });
 
-    fetch("http://localhost:8080/_ah/api/employees-api/v1/getProjectManagers", options)
+    fetch("http://localhost:8080/_ah/api/employeesapi/v1/getProjectManagers", options)
       .then(response =>  response.json())
       .then(options => {
         this.setState({projectManagerOptions: options.employees});
@@ -134,7 +134,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls, data) => dispatch(tableActions.add('teams', controls, 'teams-api', data)),
+  add: (controls, data) => dispatch(tableActions.add('teams', controls, 'teamsapi', data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTeam);

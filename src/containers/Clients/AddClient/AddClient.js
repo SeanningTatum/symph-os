@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls) => dispatch(tableActions.add('clients', controls, 'clients-api')),
+  add: (controls) => dispatch(tableActions.add('clients', controls, 'clientsapi')),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient);

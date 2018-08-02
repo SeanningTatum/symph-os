@@ -22,7 +22,7 @@ export class ContactProfile extends Component {
 
   async componentDidMount() {
     const contactID = this.props.location.pathname.split("/")[2];
-    await this.props.get('contacts-api', contactID);
+    await this.props.get('contactsapi', contactID);
   }
 
   componentWillUnmount() {
@@ -39,7 +39,7 @@ export class ContactProfile extends Component {
 
   onSubmit = async (event) => {
     event.preventDefault();
-    await this.props.update('contacts-api', this.props.contactProfile.key, this.props.contactControls);
+    await this.props.update('contactsapi', this.props.contactProfile.key, this.props.contactControls);
     this.props.history.push('/contacts');
   }
 
