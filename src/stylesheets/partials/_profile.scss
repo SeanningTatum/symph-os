@@ -28,6 +28,39 @@
   }
 }
 
+.profile--info-area__navigation {
+  width: 180px;
+  border-right: 1px solid #ccc;
+  
+  .inner {
+    padding: 5px;
+  }
+
+  section {
+    .section-heading{
+      margin-bottom: 18px;
+
+      strong {
+        color: #707070;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.66666666666667;
+      }
+    }
+  }
+
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+  }
+}
+
 @media screen and (min-width: 551px) and (max-width: 1000px) {
   .profile--info-area__info {
     width: 50% !important;
