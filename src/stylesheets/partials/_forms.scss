@@ -3,11 +3,11 @@
   width: 100%;
   justify-content: center;
 
-  input, select {
+  input, select, textarea {
     background-color: $grey;
   }
 
-  input {
+  input, textarea {
     min-width: 400px;
   }
 
@@ -15,6 +15,45 @@
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
   }
+}
+
+textarea {
+  resize: none;
+}
+
+.form--input__container {
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: .5rem;
+  }
+
+  input, select {
+    padding: 4px 5px;
+    height: 32px;
+    border-radius: 3.01px;
+    border: 1px solid #ccc;
+  }
+
+  input {
+    min-width: 400px;
+  }
+}
+
+.error {
+  border-color: red !important;
+}
+
+.error-text {
+  font-size: .75rem;
+  color: red;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.no-bot-margin {
+  margin-bottom: 0 !important;
 }
 
 label {

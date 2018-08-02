@@ -6,14 +6,17 @@ const FieldGroup = props => {
   let inputElement;
 
   switch(props.elementType) {
-    case 'input': inputElement = <input 
+    case 'input': 
+    inputElement = <input 
       value={props.value} 
-      type="input"
+      type="text"
       onChange={(event) => props.onChange(props.arrayName, props.label, event)}/>; 
       break;
-    case 'textarea': inputElement = <textarea 
+
+    case 'textarea': 
+    inputElement = <textarea 
       value={props.value} 
-      type="input" 
+      type="text" 
       rows="3"
       onChange={(event) => props.onChange(props.arrayName, props.label, event)}/>; 
       break;
@@ -30,7 +33,9 @@ const FieldGroup = props => {
       {!props.edit ? (
         <p>{props.value || 'none'}</p>
       ) : (
-        inputElement
+        <div className="form--input__container no-bot-margin ml-20">
+          {inputElement}
+        </div>
       )}
     </div>
   )
