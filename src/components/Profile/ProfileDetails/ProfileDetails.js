@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
+import FieldGroup from './FieldGroup/FieldGroup';
 // const ProfileDetails = props => {
 //   return props.profile.map(p => (
 //     <div key={p.id} className="profile--info-area__info">
@@ -32,36 +33,11 @@ const ProfileDetails = props => {
 
       <section className="profile--info-area__info">
         <h3>Basic Info</h3>
-        <div className="field-group">
-          <div className="label">
-            <label>First Name</label>
-          </div>
-          <p>Sean Stuart</p>
-        </div>
-        <div className="field-group">
-          <div className="label">
-            <label>Last Name</label>
-          </div>
-          <p>Urgel</p>
-        </div>
-        <div className="field-group">
-          <div className="label">
-            <label>Nickname</label>
-          </div>
-          <p>Sean</p>
-        </div>
-        <div className="field-group">
-          <div className="label">
-            <label>Email</label>
-          </div>
-          <p>seantheurgel@gmail.com</p>
-        </div>
-        <div className="field-group">
-          <div className="label">
-            <label>Contact Number</label>
-          </div>
-          <p>09985377197</p>
-        </div>
+        <FieldGroup value='Sean Stuart' label="First name"/>
+        <FieldGroup value='Urgel' label="Last name"/>        
+        <FieldGroup value='Sean' label="Nickname"/>
+        <FieldGroup value='seantheurgel@gmail.com' label="Email"/>
+        <FieldGroup value='09985377197' label="Contact Nuber"/>
       </section>
     </React.Fragment>
   );
