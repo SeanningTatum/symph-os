@@ -71,13 +71,13 @@ class App extends Component {
               <Route path='/teams/add-team' component={AsyncAddTeamPage} exact />
               <Route path='/teams' component={AsyncTeamsPage} exact />
 
-              {/* <Redirect to='/contacts' /> */}
+              <Route render={() => <Redirect to='/contacts'/>}/>
             </Switch>
           </Layout>
         ) : (
             <Switch>
               <Route path='/' component={AsyncAuthPage} exact />
-              <Redirect to='/' />
+              <Route render={() =>  <Redirect to='/' />}/> 
             </Switch>
           )}
       </React.Fragment>
