@@ -18,7 +18,7 @@ export class Employee extends Component {
 
   rowEvents = {
     onClick: (e, row, rowIndex) => {
-      this.props.history.push(`/employees/${row.key}`)
+      this.props.history.push(`/employees/${row.key}/general-info`)
     }
   }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
 import Loading from 'components/UI/Loading/Loading';
-
+import {Route, Switch, Redirect} from 'react-router-dom';
 
 import FieldGroup from 'components/Profile/ProfileDetails/FieldGroup/FieldGroup';
 
@@ -49,22 +49,35 @@ export class EmployeeProfile extends Component {
 
   render() {
     console.log(this.props.employeeProfile);
-    
+    const {fname, lname, key} = this.props.employeeProfile;
+    const {path} = this.props.match;
+    console.log(this.props);
     return (!this.props.loading) ? (
+
+
       <React.Fragment>
         <ProfileHeader 
             clicked={this.toggleEdit} 
-            name={this.props.employeeProfile.fname + " " +this.props.employeeProfile.lname}
+            name={`${fname} ${lname}`}
             edit={this.state.edit}/>
-        <ProfileDetails> 
-          <h3>Basic Info</h3>
-          <FieldGroup value='Sean Stuart' label="First name"/>
-          <FieldGroup value='Urgel' label="Last name"/>        
-          <FieldGroup value='Sean' label="Nickname"/>
-          <FieldGroup value='seantheurgel@gmail.com' label="Email"/>
-          <FieldGroup value='09985377197' label="Contact Nuber"/>
+        <ProfileDetails>
+          <h3>General Info</h3>
+          <Switch>
+            <Route path={`${path}/general-info`} render={() => (
+              <React.Fragment>
+                <FieldGroup value='Sean Stuart' label="First name"/>
+                <FieldGroup value='Urgel' label="Last name"/>        
+                <FieldGroup value='Sean' label="Nickname"/>
+                <FieldGroup value='seantheurgel@gmail.com' label="Email"/>
+                <FieldGroup value='09985377197' label="Contact Nuber"/>
+              </React.Fragment>
+            )} />
+            <Route render={() => <Redirect to={`${path}/general-info`}/>}/>
+          </Switch>
         </ProfileDetails>
       </React.Fragment>
+
+
     ) : <Loading />;
   }
 }
