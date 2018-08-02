@@ -22,8 +22,8 @@ const ProfileDetails = props => {
               <strong>PROFILE</strong>
             </div>
             <ul>
-              <li><NavLink to='/'>General Info</NavLink></li>
-              <li>Employment</li>
+              <li><NavLink to={`${props.url}/general-info`}>General Info</NavLink></li>
+              <li><NavLink to={`${props.url}/employment`}>Employment</NavLink></li>
               <li>Government Membership</li>
               <li>Personal and Family</li>
             </ul>
@@ -39,7 +39,8 @@ const ProfileDetails = props => {
 }
 
 ProfileDetails.propTypes = {
-  profile: PropTypes.array.isRequired
+  profile: PropTypes.array.isRequired,
+  url: PropTypes.string.isRequired
 }
 
 export default ProfileDetails
