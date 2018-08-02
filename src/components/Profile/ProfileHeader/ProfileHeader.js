@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 const ProfileHeader = ({clicked, name, edit}) => (
   <div className="profile__header">
     <h2>{name}</h2>
-    {/* <button
+    <button
       className="btn"
       style={{ marginLeft: '5rem', paddingTop: 0 }}
-      onClick={clicked}>{!edit ? 'Edit' : 'Go Back'}</button> */}
+      onClick={clicked}>{!edit ? 'Edit' : 'Go Back'}</button>
   </div>
 )
 
