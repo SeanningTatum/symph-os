@@ -10,7 +10,7 @@ import { projectColumns } from 'utils/tableHeaders';
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-class Projects extends Component {
+export class Projects extends Component {
 
   componentDidMount() {
     this.props.getAll('projects', 'projects-api');

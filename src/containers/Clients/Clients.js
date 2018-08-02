@@ -10,7 +10,7 @@ import { clientColumns } from 'utils/tableHeaders';
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-class Clients extends Component {
+export class Clients extends Component {
 
   componentDidMount() {
     this.props.getAll('clients', 'clients-api');

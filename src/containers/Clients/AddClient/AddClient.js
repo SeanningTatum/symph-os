@@ -5,7 +5,7 @@ import Forms from 'components/Forms/Forms';
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-class AddClient extends Component {
+export class AddClient extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();

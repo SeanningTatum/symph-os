@@ -13,7 +13,7 @@ const selectForms = [
   {option: 'teamOptions', label: 'Team'},
 ];
 
-class AddProject extends Component {
+export class AddProject extends Component {
 
   state = {
     clientOptions: [],

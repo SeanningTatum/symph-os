@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import * as authActions from 'store/actions/auth';
 
-class Auth extends Component {
+export class Auth extends Component {
   responseGoogle = (response) => {
     this.props.onAuth(response);
   }

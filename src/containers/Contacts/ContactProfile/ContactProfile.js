@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import * as formControlActions from 'store/actions/formControls';
 import * as profileActions from 'store/actions/profiles';
 
-class ContactProfile extends Component {
+export class ContactProfile extends Component {
 
   state = {
     edit: false
