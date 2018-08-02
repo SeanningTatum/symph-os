@@ -93,7 +93,7 @@ export function getAll(tableName, api) {
       dispatch(getAllSuccess(tableName, dataArray[tableName]));
     } catch (error) {
       dispatch(getAllError());
-      dispatch(showSnackbar(error.message, 'error'));
+      dispatch(showSnackbar('A server side error has occured', 'error'));
 
     } finally {
       setTimeout(() => dispatch(hideSnackbar()), 3000);

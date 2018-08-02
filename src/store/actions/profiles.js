@@ -30,7 +30,7 @@ export function get (api, id) {
 
   return async dispatch => {
     dispatch(getStart());
-    console.log(api);
+
     try {
       const response = await fetch(url + `${api}/v1/get/${id}`, options);
       const profile = await response.json();
@@ -39,9 +39,9 @@ export function get (api, id) {
       dispatch(getSuccess(profile))
 
     } catch (error) {
-      console.error(error.message);
+      console.error('AN ERROR HAS OCCURED');
     } finally {
-        dispatch(getEnd());
+      dispatch(getEnd());
     }
 
   }
