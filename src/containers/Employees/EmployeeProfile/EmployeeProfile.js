@@ -64,7 +64,12 @@ export class EmployeeProfile extends Component {
                 <FieldGroup value={lname} label="Last name" />
                 <FieldGroup value={nickname} label="Nickname" />
                 <FieldGroup value={email} label="Email" />
-                <FieldGroup value={contact_number} label="Contact Number" />
+                <FieldGroup value={contact_number} label="Current Skills and Technologies" />
+                <FieldGroup 
+                  value={contact_number} 
+                  label="Skills and Technologies I want to learn in the next 6 months" 
+                  />
+                <FieldGroup value={contact_number} label="Personality Type" />
               </React.Fragment>
             )} />
             <Route path={`${url}/employment`} render={() => (

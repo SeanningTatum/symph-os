@@ -21,11 +21,19 @@ const ProfileDetails = props => {
             <div className="section-heading">
               <strong>PROFILE</strong>
             </div>
-            <ul>
-              <li><NavLink to={`${props.url}/general-info`}>General Info</NavLink></li>
-              <li><NavLink to={`${props.url}/employment`}>Employment</NavLink></li>
-              <li><NavLink to={`${props.url}/government-membership`}>Government Membership</NavLink></li>
-              <li><NavLink to={`${props.url}/personal-and-family`}>Personal and Family</NavLink></li>
+            <ul className="profile--sidenav">
+              <li className="profile--sidenav__item">
+                <NavLink to={`${props.url}/general-info`}>General Info</NavLink>
+              </li>
+              <li className="profile--sidenav__item">
+                <NavLink to={`${props.url}/employment`}>Employment</NavLink>
+              </li>
+              <li className="profile--sidenav__item">
+                <NavLink to={`${props.url}/government-membership`}>Government Membership</NavLink>
+              </li>
+              <li className="profile--sidenav__item">
+                <NavLink to={`${props.url}/personal-and-family`}>Personal and Family</NavLink>
+              </li>
             </ul>
           </section>
         </div>
