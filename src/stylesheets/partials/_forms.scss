@@ -29,11 +29,14 @@ textarea {
     margin-bottom: .5rem;
   }
 
+  textarea, select, input {
+    border-radius: 3.01px;
+    border: 1px solid #ccc;
+  }
+
   input, select {
     padding: 4px 5px;
     height: 32px;
-    border-radius: 3.01px;
-    border: 1px solid #ccc;
   }
 
   input {

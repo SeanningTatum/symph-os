@@ -17,7 +17,7 @@ const FieldGroup = props => {
     inputElement = <textarea 
       value={props.value} 
       type="text" 
-      rows="3"
+      rows="5"
       onChange={(event) => props.onChange(props.arrayName, props.label, event)}/>; 
       break;
 
