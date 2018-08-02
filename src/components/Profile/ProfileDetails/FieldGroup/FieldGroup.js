@@ -3,13 +3,22 @@ import PropTypes from 'prop-types';
 
 const FieldGroup = props => {
 
-  let input;
+  let inputElement;
 
   switch(props.elementType) {
-    case 'input': input = <input value={props.value} type="input"/>; break;
-    case 'textarea': input = <textarea value={props.value} type="input" rows="3" />; break;
+    case 'input': inputElement = <input 
+      value={props.value} 
+      type="input"
+      onChange={(event) => props.onChange(props.arrayName, props.label, event)}/>; 
+      break;
+    case 'textarea': inputElement = <textarea 
+      value={props.value} 
+      type="input" 
+      rows="3"
+      onChange={(event) => props.onChange(props.arrayName, props.label, event)}/>; 
+      break;
 
-    default: input = <input value={props.value} type="input"/>; break;
+    default: inputElement = <input value={props.value} type="input"/>; break;
   }
 
 
@@ -18,10 +27,10 @@ const FieldGroup = props => {
       <div className="label">
         <label>{props.label}</label>
       </div>
-      {props.edit ? (
+      {!props.edit ? (
         <p>{props.value || 'none'}</p>
       ) : (
-        input
+        inputElement
       )}
     </div>
   )
@@ -31,7 +40,9 @@ FieldGroup.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
   edit: PropTypes.bool.isRequired,
-  elementType: PropTypes.string.isRequired
+  elementType: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  arrayName: PropTypes.string.isRequired
 }
 
 export default FieldGroup

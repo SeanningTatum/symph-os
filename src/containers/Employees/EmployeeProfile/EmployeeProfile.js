@@ -45,16 +45,22 @@ export class EmployeeProfile extends Component {
         {value: lname, label: "Last Name", elementType: 'input'},
         {value: nickname, label: "Nickname", elementType: 'input'},
         {value: email, label: 'Email', elementType: 'input'},
-        {value: contact_number, label: 'Contact Number', elementType: 'input'},
-        {value: current_skills, label: 'Current Skills and Technologies', elementType: 'textarea'},
-        {value: future_skills, label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'input'},
-        {value: personality_type, label: 'Personality Type', elementType: 'input'}
+        {value: contact_number || '', label: 'Contact Number', elementType: 'input'},
+        {value: current_skills || '', label: 'Current Skills and Technologies', elementType: 'textarea'},
+        {value: future_skills || '', label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'input'},
+        {value: personality_type || '', label: 'Personality Type', elementType: 'input'}
     ]});
   }
 
   onInputChangeHandler = (arrayName, label, event) => {
-    const result = this.state[arrayName].find(control => control.label === label);
-    result.value = event.target.value;
+    const newData = [...this.state[arrayName]];
+    const result = newData.findIndex(control => control.label === label);
+
+    console.log(newData, result, newData[result]);
+
+    newData[result].value = event.target.value;
+
+    this.setState({[arrayName]: newData});
   }
 
   toggleEdit = () => {
@@ -64,7 +70,9 @@ export class EmployeeProfile extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.update('employees-api', this.props.employeeProfile.key, this.props.employeeControls);
+    this.setState({edit: true});
+    console.log('submitted!');
+    // this.props.update('employees-api', this.props.employeeProfile.key, this.props.employeeControls);
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -77,13 +85,18 @@ export class EmployeeProfile extends Component {
 
     return (!this.props.loading) ? (
       <React.Fragment>
-        <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} />
+        <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} save={this.onSubmit}/>
         <ProfileDetails url={url}>
           <h3>General Info</h3>
           <Switch>
             <Route path={`${url}/general-info`} render={() => (
-              this.state.generalInfo.map(info => (
-                <FieldGroup {...info} edit={this.state.edit} key={info.value} onChange={this.onInputChangeHandler}/>
+              this.state.generalInfo.map((info, ndx) => (
+                <FieldGroup 
+                  {...info} 
+                  edit={this.state.edit} 
+                  key={ndx} 
+                  onChange={this.onInputChangeHandler}
+                  arrayName="generalInfo" />
               ))
             )} />
             <Route path={`${url}/employment`} render={() => (

@@ -48,7 +48,6 @@ const ProfileDetails = props => {
 }
 
 ProfileDetails.propTypes = {
-  profile: PropTypes.array.isRequired,
   url: PropTypes.string.isRequired
 }
 
