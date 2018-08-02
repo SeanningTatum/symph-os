@@ -6,7 +6,7 @@ const FieldGroup = props => (
     <div className="label">
       <label>{props.label}</label>
     </div>
-    <p>{props.value}</p>
+    <p>{props.value || 'none'}</p>
   </div>
 )
 
