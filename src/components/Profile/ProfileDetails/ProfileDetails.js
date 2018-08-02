@@ -22,10 +22,10 @@ const ProfileDetails = props => {
               <strong>PROFILE</strong>
             </div>
             <ul>
-              <li><NavLink to={`${props.url}/general-info`}>General Info</NavLink></li>
+              <li><NavLink to={`${props.url}/general-info?type=cool$%20and`}>General Info</NavLink></li>
               <li><NavLink to={`${props.url}/employment`}>Employment</NavLink></li>
-              <li>Government Membership</li>
-              <li>Personal and Family</li>
+              <li><NavLink to={`${props.url}/government-membership`}>Government Membership</NavLink></li>
+              <li><NavLink to={`${props.url}/personal-and-family`}>Personal and Family</NavLink></li>
             </ul>
           </section>
         </div>
