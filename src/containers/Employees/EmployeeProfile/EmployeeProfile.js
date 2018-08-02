@@ -41,22 +41,20 @@ export class EmployeeProfile extends Component {
       current_skills, future_skills,personality_type } = this.props.employeeProfile;
 
     this.setState({generalInfo: [
-        {value: fname, label: "First Name", elementType: 'input'},
-        {value: lname, label: "Last Name", elementType: 'input'},
-        {value: nickname, label: "Nickname", elementType: 'input'},
-        {value: email, label: 'Email', elementType: 'input'},
-        {value: contact_number || '', label: 'Contact Number', elementType: 'input'},
-        {value: current_skills || '', label: 'Current Skills and Technologies', elementType: 'textarea'},
-        {value: future_skills || '', label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'input'},
-        {value: personality_type || '', label: 'Personality Type', elementType: 'input'}
+        {value: fname, label: "First Name", elementType: 'input', key: 'fname'},
+        {value: lname, label: "Last Name", elementType: 'input', key: 'lname'},
+        {value: nickname, label: "Nickname", elementType: 'input', key: 'nickname'},
+        {value: email, label: 'Email', elementType: 'input', key: 'email'},
+        {value: contact_number || '', label: 'Contact Number', elementType: 'input', key: 'contact_number'},
+        {value: current_skills || '', label: 'Current Skills and Technologies', elementType: 'textarea', key: 'current_skills'},
+        {value: future_skills || '', label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'textarea', key: 'future_skills'},
+        // {value: personality_type || '', label: 'Personality Type', elementType: 'input', key: ''}
     ]});
   }
 
   onInputChangeHandler = (arrayName, label, event) => {
     const newData = [...this.state[arrayName]];
     const result = newData.findIndex(control => control.label === label);
-
-    console.log(newData, result, newData[result]);
 
     newData[result].value = event.target.value;
 
@@ -71,7 +69,17 @@ export class EmployeeProfile extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({edit: true});
-    console.log('submitted!');
+    
+
+    // Put generalInfo in data obj
+    const data = {};
+  
+    for (const obj in this.state.generalInfo) {
+      const {key, value} = this.state.generalInfo[obj];
+      data[key] = value;
+    }
+
+    console.log(data);
     // this.props.update('employees-api', this.props.employeeProfile.key, this.props.employeeControls);
   }
 
