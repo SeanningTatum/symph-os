@@ -112,7 +112,7 @@ export class EmployeeProfile extends Component {
   }
 
   toggleEdit = () => {
-    this.setState(prevState => ({ edit: true }));
+    this.setState(({ edit: true }));
     this.props.updateControls('employeeUpdateControls', this.props.employeeProfile);
   }
 
@@ -134,8 +134,19 @@ export class EmployeeProfile extends Component {
       data[key] = value;
     }
 
+    for (const ndx in this.state.governmentInfo) {
+      const { key, value } = this.state.governmentInfo[ndx];
+      data[key] = value;
+    }
+
+    for (const ndx in this.state.personalInfo) {
+      const { key, value } = this.state.personalInfo[ndx];
+      data[key] = value;
+    }
+
     console.log(data);
-    // this.props.update('employees-api', this.props.employeeProfile.key, this.props.employeeControls);
+
+    this.props.update('employees-api', this.props.employeeProfile.key, data);
   }
 
   /*- - - - - - - - - - - - - - - -
