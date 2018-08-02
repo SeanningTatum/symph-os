@@ -13,7 +13,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 export class Employee extends Component {
 
   componentDidMount() {
-    this.props.getAll('employees', 'employees-api');
+    this.props.getAll('employees', 'employeesapi');
   }
 
   rowEvents = {

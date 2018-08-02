@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  add: (controls) => dispatch(tableActions.add('employees', controls, 'employees-api')),
+  add: (controls) => dispatch(tableActions.add('employees', controls, 'employeesapi')),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddContact);

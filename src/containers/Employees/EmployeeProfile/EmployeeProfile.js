@@ -27,7 +27,7 @@ export class EmployeeProfile extends Component {
 
   async componentDidMount() {
     const employeeID = this.props.location.pathname.split("/")[2];
-    await this.props.get('employees-api', employeeID);
+    await this.props.get('employeesapi', employeeID);
     this.initGeneralInfo();
     this.initEmploymentInfo();
     this.initGovermentInfo();
@@ -62,15 +62,15 @@ export class EmployeeProfile extends Component {
 
   initEmploymentInfo = () => {
     const {
-      position, working_arrangement, team,
-      employment_status, work_started, work_end, motto, } = this.props.employeeProfile;
+      position, work_arrangement, team,
+      status, work_started, work_end, motto, } = this.props.employeeProfile;
 
     this.setState({
       employmentInfo: [
         { value: position || '', label: 'Position', elementType: 'input', key: 'position' },
-        { value: working_arrangement || '', label: 'Working Arrangement', elementType: 'input', key: 'working_arrangement' },
+        { value: work_arrangement || '', label: 'Working Arrangement', elementType: 'input', key: 'work_arrangement' },
         { value: team || '', label: 'Team', elementType: 'input', key: 'team' }, // get Team select
-        { value: employment_status || '', label: 'Employment Status', elementType: 'input', key: 'employment_status' }, // select
+        { value: status || '', label: 'Employment Status', elementType: 'input', key: 'status' }, // select
         { value: work_started || '', label: 'Work Started', elementType: 'input', key: 'work_started' }, // date
         { value: work_end || '', label: 'Work Ended', elementType: 'input', key: 'work_end' }, // date
         { value: motto || '', label: 'Motto', elementType: 'textarea', key: 'motto' },
@@ -82,22 +82,22 @@ export class EmployeeProfile extends Component {
     const {sss, tin, philhealth, pagibig} = this.props.employeeProfile;
 
     this.setState({governmentInfo: [
-      { value: sss, label: "SSS", elementType: 'input', key: 'sss' },
-      { value: tin, label: "TIN", elementType: 'input', key: 'tin' },
-      { value: philhealth, label: "Phil Health", elementType: 'input', key: 'philhealth' },
-      { value: pagibig, label: "Pagibig", elementType: 'input', key: 'pagibig' },
+      { value: sss || '', label: "SSS", elementType: 'input', key: 'sss' },
+      { value: tin || '', label: "TIN", elementType: 'input', key: 'tin' },
+      { value: philhealth || '', label: "Phil Health", elementType: 'input', key: 'philhealth' },
+      { value: pagibig || '', label: "Pagibig", elementType: 'input', key: 'pagibig' },
     ]});
   }
 
   initPersonalInfo = () => {
-    {/* <FieldGroup value={contact_number} label="Spouses Complete Name"/> */}
-    {/* <FieldGroup value={contact_number} label="Children's Complete Name"/> */}
+    /* <FieldGroup value={contact_number} label="Spouses Complete Name"/> */
+    /* <FieldGroup value={contact_number} label="Children's Complete Name"/> */
 
     const {address, marital_status, } = this.props.employeeProfile;
 
     this.setState({personalInfo: [
-      { value: address, label: "Residencial Address", elementType: 'input', key: 'address' },
-      { value: marital_status, label: "Marital Status", elementType: 'input', key: 'marital_status' },
+      { value: address || '', label: "Residencial Address", elementType: 'input', key: 'address' },
+      { value: marital_status || '', label: "Marital Status", elementType: 'input', key: 'marital_status' },
     ]});
   }
 
@@ -146,7 +146,7 @@ export class EmployeeProfile extends Component {
 
     console.log(data);
 
-    this.props.update('employees-api', this.props.employeeProfile.key, data);
+    this.props.update('employeesapi', this.props.employeeProfile.key, data);
   }
 
   /*- - - - - - - - - - - - - - - -

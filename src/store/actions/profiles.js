@@ -30,7 +30,7 @@ export function get (api, id) {
 
   return async dispatch => {
     dispatch(getStart());
-    
+    console.log(api);
     try {
       const response = await fetch(url + `${api}/v1/get/${id}`, options);
       const profile = await response.json();
@@ -51,13 +51,7 @@ export function get (api, id) {
 =                 Start Update                =
 =============================================*/
 
-export function update (api, id, formControls) {
-  const data = {};
-
-  for (const key in formControls) {
-    data[key] = formControls[key].value;
-  }
-
+export function update (api, id, data) {
   const options = {
     method: "PUT",
     headers: { 
