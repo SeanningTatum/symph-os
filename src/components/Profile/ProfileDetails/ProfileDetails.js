@@ -14,7 +14,7 @@ import FieldGroup from './FieldGroup/FieldGroup';
 
 const ProfileDetails = props => {
   return (
-    <React.Fragment>
+    <div className="profile--info-area">
       <aside className="profile--info-area__navigation">
         <div className="inner">
           <section>
@@ -22,7 +22,7 @@ const ProfileDetails = props => {
               <strong>PROFILE</strong>
             </div>
             <ul>
-              <li><NavLink to='/'>Basic</NavLink></li>
+              <li><NavLink to='/'>General Info</NavLink></li>
               <li>Employment</li>
               <li>Government Membership</li>
               <li>Personal and Family</li>
@@ -32,14 +32,9 @@ const ProfileDetails = props => {
       </aside>
 
       <section className="profile--info-area__info">
-        <h3>Basic Info</h3>
-        <FieldGroup value='Sean Stuart' label="First name"/>
-        <FieldGroup value='Urgel' label="Last name"/>        
-        <FieldGroup value='Sean' label="Nickname"/>
-        <FieldGroup value='seantheurgel@gmail.com' label="Email"/>
-        <FieldGroup value='09985377197' label="Contact Nuber"/>
+        {props.children}
       </section>
-    </React.Fragment>
+    </div>
   );
 }
 

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-
-import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
 import Loading from 'components/UI/Loading/Loading';
+
+
+import FieldGroup from 'components/Profile/ProfileDetails/FieldGroup/FieldGroup';
 
 // Redux
 import { connect } from 'react-redux';
@@ -47,48 +48,24 @@ export class EmployeeProfile extends Component {
   * - - - - - - - - - - - - - - - */
 
   render() {
+    console.log(this.props.employeeProfile);
     
-    const employeeProfile = [];
-    for (let key in this.props.employeeProfile) {
-      employeeProfile.push({
-        id: key.charAt(0).toUpperCase() + key.substr(1),
-        value: this.props.employeeProfile[key]
-      });
-    }
-
-    const formElementsArray = [];
-    for (let key in this.props.employeeControls) {
-      formElementsArray.push({
-        id: key,
-        config: this.props.employeeControls[key]
-      });
-    }
-
-    const profile = (!this.props.loading) ? (
+    return (!this.props.loading) ? (
       <React.Fragment>
         <ProfileHeader 
-          clicked={this.toggleEdit} 
-          name={this.props.employeeProfile.fname + " " +this.props.employeeProfile.lname}
-          edit={this.state.edit}/>
-        <div className="profile--info-area">
-          {!this.state.edit ? (
-            <ProfileDetails profile={employeeProfile} />
-          ) : (
-            <div style={{height: '100%', width: '100%', display: 'flex', flexDirection: 'column'}}>
-              <Forms
-                formElements={formElementsArray}
-                clicked={this.onSubmit}
-                controls={this.props.employeeControls}
-                controlName={'employeeUpdateControls'}/>
-            </div>
-          )}
-        </div>
+            clicked={this.toggleEdit} 
+            name={this.props.employeeProfile.fname + " " +this.props.employeeProfile.lname}
+            edit={this.state.edit}/>
+        <ProfileDetails> 
+          <h3>Basic Info</h3>
+          <FieldGroup value='Sean Stuart' label="First name"/>
+          <FieldGroup value='Urgel' label="Last name"/>        
+          <FieldGroup value='Sean' label="Nickname"/>
+          <FieldGroup value='seantheurgel@gmail.com' label="Email"/>
+          <FieldGroup value='09985377197' label="Contact Nuber"/>
+        </ProfileDetails>
       </React.Fragment>
-    ) : (
-      <Loading />
-    )
-    
-    return profile;
+    ) : <Loading />;
   }
 }
 
