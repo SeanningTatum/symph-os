@@ -24,6 +24,8 @@ export function onAuth (response) {
       return;
     }
 
+    console.log(response);
+
     // response.reloadAuthResponse()
 
     const {access_token, expires_in} = response.Zi;

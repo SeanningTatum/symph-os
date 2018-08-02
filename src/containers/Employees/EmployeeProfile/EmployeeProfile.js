@@ -16,7 +16,9 @@ export class EmployeeProfile extends Component {
   state = {
     edit: false,
     generalInfo: [],
-    employmentInfo: []
+    employmentInfo: [],
+    governmentInfo: [],
+    personalInfo: []
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -28,6 +30,8 @@ export class EmployeeProfile extends Component {
     await this.props.get('employees-api', employeeID);
     this.initGeneralInfo();
     this.initEmploymentInfo();
+    this.initGovermentInfo();
+    this.initPersonalInfo();
   }
 
   componentWillUnmount() {
@@ -64,15 +68,39 @@ export class EmployeeProfile extends Component {
     this.setState({
       employmentInfo: [
         { value: position || '', label: 'Position', elementType: 'input', key: 'position' },
-        { value: working_arrangement || '', label: 'Working Arrangement', elementType: 'textarea', key: 'working_arrangement' },
-        { value: team || '', label: 'Team', elementType: 'input', key: 'team' },
-        { value: employment_status || '', label: 'Employment Status', elementType: 'textarea', key: 'employment_status' },
-        { value: work_started || '', label: 'Work Started', elementType: 'input', key: 'work_started' },
-        { value: work_end || '', label: 'Work Ended', elementType: 'textarea', key: 'work_end' },
-        { value: motto || '', label: 'Motto', elementType: 'textarea', key: 'motto' },        
+        { value: working_arrangement || '', label: 'Working Arrangement', elementType: 'input', key: 'working_arrangement' },
+        { value: team || '', label: 'Team', elementType: 'input', key: 'team' }, // get Team select
+        { value: employment_status || '', label: 'Employment Status', elementType: 'input', key: 'employment_status' }, // select
+        { value: work_started || '', label: 'Work Started', elementType: 'input', key: 'work_started' }, // date
+        { value: work_end || '', label: 'Work Ended', elementType: 'input', key: 'work_end' }, // date
+        { value: motto || '', label: 'Motto', elementType: 'textarea', key: 'motto' },
       ]
     })
   }
+
+  initGovermentInfo = () => {
+    const {sss, tin, philhealth, pagibig} = this.props.employeeProfile;
+
+    this.setState({governmentInfo: [
+      { value: sss, label: "SSS", elementType: 'input', key: 'sss' },
+      { value: tin, label: "TIN", elementType: 'input', key: 'tin' },
+      { value: philhealth, label: "Phil Health", elementType: 'input', key: 'philhealth' },
+      { value: pagibig, label: "Pagibig", elementType: 'input', key: 'pagibig' },
+    ]});
+  }
+
+  initPersonalInfo = () => {
+    {/* <FieldGroup value={contact_number} label="Spouses Complete Name"/> */}
+    {/* <FieldGroup value={contact_number} label="Children's Complete Name"/> */}
+
+    const {address, marital_status, } = this.props.employeeProfile;
+
+    this.setState({personalInfo: [
+      { value: address, label: "Residencial Address", elementType: 'input', key: 'address' },
+      { value: marital_status, label: "Marital Status", elementType: 'input', key: 'marital_status' },
+    ]});
+  }
+
 
   onInputChangeHandler = (arrayName, label, event) => {
     const newData = [...this.state[arrayName]];
@@ -96,8 +124,13 @@ export class EmployeeProfile extends Component {
     // Put generalInfo in data obj
     const data = {};
 
-    for (const obj in this.state.generalInfo) {
-      const { key, value } = this.state.generalInfo[obj];
+    for (const ndx in this.state.generalInfo) {
+      const { key, value } = this.state.generalInfo[ndx];
+      data[key] = value;
+    }
+
+    for (const ndx in this.state.employmentInfo) {
+      const { key, value } = this.state.employmentInfo[ndx];
       data[key] = value;
     }
 
@@ -131,7 +164,7 @@ export class EmployeeProfile extends Component {
             )} />
             <Route path={`${url}/employment`} render={() => (
               this.state.employmentInfo.map((info, ndx) => (
-                <FieldGroup 
+                <FieldGroup
                   {...info}
                   edit={this.state.edit}
                   key={ndx}
@@ -141,20 +174,26 @@ export class EmployeeProfile extends Component {
               ))
             )} />
             <Route path={`${url}/government-membership`} render={() => (
-              <React.Fragment>
-                {/* <FieldGroup value={contact_number} label="SSS" /> */}
-                {/* <FieldGroup value={contact_number} label="TIN" /> */}
-                {/* <FieldGroup value={contact_number} label="PhilHealth" /> */}
-                {/* <FieldGroup value={contact_number} label="Pagibig" /> */}
-              </React.Fragment>
+              this.state.governmentInfo.map((info, ndx) => (
+                <FieldGroup
+                  {...info}
+                  edit={this.state.edit}
+                  key={ndx}
+                  onChange={this.onInputChangeHandler}
+                  arrayName="governmentInfo"
+                />
+              ))
             )} />
             <Route path={`${url}/personal-and-family`} render={() => (
-              <React.Fragment>
-                {/* <FieldGroup value={contact_number} label="Residence Address"/> */}
-                {/* <FieldGroup value={contact_number} label="Civil Status"/>         */}
-                {/* <FieldGroup value={contact_number} label="Spouses Complete Name"/> */}
-                {/* <FieldGroup value={contact_number} label="Children's Complete Name"/> */}
-              </React.Fragment>
+              this.state.personalInfo.map((info, ndx) => (
+                <FieldGroup
+                  {...info}
+                  edit={this.state.edit}
+                  key={ndx}
+                  onChange={this.onInputChangeHandler}
+                  arrayName="personalInfo"
+                />
+              ))
             )} />
             <Route render={() => <Redirect to={`${url}/general-info`} />} />
           </Switch>
