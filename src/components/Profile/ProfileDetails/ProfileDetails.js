@@ -29,6 +29,40 @@ const ProfileDetails = props => {
           </section>
         </div>
       </aside>
+
+      <section className="profile--info-area__info">
+        <h3>Basic Info</h3>
+        <div className="field-group">
+          <div className="label">
+            <label>First Name</label>
+          </div>
+          <p>Sean Stuart</p>
+        </div>
+        <div className="field-group">
+          <div className="label">
+            <label>Last Name</label>
+          </div>
+          <p>Urgel</p>
+        </div>
+        <div className="field-group">
+          <div className="label">
+            <label>Nickname</label>
+          </div>
+          <p>Sean</p>
+        </div>
+        <div className="field-group">
+          <div className="label">
+            <label>Email</label>
+          </div>
+          <p>seantheurgel@gmail.com</p>
+        </div>
+        <div className="field-group">
+          <div className="label">
+            <label>Contact Number</label>
+          </div>
+          <p>09985377197</p>
+        </div>
+      </section>
     </React.Fragment>
   );
 }
