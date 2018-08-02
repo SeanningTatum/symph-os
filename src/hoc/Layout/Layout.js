@@ -71,7 +71,9 @@ class Layout extends Component {
 
     // If we're at a profilePage - remove titles
     // We know it's a profile becuse the key is very long
-    if (pagenames[last].length > 15 || !isNaN(+pagenames[last])) showTitles = false;
+    if (last >= 1) {
+      if (pagenames[1].length > 15 || !isNaN(+pagenames[1])) showTitles = false;
+    }
 
     this.setState({ pageStepper, pageName, showPageStepper, showTitles, rootPage: pagenames[0] });
   }
