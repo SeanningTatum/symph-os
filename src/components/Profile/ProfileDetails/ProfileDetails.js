@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import FieldGroup from './FieldGroup/FieldGroup';
 // const ProfileDetails = props => {
 //   return props.profile.map(p => (
 //     <div key={p.id} className="profile--info-area__info">
@@ -40,7 +39,9 @@ const ProfileDetails = props => {
       </aside>
 
       <section className="profile--info-area__info">
-        {props.children}
+        <form>
+          {props.children}
+        </form>
       </section>
     </div>
   );
