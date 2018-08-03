@@ -86,9 +86,6 @@ export const projectColumns = [{
   dataField: 'client_contact',
   text: 'Client Contact'
 }, {
-  dataField: 'email',
-  text: 'Email Address'
-}, {
   dataField: 'project_manager',
   text: 'Project Manager'
 }, {

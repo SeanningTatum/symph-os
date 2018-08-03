@@ -94,9 +94,9 @@ export function getAll(tableName, api) {
     } catch (error) {
       dispatch(getAllError());
       dispatch(showSnackbar('A server side error has occured', 'error'));
+      setTimeout(() => dispatch(hideSnackbar()), 3000);
 
     } finally {
-      setTimeout(() => dispatch(hideSnackbar()), 3000);
       dispatch(getAllEnd());
 
     }
