@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AddButton from 'components/TablePage/AddButton/AddButton';
 import Loading from 'components/UI/Loading/Loading';
-
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
@@ -9,6 +8,7 @@ import * as tableActions from 'store/actions/tables';
 // Utils
 import { employeeColumns } from 'utils/tableHeaders';
 import BootstrapTable from 'react-bootstrap-table-next';
+import filterFactory from 'react-bootstrap-table2-filter';
 
 export class Employee extends Component {
 
@@ -23,13 +23,15 @@ export class Employee extends Component {
   }
 
   render() {
-    
+
     const table = !this.props.loading ? (
       <BootstrapTable 
         keyField="key"
         columns={employeeColumns}
         rowEvents={this.rowEvents}
-        data={this.props.employees} />
+        data={this.props.employees} 
+        filter={filterFactory()}
+        />
     ) : (
       <Loading />
     )

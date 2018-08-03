@@ -2,12 +2,14 @@
  * This file is for the table headers for <BootstrapTable />
  */
 
+import { textFilter } from 'react-bootstrap-table2-filter';
 
 // Clients
 export const clientColumns = [ {
   dataField: 'name',
   text: 'Name',
-  sort: true
+  sort: true,
+  filter: textFilter()
 }, {
   dataField: 'legal_name',
   text: 'Legal Name',
@@ -21,11 +23,13 @@ export const clientColumns = [ {
 export const contactColumns = [{
   dataField: 'name',
   text: 'Name',
-  sort: true
+  sort: true,
+  filter: textFilter()
 }, {
   dataField: 'nickname',
   text: 'Nickname',
-  sort: true
+  sort: true,
+  filter: textFilter()
 }, {
   dataField: 'number',
   text: 'Contact Number'
@@ -34,7 +38,8 @@ export const contactColumns = [{
   text: 'Email'
 }, {
   dataField: 'company',
-  text: 'Company'
+  text: 'Company',
+  filter: textFilter()
 }, {
   dataField: 'position',
   text: 'Position'
@@ -44,24 +49,28 @@ export const contactColumns = [{
 export const employeeColumns = [ {
   dataField: 'fname',
   text: 'First Name',
-  sort: true
+  sort: true,
+  filter: textFilter()
 }, {
   dataField: 'lname',
   text: 'Last Name',
-  sort: true
+  sort: true,
+  filter: textFilter()
 }, {
   dataField: 'mi',
   text: 'Middle Initial'
 }, {
   dataField: 'nickname',
-  text: 'Nickname'
+  text: 'Nickname',
+  filter: textFilter()
 }, {
   dataField: 'email',
   text: 'Email'
 },{
   dataField: 'position',
   text: 'Position',
-  sort: true
+  sort: true,
+  filter: textFilter()
 }, {
   dataField: 'team',
   text: 'Team',
@@ -72,7 +81,8 @@ export const employeeColumns = [ {
   sort: true
 }, {
   dataField: 'status',
-  text: 'Active'
+  text: 'Active',
+  sort: true
 },];
 
 // Projects

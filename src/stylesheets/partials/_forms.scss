@@ -66,5 +66,19 @@ label {
   margin-bottom: .5rem;
 }
 
+.form-control {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
+  padding: 4px 5px;
+  height: 25px;
+  max-width: 125px;
+  background-color: $grey;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 
 

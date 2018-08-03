@@ -9,6 +9,7 @@ import * as tableActions from 'store/actions/tables';
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
 import { contactColumns } from 'utils/tableHeaders';
+import filterFactory from 'react-bootstrap-table2-filter';
 
 export class Contacts extends Component {
 
@@ -31,7 +32,9 @@ export class Contacts extends Component {
           keyField="key"
           data={this.props.contacts}
           columns={contactColumns}
-          rowEvents={this.rowEvents} />
+          rowEvents={this.rowEvents} 
+          filter={filterFactory()}
+          />
           ): (
             <Loading />
           )}

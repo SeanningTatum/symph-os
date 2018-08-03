@@ -5936,6 +5936,10 @@ react-bootstrap-table-next@^0.1.15:
   dependencies:
     classnames "2.2.5"
 
+react-bootstrap-table2-filter@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-table2-filter/-/react-bootstrap-table2-filter-0.3.2.tgz#90719134ac4f6aa8af664f9f0fa065fae001ca0b"
+
 react-dev-utils@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-5.0.1.tgz#1f396e161fe44b595db1b186a40067289bf06613"

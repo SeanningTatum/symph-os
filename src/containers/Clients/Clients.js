@@ -5,12 +5,13 @@ import Loading from 'components/UI/Loading/Loading';
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
 import { clientColumns } from 'utils/tableHeaders'; 
+import filterFactory from 'react-bootstrap-table2-filter';
 
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
 
-export class Clients extends Component {
+class Clients extends Component {
 
   componentDidMount() {
     this.props.getAll('clients', 'clientsapi');
@@ -31,7 +32,9 @@ export class Clients extends Component {
             keyField='key'
             data={this.props.clients}
             columns={clientColumns}
-            rowEvents={this.rowEvents}/>
+            rowEvents={this.rowEvents}
+            filter={filterFactory()}
+            />
           ) : (
           <Loading />
         )}
