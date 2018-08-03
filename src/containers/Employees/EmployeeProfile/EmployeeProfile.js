@@ -156,17 +156,26 @@ export class EmployeeProfile extends Component {
     const { url } = this.props.match;
     const { fname, lname } = this.props.employeeProfile;
 
+    const sidenavLinks = [
+      {link: `${url}/general`, name: 'General'},
+      {link: `${url}/employment`, name: 'Employment'},
+      {link: `${url}/government`, name: 'Government'},
+      {link: `${url}/personal`, name: 'Personal'},
+    ];
+
     return (!this.props.loading) ? (
       <React.Fragment>
         <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} save={this.onSubmit} />
 
           <Switch>
-            <Route path={`${url}/general-info`} render={() => (
+            <Route path={`${url}/general`} render={() => (
               <ProfileDetails 
                 edit={this.state.edit}
                 info={this.state.generalInfo}
                 onChange={this.onInputChangeHandler}
+                sidenavLinks={sidenavLinks}
                 arrayName="generalInfo"
+                current={'General'}
                 url={url}/>
             )} />
 
@@ -176,28 +185,34 @@ export class EmployeeProfile extends Component {
                 info={this.state.employmentInfo}
                 onChange={this.onInputChangeHandler}
                 arrayName="employmentInfo"
+                sidenavLinks={sidenavLinks}
+                current={'Employment'}
                 url={url}/>
             )} />
 
-            <Route path={`${url}/government-membership`} render={() => (
+            <Route path={`${url}/government`} render={() => (
               <ProfileDetails 
                 edit={this.state.edit}
                 info={this.state.governmentInfo}
                 onChange={this.onInputChangeHandler}
                 arrayName="governmentInfo"
+                sidenavLinks={sidenavLinks}
+                current={'Government Membership'}
                 url={url}/>
             )} />
 
-            <Route path={`${url}/personal-and-family`} render={() => (
+            <Route path={`${url}/personal`} render={() => (
               <ProfileDetails 
                 edit={this.state.edit}
                 info={this.state.personalInfo}
                 onChange={this.onInputChangeHandler}
                 arrayName="personalInfo"
+                sidenavLinks={sidenavLinks}
+                current={'Personal & Family'}
                 url={url}/>
             )} />
 
-            <Route render={() => <Redirect to={`${url}/general-info`} />} />
+            <Route render={() => <Redirect to={`${url}/general`} />} />
           </Switch>
       </React.Fragment>
 

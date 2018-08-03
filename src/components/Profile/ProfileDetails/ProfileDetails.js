@@ -21,24 +21,18 @@ const ProfileDetails = props => {
               <strong>PROFILE</strong>
             </div>
             <ul className="profile--sidenav">
-              <li className="profile--sidenav__item">
-                <NavLink to={`${props.url}/general-info`}>General Info</NavLink>
-              </li>
-              <li className="profile--sidenav__item">
-                <NavLink to={`${props.url}/employment`}>Employment</NavLink>
-              </li>
-              <li className="profile--sidenav__item">
-                <NavLink to={`${props.url}/government-membership`}>Government Membership</NavLink>
-              </li>
-              <li className="profile--sidenav__item">
-                <NavLink to={`${props.url}/personal-and-family`}>Personal and Family</NavLink>
-              </li>
+              {props.sidenavLinks.map(sidenav => (
+                <li className="profile--sidenav__item">
+                  <NavLink to={sidenav.link}>{sidenav.name}</NavLink>
+                </li>
+              ))}
             </ul>
           </section>
         </div>
       </aside>
 
       <section className="profile--info-area__info">
+        <h3>{props.current}</h3>
         <form>
           {props.info.map((info, ndx) => (
             <FieldGroup
