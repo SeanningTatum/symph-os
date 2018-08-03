@@ -8,7 +8,6 @@ import * as tableActions from 'store/actions/tables';
 import * as formControlActions from 'store/actions/formControls';
   
 const selectForms = [
-  {option: 'projectManagerOptions', label: 'Project Manager'},
   {option: 'clientOptions', label: 'Client'},
   {option: 'contactOptions', label: 'Client Contact'},
   {option: 'teamOptions', label: 'Team'},
@@ -24,7 +23,6 @@ export class AddProject extends Component {
     values: {
       client: '',
       client_contact: '',
-      project_manager: '',
       team: ''
     },
     selectsValid: false
@@ -72,13 +70,6 @@ export class AddProject extends Component {
     fetch('http://localhost:8080/_ah/api/clientsapi/v1/getClients', options)
       .then(response => response.json())
       .then(options => this.setState({clientOptions: options.clients}));
-
-    // Get Employees
-    fetch('http://localhost:8080/_ah/api/employeesapi/v1/getProjectManagers', options)
-      .then(response => response.json())
-      .then(options => {
-        this.setState({projectManagerOptions: options.employees})
-      });
 
     // Get Contacts
     fetch('http://localhost:8080/_ah/api/contactsapi/v1/getContactNames', options)
