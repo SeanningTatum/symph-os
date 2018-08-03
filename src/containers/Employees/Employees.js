@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import AddButton from 'components/TablePage/AddButton/AddButton';
 import Loading from 'components/UI/Loading/Loading';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
@@ -32,6 +34,8 @@ export class Employee extends Component {
         data={this.props.employees} 
         filter={filterFactory()}
         noDataIndication="There are no employees &#x1F615;"
+        pagination={ paginationFactory() }
+
         />
     ) : (
       <Loading />

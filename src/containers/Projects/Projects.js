@@ -6,7 +6,7 @@ import Loading from 'components/UI/Loading/Loading';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { projectColumns } from 'utils/tableHeaders'; 
 import filterFactory from 'react-bootstrap-table2-filter';
-
+import paginationFactory from 'react-bootstrap-table2-paginator';
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
@@ -35,6 +35,7 @@ export class Projects extends Component {
             rowEvents={this.rowEvents}
             filter={filterFactory()}
             noDataIndication="There are no projects &#x1F615;"
+            pagination={ paginationFactory() }
             />
           ) : (
           <Loading />

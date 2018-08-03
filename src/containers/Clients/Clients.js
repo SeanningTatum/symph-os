@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AddButton from 'components/TablePage/AddButton/AddButton';
 import Loading from 'components/UI/Loading/Loading';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 // Utils
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -35,6 +36,7 @@ class Clients extends Component {
             rowEvents={this.rowEvents}
             filter={filterFactory()}
             noDataIndication="There are no clients &#x1F615;"
+            pagination={paginationFactory()}
             />
           ) : (
           <Loading />

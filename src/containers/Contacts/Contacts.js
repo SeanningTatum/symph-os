@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loading from 'components/UI/Loading/Loading';
 import AddButton from 'components/TablePage/AddButton/AddButton';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 // Redux
 import { connect } from 'react-redux';
@@ -35,6 +36,7 @@ export class Contacts extends Component {
           rowEvents={this.rowEvents} 
           filter={filterFactory()}
           noDataIndication="There are no contacts &#x1F615;"
+          pagination={paginationFactory()}
           />
           ): (
             <Loading />
