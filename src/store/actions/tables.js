@@ -89,7 +89,7 @@ export function getAll(tableName, api) {
     try {
       const response = await fetch(url + `${api}/v1/get`, options);
       const dataArray = await response.json();
-
+      console.log(dataArray)
       dispatch(getAllSuccess(tableName, dataArray[tableName]));
     } catch (error) {
       dispatch(getAllError());

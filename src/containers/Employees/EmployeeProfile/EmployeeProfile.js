@@ -4,11 +4,8 @@ import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader';
 import Loading from 'components/UI/Loading/Loading';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-
-
 // Redux
 import { connect } from 'react-redux';
-import * as formControlActions from 'store/actions/formControls';
 import * as profileActions from 'store/actions/profiles';
 
 export class EmployeeProfile extends Component {
@@ -79,26 +76,30 @@ export class EmployeeProfile extends Component {
   }
 
   initGovermentInfo = () => {
-    const {sss, tin, philhealth, pagibig} = this.props.employeeProfile;
+    const { sss, tin, philhealth, pagibig } = this.props.employeeProfile;
 
-    this.setState({governmentInfo: [
-      { value: sss || '', label: "SSS", elementType: 'input', key: 'sss' },
-      { value: tin || '', label: "TIN", elementType: 'input', key: 'tin' },
-      { value: philhealth || '', label: "Phil Health", elementType: 'input', key: 'philhealth' },
-      { value: pagibig || '', label: "Pagibig", elementType: 'input', key: 'pagibig' },
-    ]});
+    this.setState({
+      governmentInfo: [
+        { value: sss || '', label: "SSS", elementType: 'input', key: 'sss' },
+        { value: tin || '', label: "TIN", elementType: 'input', key: 'tin' },
+        { value: philhealth || '', label: "Phil Health", elementType: 'input', key: 'philhealth' },
+        { value: pagibig || '', label: "Pagibig", elementType: 'input', key: 'pagibig' },
+      ]
+    });
   }
 
   initPersonalInfo = () => {
     /* <FieldGroup value={contact_number} label="Spouses Complete Name"/> */
     /* <FieldGroup value={contact_number} label="Children's Complete Name"/> */
 
-    const {address, marital_status, } = this.props.employeeProfile;
+    const { address, marital_status, } = this.props.employeeProfile;
 
-    this.setState({personalInfo: [
-      { value: address || '', label: "Residencial Address", elementType: 'input', key: 'address' },
-      { value: marital_status || '', label: "Marital Status", elementType: 'input', key: 'marital_status' },
-    ]});
+    this.setState({
+      personalInfo: [
+        { value: address || '', label: "Residencial Address", elementType: 'input', key: 'address' },
+        { value: marital_status || '', label: "Marital Status", elementType: 'input', key: 'marital_status' },
+      ]
+    });
   }
 
 
@@ -157,63 +158,67 @@ export class EmployeeProfile extends Component {
     const { fname, lname } = this.props.employeeProfile;
 
     const sidenavLinks = [
-      {link: `${url}/general`, name: 'General'},
-      {link: `${url}/employment`, name: 'Employment'},
-      {link: `${url}/government`, name: 'Government'},
-      {link: `${url}/personal`, name: 'Personal'},
+      { link: `${url}/general`, name: 'General' },
+      { link: `${url}/employment`, name: 'Employment' },
+      { link: `${url}/government`, name: 'Government' },
+      { link: `${url}/personal`, name: 'Personal' },
     ];
 
     return (!this.props.loading) ? (
       <React.Fragment>
-        <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} save={this.onSubmit} />
+        <ProfileHeader 
+          clicked={this.toggleEdit} 
+          name={`${fname} ${lname}`} 
+          edit={this.state.edit} 
+          save={this.onSubmit} />
 
-          <Switch>
-            <Route path={`${url}/general`} render={() => (
-              <ProfileDetails 
-                edit={this.state.edit}
-                info={this.state.generalInfo}
-                onChange={this.onInputChangeHandler}
-                sidenavLinks={sidenavLinks}
-                arrayName="generalInfo"
-                current={'General'}
-                url={url}/>
-            )} />
+        <Switch>
+          <Route path={`${url}/general`} render={() => (
+            <ProfileDetails
+              edit={this.state.edit}
+              info={this.state.generalInfo}
+              onChange={this.onInputChangeHandler}
+              sidenavLinks={sidenavLinks}
+              arrayName="generalInfo"
+              current={'General'}
+              url={url} />
+          )} />
 
-            <Route path={`${url}/employment`} render={() => (
-              <ProfileDetails 
-                edit={this.state.edit}
-                info={this.state.employmentInfo}
-                onChange={this.onInputChangeHandler}
-                arrayName="employmentInfo"
-                sidenavLinks={sidenavLinks}
-                current={'Employment'}
-                url={url}/>
-            )} />
+          <Route path={`${url}/employment`} render={() => (
+            <ProfileDetails
+              edit={this.state.edit}
+              info={this.state.employmentInfo}
+              onChange={this.onInputChangeHandler}
+              arrayName="employmentInfo"
+              sidenavLinks={sidenavLinks}
+              current={'Employment'}
+              url={url} />
+          )} />
 
-            <Route path={`${url}/government`} render={() => (
-              <ProfileDetails 
-                edit={this.state.edit}
-                info={this.state.governmentInfo}
-                onChange={this.onInputChangeHandler}
-                arrayName="governmentInfo"
-                sidenavLinks={sidenavLinks}
-                current={'Government Membership'}
-                url={url}/>
-            )} />
+          <Route path={`${url}/government`} render={() => (
+            <ProfileDetails
+              edit={this.state.edit}
+              info={this.state.governmentInfo}
+              onChange={this.onInputChangeHandler}
+              arrayName="governmentInfo"
+              sidenavLinks={sidenavLinks}
+              current={'Government Membership'}
+              url={url} />
+          )} />
 
-            <Route path={`${url}/personal`} render={() => (
-              <ProfileDetails 
-                edit={this.state.edit}
-                info={this.state.personalInfo}
-                onChange={this.onInputChangeHandler}
-                arrayName="personalInfo"
-                sidenavLinks={sidenavLinks}
-                current={'Personal & Family'}
-                url={url}/>
-            )} />
+          <Route path={`${url}/personal`} render={() => (
+            <ProfileDetails
+              edit={this.state.edit}
+              info={this.state.personalInfo}
+              onChange={this.onInputChangeHandler}
+              arrayName="personalInfo"
+              sidenavLinks={sidenavLinks}
+              current={'Personal & Family'}
+              url={url} />
+          )} />
 
-            <Route render={() => <Redirect to={`${url}/general`} />} />
-          </Switch>
+          <Route render={() => <Redirect to={`${url}/general`} />} />
+        </Switch>
       </React.Fragment>
 
 
