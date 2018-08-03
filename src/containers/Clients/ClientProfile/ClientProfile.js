@@ -63,7 +63,7 @@ export class ClientProfile extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-
+    this.setState({edit: false});
     const data = {};
 
     for (const ndx in this.state.generalInfo) {
@@ -72,7 +72,6 @@ export class ClientProfile extends Component {
     }
 
     this.props.update('clientsapi', this.props.clientProfile.key, data);
-    this.props.history.push('/clients');
   }
 
   /*- - - - - - - - - - - - - - - -

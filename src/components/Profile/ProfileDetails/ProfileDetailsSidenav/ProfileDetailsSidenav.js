@@ -10,7 +10,7 @@ const ProfileDetailsSidenav = props => (
         </div>
         <ul className="profile--sidenav">
           {props.sidenavLinks.map(sidenav => (
-            <li className="profile--sidenav__item">
+            <li className="profile--sidenav__item" key={sidenav.name}>
               <NavLink to={sidenav.link}>{sidenav.name}</NavLink>
             </li>
           ))}

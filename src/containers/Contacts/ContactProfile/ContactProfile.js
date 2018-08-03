@@ -70,8 +70,7 @@ export class ContactProfile extends Component {
       data[key] = value;
     }
 
-    await this.props.update('contactsapi', this.props.contactProfile.key, this.props.contactControls);
-    this.props.history.push('/contacts');
+    this.props.update('contactsapi', this.props.contactProfile.key, data);
   }
 
   /*- - - - - - - - - - - - - - - -
