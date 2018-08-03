@@ -6,7 +6,7 @@ import * as authActions from 'store/actions/auth';
 
 export class Auth extends Component {
   responseGoogle = (response) => {
-    fetch('http://localhost:8080/_ah/api/credentials/v1/get')
+    fetch('http://symph-operating-system-210700.appspot.com/_ah/api//credentials/v1/get')
       .then(response => response.json())
       .then(whitelist => {
         console.log(whitelist);

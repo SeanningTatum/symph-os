@@ -67,17 +67,17 @@ export class AddProject extends Component {
     };
     
     // Get Clients
-    fetch('http://localhost:8080/_ah/api/clientsapi/v1/getClients', options)
+    fetch('http://symph-operating-system-210700.appspot.com/_ah/api/clientsapi/v1/getClients', options)
       .then(response => response.json())
       .then(options => this.setState({clientOptions: options.clients}));
 
     // Get Contacts
-    fetch('http://localhost:8080/_ah/api/contactsapi/v1/getContactNames', options)
+    fetch('http://symph-operating-system-210700.appspot.com/_ah/api/contactsapi/v1/getContactNames', options)
       .then(response => response.json())
       .then(options => this.setState({contactOptions: options.contacts}));
 
     // Get Teams
-    fetch('http://localhost:8080/_ah/api/teamsapi/v1/getTeamNames', options)
+    fetch('http://symph-operating-system-210700.appspot.com/_ah/api/teamsapi/v1/getTeamNames', options)
       .then(response => response.json())
       .then(options => this.setState({teamOptions: options.teams}));
   }

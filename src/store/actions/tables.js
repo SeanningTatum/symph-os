@@ -8,7 +8,7 @@ import {
 }  from './actionTypes';
 import { showSnackbar, hideSnackbar } from './layout';
 
-const url = "http://localhost:8080/_ah/api/";
+const url = "http://symph-operating-system-210700.appspot.com/_ah/api/";
 
 /*=============================================
 =                 Start ADD                 =

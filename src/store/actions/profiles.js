@@ -5,7 +5,7 @@ import {
   GET_END 
 } from './actionTypes';
 
-const url = "http://localhost:8080/_ah/api/";
+const url = "http://symph-operating-system-210700.appspot.com/_ah/api/";
 
 const getStart = () => ({type: GET_START});
 const getEnd = () => ({type: GET_END});
