@@ -110,7 +110,7 @@ export class ClientProfile extends Component {
       </React.Fragment>
     );
     
-    return this.props.loading ? profile : <Loading />;
+    return !this.props.loading ? profile : <Loading />;
   }
 }
 

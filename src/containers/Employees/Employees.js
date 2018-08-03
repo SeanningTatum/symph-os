@@ -23,18 +23,21 @@ export class Employee extends Component {
   }
 
   render() {
+    
+    const table = !this.props.loading ? (
+      <BootstrapTable 
+        keyField="key"
+        columns={employeeColumns}
+        rowEvents={this.rowEvents}
+        data={this.props.employees} />
+    ) : (
+      <Loading />
+    )
+
     return (
       <React.Fragment>
         <AddButton entity='employee'/>
-        {!this.props.loading ? (
-          <BootstrapTable 
-            keyField="key"
-            columns={employeeColumns}
-            rowEvents={this.rowEvents}
-            data={this.props.employees}
-          />) : (
-            <Loading />
-          )}
+        {table}
       </React.Fragment>
     )
   }
