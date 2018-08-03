@@ -43,7 +43,7 @@ export class EmployeeProfile extends Component {
 
   initGeneralInfo = () => {
     const {
-      fname, lname, nickname, email, contact_number,
+      fname, lname, nickname, email, contact_no,
       current_skills, future_skills, personality_type } = this.props.employeeProfile;
 
     this.setState({
@@ -52,7 +52,7 @@ export class EmployeeProfile extends Component {
         { value: lname, label: "Last Name", elementType: 'input', key: 'lname' },
         { value: nickname, label: "Nickname", elementType: 'input', key: 'nickname' },
         { value: email, label: 'Email', elementType: 'input', key: 'email' },
-        { value: contact_number || '', label: 'Contact Number', elementType: 'input', key: 'contact_number' },
+        { value: contact_no || '', label: 'Contact Number', elementType: 'input', key: 'contact_no' },
         { value: current_skills || '', label: 'Current Skills and Technologies', elementType: 'textarea', key: 'current_skills' },
         { value: future_skills || '', label: 'Skills and Technologies I want to learn in the next 6 months', elementType: 'textarea', key: 'future_skills' },
         // {value: personality_type || '', label: 'Personality Type', elementType: 'input', key: ''}
