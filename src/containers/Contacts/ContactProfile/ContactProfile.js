@@ -40,8 +40,8 @@ export class ContactProfile extends Component {
       generalInfo: [
         { value: name, label: "Name", elementType: 'input', key: 'name' },
         { value: nickname, label: "Nickname", elementType: 'input', key: 'nickname' },
-        { value: email, label: "Name", elementType: 'input', key: 'email' },
-        { value: company, label: "Name", elementType: 'input', key: 'company' },
+        { value: email, label: "Email", elementType: 'input', key: 'email' },
+        { value: company, label: "Comapany", elementType: 'input', key: 'company' },
       ]
     })
   }
@@ -69,7 +69,7 @@ export class ContactProfile extends Component {
       const { key, value } = this.state.generalInfo[ndx];
       data[key] = value;
     }
-    
+
     await this.props.update('contactsapi', this.props.contactProfile.key, this.props.contactControls);
     this.props.history.push('/contacts');
   }
@@ -86,7 +86,7 @@ export class ContactProfile extends Component {
       { link: `${url}/general`, name: 'General' },
     ];
 
-    const profile = (!this.props.loading) ? (
+    const profile = (
       <React.Fragment>
         <ProfileHeader
           clicked={this.toggleEdit}
@@ -96,7 +96,7 @@ export class ContactProfile extends Component {
           />
 
         <Switch>
-          <Route render={() => (
+          <Route path={`${url}/general`} render={() => (
             <ProfileDetails
               edit={this.state.edit}
               info={this.state.generalInfo}
@@ -110,11 +110,9 @@ export class ContactProfile extends Component {
           <Route render={() => <Redirect to={`${url}/general`} />} />
         </Switch>
       </React.Fragment>
-    ) : (
-        <Loading />
-      )
+    ) 
 
-    return profile;
+    return !this.props.loading ? profile : <Loading />;
   }
 }
 

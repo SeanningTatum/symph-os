@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Forms from 'components/Forms/Forms';
 import ProfileDetails from 'components/Profile/ProfileDetails/ProfileDetails';
 import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader'; 
 import Loading from 'components/UI/Loading/Loading';
 
 // Redux
 import { connect } from 'react-redux';
-import * as formControlActions from 'store/actions/formControls';
 import * as profileActions from 'store/actions/profiles';
 
 export class ClientProfile extends Component {
 
   state = {
-    edit: false
+    edit: false,
+    generalInfo: []
   }
 
   /*- - - - - - - - - - - - - - - -
@@ -23,6 +23,7 @@ export class ClientProfile extends Component {
   async componentDidMount() {
     const clientID = this.props.location.pathname.split("/")[2];
     await this.props.get('clientsapi', clientID);
+    this.initGeneralInfo();
   }
 
   componentWillUnmount() {
@@ -32,14 +33,45 @@ export class ClientProfile extends Component {
   *           Functions           *
   * - - - - - - - - - - - - - - - */
 
+  initGeneralInfo = () => {
+    const {company, email, name, nickname, number, position} = this.props.clientProfile;
+
+    this.setState({
+      generalInfo: [
+        { value: name, label: "Name", elementType: 'input', key: 'name' },
+        { value: nickname, label: "Nickname", elementType: 'input', key: 'nickname' },
+        { value: email, label: "Email", elementType: 'input', key: 'email' },
+        { value: company, label: "Company", elementType: 'input', key: 'company' },
+        { value: number, label: "Number", elementType: 'input', key: 'number' },
+        { value: position, label: "Position", elementType: 'input', key: 'position' },
+      ]
+    })
+  }
+  
   toggleEdit = () => {
-    this.setState(prevState => ({ edit: !prevState.edit }));
-    this.props.updateControls('clientControls', this.props.clientProfile);
+    this.setState({ edit: true });
+  }
+
+  onInputChangeHandler = (arrayName, label, event) => {
+    const newData = [...this.state[arrayName]];
+    const result = newData.findIndex(control => control.label === label);
+
+    newData[result].value = event.target.value;
+
+    this.setState({ [arrayName]: newData });
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.update('clientsapi', this.props.clientProfile.key, this.props.clientControls);
+
+    const data = {};
+
+    for (const ndx in this.state.generalInfo) {
+      const { key, value } = this.state.generalInfo[ndx];
+      data[key] = value;
+    }
+
+    this.props.update('clientsapi', this.props.clientProfile.key, data);
     this.props.history.push('/clients');
   }
 
@@ -48,48 +80,38 @@ export class ClientProfile extends Component {
   * - - - - - - - - - - - - - - - */
 
   render() {
+    const { url } = this.props.match;
     
-    const clientProfile = [];
-    for (let key in this.props.clientProfile) {
-      clientProfile.push({
-        id: key.charAt(0).toUpperCase() + key.substr(1),
-        value: this.props.clientProfile[key]
-      });
-    }
+    const sidenavLinks = [
+      { link: `${url}/general`, name: 'General' },
+    ];
 
-    const formElementsArray = [];
-    for (let key in this.props.clientControls) {
-      formElementsArray.push({
-        id: key,
-        config: this.props.clientControls[key]
-      });
-    }
-
-    const profile = (!this.props.loading) ? (
+    const profile = (
       <React.Fragment>
-        <ProfileHeader 
-          clicked={this.toggleEdit} 
+        <ProfileHeader
+          clicked={this.toggleEdit}
           name={this.props.clientProfile.name}
-          edit={this.state.edit}/>
-        <div className="profile--info-area">
-          {!this.state.edit ? (
-            <ProfileDetails profile={clientProfile} />
-          ) : (
-            <div style={{height: '100%', width: '100%', display: 'flex', flexDirection: 'column'}}>
-              <Forms
-                formElements={formElementsArray}
-                clicked={this.onSubmit}
-                controls={this.props.clientControls}
-                controlName={'clientControls'}/>
-            </div>
-          )}
-        </div>
+          edit={this.state.edit} 
+          save={this.onSubmit}/>
+
+        <Switch>
+          <Route path={`${url}/general`} render={() => (
+            <ProfileDetails
+              edit={this.state.edit}
+              info={this.state.generalInfo}
+              onChange={this.onInputChangeHandler}
+              sidenavLinks={sidenavLinks}
+              arrayName="generalInfo"
+              current={'General'}
+              url={url} />
+          )} />
+
+          <Route render={() => <Redirect to={`${url}/general`} />} />
+        </Switch>
       </React.Fragment>
-    ) : (
-      <Loading />
-    )
+    );
     
-    return profile;
+    return this.props.loading ? profile : <Loading />;
   }
 }
 
@@ -102,13 +124,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   get: (api, id) => dispatch(profileActions.get(api, id)),
 
-  update: (api, id, controls) => dispatch(profileActions.update(api, id, controls)),
+  update: (api, id, data) => dispatch(profileActions.update(api, id, data)),
 
   resetProfile: () => dispatch(profileActions.resetProfile()),
-
-  updateControls: (controlName, values) => (
-    dispatch(formControlActions.updateControls(controlName, values))
-  )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientProfile);
