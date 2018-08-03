@@ -34,6 +34,7 @@ class Clients extends Component {
             columns={clientColumns}
             rowEvents={this.rowEvents}
             filter={filterFactory()}
+            noDataIndication="There are no clients &#x1F615;"
             />
           ) : (
           <Loading />

@@ -34,6 +34,7 @@ export class Projects extends Component {
             columns={projectColumns}
             rowEvents={this.rowEvents}
             filter={filterFactory()}
+            noDataIndication="There are no projects &#x1F615;"
             />
           ) : (
           <Loading />

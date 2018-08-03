@@ -31,6 +31,7 @@ export class Employee extends Component {
         rowEvents={this.rowEvents}
         data={this.props.employees} 
         filter={filterFactory()}
+        noDataIndication="There are no employees &#x1F615;"
         />
     ) : (
       <Loading />

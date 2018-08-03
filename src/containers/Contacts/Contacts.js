@@ -34,6 +34,7 @@ export class Contacts extends Component {
           columns={contactColumns}
           rowEvents={this.rowEvents} 
           filter={filterFactory()}
+          noDataIndication="There are no contacts &#x1F615;"
           />
           ): (
             <Loading />
