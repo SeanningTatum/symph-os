@@ -71,10 +71,6 @@ const mapDispatchToProps = dispatch => ({
   onBlur: (controlProp, controlName) => (
     dispatch(formControlActions.blur(controlProp, controlName))
   ),
-
-  resetForm: (controlName) => (
-    dispatch(formControlActions.resetForm(controlName))
-  ),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Forms);

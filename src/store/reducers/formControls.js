@@ -8,7 +8,7 @@ import {
 
 import { clientControls } from 'utils/formControls/clientControls';
 import { contactControls } from 'utils/formControls/contactControls';
-import { employeeControls, employeeUpdateControls } from 'utils/formControls/employeeControls';
+import { employeeControls } from 'utils/formControls/employeeControls';
 import { teamControls } from 'utils/formControls/teamControls';
 import { projectControls } from "utils/formControls/projectControls";
 import { updateObject, checkValidity } from 'utils/helperFunctions';
@@ -19,7 +19,6 @@ const initState = {
   employeeControls,
   teamControls,
   projectControls,
-  employeeUpdateControls,
   isFormValid: false
 }
 /*=============================================

@@ -5,7 +5,8 @@ import Select from 'react-select';
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
-
+import * as formControlActions from 'store/actions/formControls';
+  
 const selectForms = [
   {option: 'projectManagerOptions', label: 'Project Manager'},
   {option: 'clientOptions', label: 'Client'},
@@ -138,6 +139,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   add: (controls, data) => dispatch(tableActions.add('projects', controls, 'projectsapi', data)),
+  resetForm: (controlName) => (dispatch(formControlActions.resetForm(controlName))),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProject);

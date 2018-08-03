@@ -4,13 +4,14 @@ import Forms from 'components/Forms/Forms';
 // Redux
 import { connect } from 'react-redux';
 import * as tableActions from 'store/actions/tables';
-
+import * as formControlActions from 'store/actions/formControls';
 export class AddContact extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
     this.props.addContact(this.props.controls, 'contactsapi');
     this.props.history.push('/contacts');
+    this.props.resetForm('contactControls');
   }
 
   render() {
@@ -35,9 +36,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: (controls, api) => dispatch(
-    tableActions.add('contacts', controls, api)
-  )
+  addContact: (controls, api) => dispatch(tableActions.add('contacts', controls, api)),
+  resetForm: (controlName) => (dispatch(formControlActions.resetForm(controlName))),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddContact);
