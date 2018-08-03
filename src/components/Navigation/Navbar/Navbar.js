@@ -7,7 +7,8 @@ const navbar = ({onLogout}) => (
     <span>Symph OS v2</span>
     <GoogleLogout
       buttonText="Logout"
-      onLogoutSuccess={() => onLogout()} />
+      onLogoutSuccess={onLogout}
+      onLogoutFailure={onLogout}  />
   </nav>
 )
 

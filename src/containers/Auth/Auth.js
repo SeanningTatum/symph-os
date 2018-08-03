@@ -19,8 +19,7 @@ export class Auth extends Component {
           onSuccess={this.responseGoogle} 
           onFailure={this.responseGoogle}
           accessType="offline"
-          prompt="consent"
-          />
+          prompt="consent" />
       </div>
     )
   }

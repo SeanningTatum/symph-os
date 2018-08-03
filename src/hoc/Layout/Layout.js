@@ -82,6 +82,11 @@ class Layout extends Component {
     this.setState(prevState => ({ sideNavOpen: !prevState.sideNavOpen }))
   }
 
+  logout = (response) => {
+    console.log(response);
+    this.props.logout();
+  }
+
 
   /*- - - - - - - - - - - - - - - -
   *             Render            *
@@ -103,7 +108,7 @@ class Layout extends Component {
       <div className="app-container">
         
         <Snackbar message={this.props.message} type={this.props.type} showSnackbar={this.props.showSnackbar}/>
-        <Navbar onLogout={this.props.logout} />
+        <Navbar onLogout={this.logout} />
         <Sidenav open={this.state.sideNavOpen} />
 
         {/* Main content */}
