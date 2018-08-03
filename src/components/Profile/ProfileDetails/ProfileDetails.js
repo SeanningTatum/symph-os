@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-
+import FieldGroup from 'components/Profile/ProfileDetails/FieldGroup/FieldGroup';
 // const ProfileDetails = props => {
 //   return props.profile.map(p => (
 //     <div key={p.id} className="profile--info-area__info">
@@ -40,7 +40,14 @@ const ProfileDetails = props => {
 
       <section className="profile--info-area__info">
         <form>
-          {props.children}
+          {props.info.map((info, ndx) => (
+            <FieldGroup
+              {...info}
+              edit={props.edit}
+              key={ndx}
+              onChange={props.onChange}
+              arrayName={props.arrayName} />
+          ))}
         </form>
       </section>
     </div>
@@ -48,7 +55,11 @@ const ProfileDetails = props => {
 }
 
 ProfileDetails.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  arrayName: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  info: PropTypes.array.isRequired,
+  edit: PropTypes.bool.isRequired
 }
 
 export default ProfileDetails

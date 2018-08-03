@@ -4,7 +4,7 @@ import ProfileHeader from 'components/Profile/ProfileHeader/ProfileHeader';
 import Loading from 'components/UI/Loading/Loading';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import FieldGroup from 'components/Profile/ProfileDetails/FieldGroup/FieldGroup';
+
 
 // Redux
 import { connect } from 'react-redux';
@@ -112,8 +112,7 @@ export class EmployeeProfile extends Component {
   }
 
   toggleEdit = () => {
-    this.setState(({ edit: true }));
-    this.props.updateControls('employeeUpdateControls', this.props.employeeProfile);
+    this.setState({ edit: true });
   }
 
   onSubmit = (event) => {
@@ -160,55 +159,46 @@ export class EmployeeProfile extends Component {
     return (!this.props.loading) ? (
       <React.Fragment>
         <ProfileHeader clicked={this.toggleEdit} name={`${fname} ${lname}`} edit={this.state.edit} save={this.onSubmit} />
-        <ProfileDetails url={url}>
-          <h3>General Info</h3>
+
           <Switch>
             <Route path={`${url}/general-info`} render={() => (
-              this.state.generalInfo.map((info, ndx) => (
-                <FieldGroup
-                  {...info}
-                  edit={this.state.edit}
-                  key={ndx}
-                  onChange={this.onInputChangeHandler}
-                  arrayName="generalInfo" />
-              ))
+              <ProfileDetails 
+                edit={this.state.edit}
+                info={this.state.generalInfo}
+                onChange={this.onInputChangeHandler}
+                arrayName="generalInfo"
+                url={url}/>
             )} />
+
             <Route path={`${url}/employment`} render={() => (
-              this.state.employmentInfo.map((info, ndx) => (
-                <FieldGroup
-                  {...info}
-                  edit={this.state.edit}
-                  key={ndx}
-                  onChange={this.onInputChangeHandler}
-                  arrayName="employmentInfo"
-                />
-              ))
+              <ProfileDetails 
+                edit={this.state.edit}
+                info={this.state.employmentInfo}
+                onChange={this.onInputChangeHandler}
+                arrayName="employmentInfo"
+                url={url}/>
             )} />
+
             <Route path={`${url}/government-membership`} render={() => (
-              this.state.governmentInfo.map((info, ndx) => (
-                <FieldGroup
-                  {...info}
-                  edit={this.state.edit}
-                  key={ndx}
-                  onChange={this.onInputChangeHandler}
-                  arrayName="governmentInfo"
-                />
-              ))
+              <ProfileDetails 
+                edit={this.state.edit}
+                info={this.state.governmentInfo}
+                onChange={this.onInputChangeHandler}
+                arrayName="governmentInfo"
+                url={url}/>
             )} />
+
             <Route path={`${url}/personal-and-family`} render={() => (
-              this.state.personalInfo.map((info, ndx) => (
-                <FieldGroup
-                  {...info}
-                  edit={this.state.edit}
-                  key={ndx}
-                  onChange={this.onInputChangeHandler}
-                  arrayName="personalInfo"
-                />
-              ))
+              <ProfileDetails 
+                edit={this.state.edit}
+                info={this.state.personalInfo}
+                onChange={this.onInputChangeHandler}
+                arrayName="personalInfo"
+                url={url}/>
             )} />
+
             <Route render={() => <Redirect to={`${url}/general-info`} />} />
           </Switch>
-        </ProfileDetails>
       </React.Fragment>
 
 
@@ -228,10 +218,6 @@ const mapDispatchToProps = dispatch => ({
   update: (api, id, controls) => dispatch(profileActions.update(api, id, controls)),
 
   resetProfile: () => dispatch(profileActions.resetProfile()),
-
-  updateControls: (controlName, values) => (
-    dispatch(formControlActions.updateControls(controlName, values))
-  )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeProfile);
