@@ -42,8 +42,19 @@ const AsyncAddTeamPage = asyncComponent(() => import('containers/Teams/AddTeam/A
 
 class App extends Component {
 
+
   componentDidMount() {
-    this.props.autoSignup();
+    fetch('http://localhost:8080/_ah/api/credentials/v1/get')
+      .then(response => response.json())
+      .then(whitelist => {
+        console.log(whitelist);
+        this.props.autoSignup(whitelist);
+      })
+    
+  }
+
+  isWhiteListed = () => {
+
   }
 
   render() {
@@ -90,7 +101,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  autoSignup: () => dispatch(authActions.isLoggedIn())
+  autoSignup: (whitelist) => dispatch(authActions.isLoggedIn(whitelist))
 });
 
 export default withRouter (connect(mapStateToProps, mapDispatchToProps)(App));

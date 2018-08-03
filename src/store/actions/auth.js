@@ -15,7 +15,14 @@ export function logout() {
   return {type: AUTH_LOGOUT};
 }
 
-export function onAuth (response) {
+function isWhitelisted (email, whitelist) {
+  for (let e in whitelist) {
+    if (email === whitelist[e]) return true;
+  }
+  return false;
+}
+
+export function onAuth (response, whitelist) {
   return dispatch => {
 
     if (response.error) {
@@ -23,8 +30,6 @@ export function onAuth (response) {
       dispatch(onAuthError())
       return;
     }
-
-    console.log(response);
 
     // response.reloadAuthResponse()
 
@@ -37,18 +42,36 @@ export function onAuth (response) {
     localStorage.setItem('token', access_token);
     localStorage.setItem('profile', JSON.stringify(profile))
     localStorage.setItem('expiration_date', new Date(new Date().getTime() + expires_in * 1000));
+    
+    const email = profile.email;
+    const userDomain = email.split('@');
+
+    if (!(userDomain === whitelist.domains[0] || isWhitelisted(email, whitelist.emails))) {
+      console.error('not a valid user');
+      return;
+    }
 
     dispatch(onAuthSuccess(profile, access_token));
   }
 }
 
-export function isLoggedIn() {
+
+
+export function isLoggedIn(whitelist) {
   return dispatch => {
     const token = localStorage.getItem('token');
     if (!token) {
       dispatch(logout());
       return;
-    } 
+    }
+
+    const email = JSON.parse(localStorage.getItem('profile')).email;
+    const userDomain = email.split('@');
+
+    if (!(userDomain === whitelist.domains[0] || isWhitelisted(email, whitelist.emails))) {
+      console.error('not a valid user');
+      return;
+    }
 
     const expirationDate = new Date(localStorage.getItem('expiration_date'));
     console.log(expirationDate);

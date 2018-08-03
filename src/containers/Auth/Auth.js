@@ -6,7 +6,12 @@ import * as authActions from 'store/actions/auth';
 
 export class Auth extends Component {
   responseGoogle = (response) => {
-    this.props.onAuth(response);
+    fetch('http://localhost:8080/_ah/api/credentials/v1/get')
+      .then(response => response.json())
+      .then(whitelist => {
+        console.log(whitelist);
+        this.props.onAuth(response, whitelist);
+      })
   }
 
   render() {
@@ -30,7 +35,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAuth: (response) => dispatch(authActions.onAuth(response)) 
+  onAuth: (response, whitelist) => dispatch(authActions.onAuth(response, whitelist)) 
 })
 
 
