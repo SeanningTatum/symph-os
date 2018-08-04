@@ -57,13 +57,13 @@ class AddTeam extends Component {
       },
     }
 
-    fetch("http://symph-operating-system-210700.appspot.com/_ah/api/employeesapi/v1/getNames", options)
+    fetch("https://symph-operating-system-210700.appspot.com/_ah/api/employeesapi/v1/getNames", options)
       .then(response =>  response.json())
       .then(options => {
         this.setState({memberOptions: options.employees, teamleaderOptions: options.employees});
       });
 
-    fetch("http://symph-operating-system-210700.appspot.com/_ah/api/employeesapi/v1/getProjectManagers", options)
+    fetch("https://symph-operating-system-210700.appspot.com/_ah/api/employeesapi/v1/getProjectManagers", options)
       .then(response =>  response.json())
       .then(options => {
         this.setState({projectManagerOptions: options.employees});
