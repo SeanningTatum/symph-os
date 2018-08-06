@@ -589,5 +589,25 @@ thead, th {
   to {bottom: 0; opacity: 0;}
 }
 
+/* toggle button */
+
+.sidenav--btn {
+  position: absolute;
+  border-radius: 100%;
+  top: 50%;
+  z-index: 10;
+  font-weight: 400;
+  padding: .15rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sidenav--btn i {
+  margin-right: 0 !important;
+}
 
 
