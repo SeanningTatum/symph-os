@@ -45,8 +45,9 @@ export function onAuth (response, whitelist) {
     
     const email = profile.email;
     const userDomain = email.split('@');
+    console.log(userDomain);
 
-    if (!(userDomain === whitelist.domains[0] || isWhitelisted(email, whitelist.emails))) {
+    if (!(userDomain[1] === whitelist.domains[0] || isWhitelisted(email, whitelist.emails))) {
       console.error('not a valid user');
       return;
     }
@@ -68,7 +69,7 @@ export function isLoggedIn(whitelist) {
     const email = JSON.parse(localStorage.getItem('profile')).email;
     const userDomain = email.split('@');
 
-    if (!(userDomain === whitelist.domains[0] || isWhitelisted(email, whitelist.emails))) {
+    if (!(userDomain[1] === whitelist.domains[0] || isWhitelisted(email, whitelist.emails))) {
       console.error('not a valid user');
       return;
     }
