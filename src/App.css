@@ -610,4 +610,36 @@ thead, th {
   margin-right: 0 !important;
 }
 
+/* Layout */
+
+.app-container {
+  height: 100%;
+}
+.container, .button-area, .content {
+  display: flex;
+}
+.container, .content {
+  flex-direction: column;
+}
+.container {
+  height: calc(100% - 45px);
+  padding: 0 45px;
+  margin: 0 auto;
+}
+.container .titles {
+  flex: 0.25;
+}
+.container .title {
+  margin-bottom: 3rem;
+}
+.container .stepper {
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+}
+.container .content {
+  flex: 1;
+  align-items: flex-start;
+}
+
+
 
