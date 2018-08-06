@@ -77,15 +77,58 @@ a.active {
 }
 
 a, a:hover {
-  background: $light-grey;
+  background: rgba(9,30,66,0.04);
   text-decoration: none;
 }
 
 .sidenav--list--item, 
 .sidenav {
-  background-color: $grey;
+  background-color: rgb(244, 245, 247);
 }
 
 .ml-20 {
   margin-left: .75rem;
+}
+
+/* Button */
+
+.btn {
+  height: 40px;
+  color: #505f79;
+  background: #f4f5f7;
+  width: auto;
+  margin: 0;
+  padding: 0 12px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.btn .material-icons {
+  font-size: 1rem;
+}
+button:disabled {
+  background-color: #5e6c84;
+  color: #f4f5f7;
+}
+button:disabled:hover {
+  background-color: #5e6c84 !important;
+  color: #f4f5f7 !important;
+}
+.btn-primary {
+  background-color: #0052cc;
+  color: #fff;
+  padding: 0 8px;
+  height: 35px;
+}
+.btn-primary:hover {
+  background-color: #0984e3;
+}
+.sidenav--btn {
+  background-color: #0052cc;
+  border: 1px solid #0052cc;
+  color: #fff;
 }
