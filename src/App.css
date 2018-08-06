@@ -52,7 +52,6 @@ table {
 /* Default styling and Resets */
 * {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -63,6 +62,32 @@ body {
 
 #root {
   height: 100vh;
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+h2 {
+  font-size: 1.25rem;
+}
+h3 {
+  font-weight: 600;
+  font-size: 1rem;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.title {
+  font-size: 1.25rem;
+}
+.stepper {
+  color: #505f79;
+  font-size: 0.75rem;
+}
+.info__name {
+  color: #505f79;
 }
 
 /* Styling for side navs */
@@ -362,4 +387,13 @@ thead, th {
 }
 .react-bootstrap-table-pagination {
   display: flex;
+}
+
+/* sidenav and main content transition when page moves  */
+.main-content--container,
+.sidenav,
+.sidenav--btn,
+.btn,
+.container {
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
