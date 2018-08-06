@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import './App.css';
 
 // Redux
 import * as authActions from 'store/actions/auth';
